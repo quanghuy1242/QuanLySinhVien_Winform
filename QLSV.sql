@@ -61,7 +61,7 @@ CREATE TABLE AdminSys
 CREATE TABLE MonHoc
 (
 	MaMH INT NOT NULL IDENTITY PRIMARY KEY,
-	TenMH nvarchar(20),
+	TenMH nvarchar(70),
 	TinChi INT
 )
 
@@ -475,3 +475,35 @@ EXEC dbo.sp_restoreuser 6, 0
 
 
 SELECT Deleted FROM dbo.view_allP WHERE MSSV = 6
+
+-- Tất cả môn học
+SELECT * 
+FROM dbo.MonHoc
+
+-- Các lớp học đang dạy môn có mã số 1
+SELECT *
+FROM dbo.LopHoc l JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
+WHERE l.MaMH = 1
+
+SELECT * FROM dbo.LopHoc
+GO
+
+CREATE PROC sp_getAllSubject AS
+BEGIN
+    SELECT MaMH, TenMH, TinChi FROM dbo.MonHoc
+END
+GO 
+
+CREATE PROC sp_GetClassFromSubject @maMH INT, @hk CHAR(5), @nh CHAR(15)
+AS
+BEGIN
+    SELECT l.MaLop, g.Ten + ' ' + g.Ho AS HoTenGV, l.HocKy, l.NamHoc, l.SiSo, l.MaGV
+	FROM dbo.LopHoc l JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
+					  JOIN dbo.GiangVien g ON g.MSGV = l.MaGV
+	WHERE l.MaMH = @maMH AND l.HocKy = @hk AND l.NamHoc = @nh
+END
+GO 
+EXEC dbo.sp_getAllSubject
+EXEC dbo.sp_GetClassFromSubject 1, 'HK1', '2018-2019'
+
+EXEC dbo.sp_GetInfo 1, 1
