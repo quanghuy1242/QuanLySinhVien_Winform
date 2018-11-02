@@ -41,6 +41,7 @@ namespace QuanLySinhVien.Views
             ttlhCon.comboBoxHocKyLoad(cbHK);
             ttlhCon.comboBoxNamHocLoad(cbNamHoc);
             ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop);
+            dtgvLop_CellClick(dtgvLop, new DataGridViewCellEventArgs(0, 0));
         }
 
         private void btnDong_Click(object sender, EventArgs e)

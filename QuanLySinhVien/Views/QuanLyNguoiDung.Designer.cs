@@ -106,6 +106,7 @@
             this.dtgvDSND.Location = new System.Drawing.Point(12, 40);
             this.dtgvDSND.Name = "dtgvDSND";
             this.dtgvDSND.ReadOnly = true;
+            this.dtgvDSND.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvDSND.Size = new System.Drawing.Size(664, 353);
             this.dtgvDSND.TabIndex = 0;
             this.dtgvDSND.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvDSND_CellClick);

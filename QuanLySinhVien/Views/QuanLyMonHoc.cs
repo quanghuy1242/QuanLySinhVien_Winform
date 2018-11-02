@@ -67,23 +67,39 @@ namespace QuanLySinhVien.Views
 
         private void dtgvLopHoc_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            int selectedcell = dtgvLopHoc.SelectedCells[0].RowIndex;
-            dtgvLopHoc.Rows[selectedcell].Selected = true;
-
-            txtMaLop.Text = dtgvLopHoc.Rows[selectedcell].Cells[0].Value.ToString();
-            txtMaGV.Text = dtgvLopHoc.Rows[selectedcell].Cells[1].Value.ToString();
-            nudSiSo.Value = Convert.ToInt32(dtgvLopHoc.Rows[selectedcell].Cells[5].Value);
-            txtHK.Text = dtgvLopHoc.Rows[selectedcell].Cells[3].Value.ToString();
-            txtNamHoc.Text = dtgvLopHoc.Rows[selectedcell].Cells[4].Value.ToString();
+            txtMaLop.Text = "";
+            txtMaGV.Text = "";
+            nudSiSo.Value = 0;
+            txtHK.Text = "";
+            txtNamHoc.Text = "";
+            txtTenGV.Text = "";
 
             try
             {
-                txtTenGV.Text = qlmhC.getTenGV(Convert.ToInt32(txtMaGV.Text));
+                int selectedcell = dtgvLopHoc.SelectedCells[0].RowIndex;
+                dtgvLopHoc.Rows[selectedcell].Selected = true;
+
+                txtMaLop.Text = dtgvLopHoc.Rows[selectedcell].Cells[0].Value.ToString();
+                txtMaGV.Text = dtgvLopHoc.Rows[selectedcell].Cells[1].Value.ToString();
+                nudSiSo.Value = Convert.ToInt32(dtgvLopHoc.Rows[selectedcell].Cells[5].Value);
+                txtHK.Text = dtgvLopHoc.Rows[selectedcell].Cells[3].Value.ToString();
+                txtNamHoc.Text = dtgvLopHoc.Rows[selectedcell].Cells[4].Value.ToString();
+
+                try
+                {
+                    txtTenGV.Text = qlmhC.getTenGV(Convert.ToInt32(txtMaGV.Text));
+                }
+                catch
+                {
+
+                }
             }
             catch
             {
 
             }
+
+            
         }
     }
 }

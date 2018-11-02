@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.dtgvRestore = new System.Windows.Forms.DataGridView();
+            this.manv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TuCach = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gioitinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quequan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRestore = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,13 +44,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtHoTen = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.manv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TuCach = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gioitinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quequan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvRestore)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,6 +53,7 @@
             this.dtgvRestore.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgvRestore.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dtgvRestore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvRestore.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.manv,
@@ -65,9 +66,71 @@
             this.dtgvRestore.Location = new System.Drawing.Point(13, 13);
             this.dtgvRestore.Name = "dtgvRestore";
             this.dtgvRestore.ReadOnly = true;
+            this.dtgvRestore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvRestore.Size = new System.Drawing.Size(619, 270);
             this.dtgvRestore.TabIndex = 0;
             this.dtgvRestore.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvRestore_CellClick);
+            // 
+            // manv
+            // 
+            this.manv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.manv.DataPropertyName = "MSSV";
+            this.manv.HeaderText = "Mã số";
+            this.manv.Name = "manv";
+            this.manv.ReadOnly = true;
+            this.manv.Width = 61;
+            // 
+            // TuCach
+            // 
+            this.TuCach.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.TuCach.DataPropertyName = "TuCach";
+            this.TuCach.HeaderText = "Tư Cách";
+            this.TuCach.Name = "TuCach";
+            this.TuCach.ReadOnly = true;
+            this.TuCach.Width = 73;
+            // 
+            // Ho
+            // 
+            this.Ho.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Ho.DataPropertyName = "Ho";
+            this.Ho.HeaderText = "Họ";
+            this.Ho.Name = "Ho";
+            this.Ho.ReadOnly = true;
+            // 
+            // Ten
+            // 
+            this.Ten.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Ten.DataPropertyName = "Ten";
+            this.Ten.HeaderText = "Tên";
+            this.Ten.Name = "Ten";
+            this.Ten.ReadOnly = true;
+            // 
+            // birthday
+            // 
+            this.birthday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.birthday.DataPropertyName = "NgayThangNamSinh";
+            this.birthday.HeaderText = "Birthday";
+            this.birthday.Name = "birthday";
+            this.birthday.ReadOnly = true;
+            this.birthday.Width = 70;
+            // 
+            // gioitinh
+            // 
+            this.gioitinh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.gioitinh.DataPropertyName = "GioiTinh";
+            this.gioitinh.HeaderText = "Giới Tính";
+            this.gioitinh.Name = "gioitinh";
+            this.gioitinh.ReadOnly = true;
+            this.gioitinh.Width = 76;
+            // 
+            // quequan
+            // 
+            this.quequan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.quequan.DataPropertyName = "QueQuan";
+            this.quequan.HeaderText = "Quê Quán";
+            this.quequan.Name = "quequan";
+            this.quequan.ReadOnly = true;
+            this.quequan.Width = 81;
             // 
             // btnRestore
             // 
@@ -147,67 +210,6 @@
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Họ và tên:";
-            // 
-            // manv
-            // 
-            this.manv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.manv.DataPropertyName = "MSSV";
-            this.manv.HeaderText = "Mã số";
-            this.manv.Name = "manv";
-            this.manv.ReadOnly = true;
-            this.manv.Width = 61;
-            // 
-            // TuCach
-            // 
-            this.TuCach.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.TuCach.DataPropertyName = "TuCach";
-            this.TuCach.HeaderText = "Tư Cách";
-            this.TuCach.Name = "TuCach";
-            this.TuCach.ReadOnly = true;
-            this.TuCach.Width = 73;
-            // 
-            // Ho
-            // 
-            this.Ho.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Ho.DataPropertyName = "Ho";
-            this.Ho.HeaderText = "Họ";
-            this.Ho.Name = "Ho";
-            this.Ho.ReadOnly = true;
-            // 
-            // Ten
-            // 
-            this.Ten.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Ten.DataPropertyName = "Ten";
-            this.Ten.HeaderText = "Tên";
-            this.Ten.Name = "Ten";
-            this.Ten.ReadOnly = true;
-            // 
-            // birthday
-            // 
-            this.birthday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.birthday.DataPropertyName = "NgayThangNamSinh";
-            this.birthday.HeaderText = "Birthday";
-            this.birthday.Name = "birthday";
-            this.birthday.ReadOnly = true;
-            this.birthday.Width = 70;
-            // 
-            // gioitinh
-            // 
-            this.gioitinh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.gioitinh.DataPropertyName = "GioiTinh";
-            this.gioitinh.HeaderText = "Giới Tính";
-            this.gioitinh.Name = "gioitinh";
-            this.gioitinh.ReadOnly = true;
-            this.gioitinh.Width = 76;
-            // 
-            // quequan
-            // 
-            this.quequan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.quequan.DataPropertyName = "QueQuan";
-            this.quequan.HeaderText = "Quê Quán";
-            this.quequan.Name = "quequan";
-            this.quequan.ReadOnly = true;
-            this.quequan.Width = 81;
             // 
             // KhoiPhucNguoiDung
             // 

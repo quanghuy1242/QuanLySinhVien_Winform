@@ -31,6 +31,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbHK = new System.Windows.Forms.ComboBox();
             this.dtgvLop = new System.Windows.Forms.DataGridView();
+            this.maLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hoTenGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMaLop = new System.Windows.Forms.TextBox();
             this.txtHoTenGV = new System.Windows.Forms.TextBox();
@@ -43,10 +47,6 @@
             this.cbNamHoc = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnDanhSach = new System.Windows.Forms.Button();
-            this.maLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hoTenGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.siSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvLop)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,9 +85,44 @@
             this.dtgvLop.Location = new System.Drawing.Point(12, 43);
             this.dtgvLop.Name = "dtgvLop";
             this.dtgvLop.ReadOnly = true;
+            this.dtgvLop.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvLop.Size = new System.Drawing.Size(511, 182);
             this.dtgvLop.TabIndex = 2;
             this.dtgvLop.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvLop_CellClick);
+            // 
+            // maLop
+            // 
+            this.maLop.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.maLop.DataPropertyName = "MaLop";
+            this.maLop.HeaderText = "Mã Lớp";
+            this.maLop.Name = "maLop";
+            this.maLop.ReadOnly = true;
+            this.maLop.Width = 63;
+            // 
+            // hoTenGV
+            // 
+            this.hoTenGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.hoTenGV.DataPropertyName = "TenGV";
+            this.hoTenGV.HeaderText = "Họ tên Giảng Viên";
+            this.hoTenGV.Name = "hoTenGV";
+            this.hoTenGV.ReadOnly = true;
+            // 
+            // monHoc
+            // 
+            this.monHoc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.monHoc.DataPropertyName = "TenMH";
+            this.monHoc.HeaderText = "Môn học";
+            this.monHoc.Name = "monHoc";
+            this.monHoc.ReadOnly = true;
+            // 
+            // siSo
+            // 
+            this.siSo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.siSo.DataPropertyName = "SiSo";
+            this.siSo.HeaderText = "Sỉ số";
+            this.siSo.Name = "siSo";
+            this.siSo.ReadOnly = true;
+            this.siSo.Width = 51;
             // 
             // label2
             // 
@@ -195,40 +230,6 @@
             this.btnDanhSach.Text = "Danh sách học sinh của lớp này";
             this.btnDanhSach.UseVisualStyleBackColor = true;
             this.btnDanhSach.Click += new System.EventHandler(this.btnDanhSach_Click);
-            // 
-            // maLop
-            // 
-            this.maLop.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.maLop.DataPropertyName = "MaLop";
-            this.maLop.HeaderText = "Mã Lớp";
-            this.maLop.Name = "maLop";
-            this.maLop.ReadOnly = true;
-            this.maLop.Width = 68;
-            // 
-            // hoTenGV
-            // 
-            this.hoTenGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.hoTenGV.DataPropertyName = "TenGV";
-            this.hoTenGV.HeaderText = "Họ tên Giảng Viên";
-            this.hoTenGV.Name = "hoTenGV";
-            this.hoTenGV.ReadOnly = true;
-            // 
-            // monHoc
-            // 
-            this.monHoc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.monHoc.DataPropertyName = "TenMH";
-            this.monHoc.HeaderText = "Môn học";
-            this.monHoc.Name = "monHoc";
-            this.monHoc.ReadOnly = true;
-            // 
-            // siSo
-            // 
-            this.siSo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.siSo.DataPropertyName = "SiSo";
-            this.siSo.HeaderText = "Sỉ số";
-            this.siSo.Name = "siSo";
-            this.siSo.ReadOnly = true;
-            this.siSo.Width = 55;
             // 
             // ThongTinLopHoc
             // 

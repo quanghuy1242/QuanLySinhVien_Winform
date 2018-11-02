@@ -48,20 +48,20 @@ namespace QuanLySinhVien.Views
             }
         }
 
-        private void dtgvDiem_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            dtgvDiem.Rows[dtgvDiem.SelectedCells[0].RowIndex].Selected = true;
-            if(dtgvDiem.SelectedRows.Count == 1)
-            {
-                txtTenMon.Text = dtgvDiem.SelectedRows[0].Cells[1].Value.ToString();
-                txtTK.Text = dtgvDiem.SelectedRows[0].Cells[2].Value.ToString();
-                txtGK.Text = dtgvDiem.SelectedRows[0].Cells[3].Value.ToString();
-                txtCk.Text = dtgvDiem.SelectedRows[0].Cells[4].Value.ToString();
-                txtTongKEt.Text = dtgvDiem.SelectedRows[0].Cells[5].Value.ToString();
-                txtXL.Text = dtgvDiem.SelectedRows[0].Cells[6].Value.ToString();
+        //private void dtgvDiem_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    dtgvDiem.Rows[dtgvDiem.SelectedCells[0].RowIndex].Selected = true;
+        //    if(dtgvDiem.SelectedRows.Count == 1)
+        //    {
+        //        txtTenMon.Text = dtgvDiem.SelectedRows[0].Cells[1].Value.ToString();
+        //        txtTK.Text = dtgvDiem.SelectedRows[0].Cells[2].Value.ToString();
+        //        txtGK.Text = dtgvDiem.SelectedRows[0].Cells[3].Value.ToString();
+        //        txtCk.Text = dtgvDiem.SelectedRows[0].Cells[4].Value.ToString();
+        //        txtTongKEt.Text = dtgvDiem.SelectedRows[0].Cells[5].Value.ToString();
+        //        txtXL.Text = dtgvDiem.SelectedRows[0].Cells[6].Value.ToString();
 
-            }
-        }
+        //    }
+        //}
 
         private void btnDong_Click(object sender, EventArgs e)
         {
