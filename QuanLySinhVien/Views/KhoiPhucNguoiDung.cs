@@ -31,24 +31,29 @@ namespace QuanLySinhVien.Views
             kpndC.LoadThongTin(dtgvRestore, 1);
         }
 
-        private void dtgvRestore_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int selectedcell = dtgvRestore.SelectedCells[0].RowIndex;
-            dtgvRestore.Rows[selectedcell].Selected = true;
-            txtMa.Text = dtgvRestore.Rows[selectedcell].Cells[0].Value.ToString();
-            txtHoTen.Text = dtgvRestore.Rows[selectedcell].Cells[2].Value.ToString() + " " + dtgvRestore.Rows[selectedcell].Cells[3].Value.ToString();
-            txtTuCach.Text = dtgvRestore.Rows[selectedcell].Cells[1].Value.ToString();
-        }
+        //private void dtgvRestore_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    int selectedcell = dtgvRestore.SelectedCells[0].RowIndex;
+        //    dtgvRestore.Rows[selectedcell].Selected = true;
+        //    txtMa.Text = dtgvRestore.Rows[selectedcell].Cells[0].Value.ToString();
+        //    txtHoTen.Text = dtgvRestore.Rows[selectedcell].Cells[2].Value.ToString() + " " + dtgvRestore.Rows[selectedcell].Cells[3].Value.ToString();
+        //    txtTuCach.Text = dtgvRestore.Rows[selectedcell].Cells[1].Value.ToString();
+        //}
 
         private void btnRestore_Click(object sender, EventArgs e)
         {
             DialogResult rs = MessageBox.Show("Bạn chắc chắn", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
-            if (rs == DialogResult.OK)
+            int ma, tc;
+
+            try
             {
-                try
+                ma = Convert.ToInt32(dtgvRestore.SelectedRows[0].Cells[0].Value);
+                tc = Convert.ToInt32(dtgvRestore.SelectedRows[0].Cells[1].Value);
+
+                if (rs == DialogResult.OK)
                 {
-                    if (kpndC.RestoreUsers(Convert.ToInt32(txtMa.Text), Convert.ToInt32(txtTuCach.Text)))
+                    if (kpndC.RestoreUsers(ma, tc))
                     {
                         MessageBox.Show("Đã khôi phục thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ((QuanLyNguoiDung)this.Owner).btnShowAll.PerformClick();
@@ -60,12 +65,12 @@ namespace QuanLySinhVien.Views
                         MessageBox.Show("Có lỗi", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch
-                {
-                    MessageBox.Show("Vui lòng chọn một người dùng", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+
             }
-            
+            catch
+            {
+                MessageBox.Show("Danh sách trống hoặc bạn chưa chọn một người dùng", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

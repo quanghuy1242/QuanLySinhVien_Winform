@@ -38,12 +38,6 @@
             this.quequan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRestore = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtMa = new System.Windows.Forms.TextBox();
-            this.txtTuCach = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtHoTen = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvRestore)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +63,6 @@
             this.dtgvRestore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvRestore.Size = new System.Drawing.Size(619, 270);
             this.dtgvRestore.TabIndex = 0;
-            this.dtgvRestore.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvRestore_CellClick);
             // 
             // manv
             // 
@@ -154,74 +147,11 @@
             this.btnDong.UseVisualStyleBackColor = true;
             this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 294);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Mã:";
-            // 
-            // txtMa
-            // 
-            this.txtMa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtMa.Location = new System.Drawing.Point(42, 291);
-            this.txtMa.Name = "txtMa";
-            this.txtMa.ReadOnly = true;
-            this.txtMa.Size = new System.Drawing.Size(46, 20);
-            this.txtMa.TabIndex = 4;
-            // 
-            // txtTuCach
-            // 
-            this.txtTuCach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtTuCach.Location = new System.Drawing.Point(342, 291);
-            this.txtTuCach.Name = "txtTuCach";
-            this.txtTuCach.ReadOnly = true;
-            this.txtTuCach.Size = new System.Drawing.Size(38, 20);
-            this.txtTuCach.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(286, 294);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Tư cách:";
-            // 
-            // txtHoTen
-            // 
-            this.txtHoTen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtHoTen.Location = new System.Drawing.Point(157, 291);
-            this.txtHoTen.Name = "txtHoTen";
-            this.txtHoTen.ReadOnly = true;
-            this.txtHoTen.Size = new System.Drawing.Size(121, 20);
-            this.txtHoTen.TabIndex = 8;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(94, 294);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Họ và tên:";
-            // 
             // KhoiPhucNguoiDung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 321);
-            this.Controls.Add(this.txtHoTen);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtTuCach);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtMa);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.dtgvRestore);
@@ -231,7 +161,6 @@
             this.Load += new System.EventHandler(this.KhoiPhucNguoiDung_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvRestore)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -240,12 +169,6 @@
         private System.Windows.Forms.DataGridView dtgvRestore;
         private System.Windows.Forms.Button btnRestore;
         private System.Windows.Forms.Button btnDong;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtMa;
-        private System.Windows.Forms.TextBox txtTuCach;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtHoTen;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn manv;
         private System.Windows.Forms.DataGridViewTextBoxColumn TuCach;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ho;

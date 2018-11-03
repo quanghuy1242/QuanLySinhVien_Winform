@@ -41,7 +41,7 @@ namespace QuanLySinhVien.Views
             ttlhCon.comboBoxHocKyLoad(cbHK);
             ttlhCon.comboBoxNamHocLoad(cbNamHoc);
             ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop);
-            dtgvLop_CellClick(dtgvLop, new DataGridViewCellEventArgs(0, 0));
+            //dtgvLop_CellClick(dtgvLop, new DataGridViewCellEventArgs(0, 0));
         }
 
         private void btnDong_Click(object sender, EventArgs e)
@@ -54,29 +54,22 @@ namespace QuanLySinhVien.Views
             ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop);
         }
 
-        private void dtgvLop_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            dtgvLop.Rows[dtgvLop.SelectedCells[0].RowIndex].Selected = true;
-            if (dtgvLop.SelectedRows.Count == 1)
-            {
-                txtMaLop.Text = dtgvLop.SelectedRows[0].Cells[0].Value.ToString();
-                txtHoTenGV.Text = dtgvLop.SelectedRows[0].Cells[1].Value.ToString();
-                txtMonHoc.Text = dtgvLop.SelectedRows[0].Cells[2].Value.ToString();
-                txtSiSo.Text = dtgvLop.SelectedRows[0].Cells[3].Value.ToString();
-            }
-        }
+        //private void dtgvLop_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    dtgvLop.Rows[dtgvLop.SelectedCells[0].RowIndex].Selected = true;
+        //    //if (dtgvLop.SelectedRows.Count == 1)
+        //    //{
+        //    //    txtMaLop.Text = dtgvLop.SelectedRows[0].Cells[0].Value.ToString();
+        //    //    txtHoTenGV.Text = dtgvLop.SelectedRows[0].Cells[1].Value.ToString();
+        //    //    txtMonHoc.Text = dtgvLop.SelectedRows[0].Cells[2].Value.ToString();
+        //    //    txtSiSo.Text = dtgvLop.SelectedRows[0].Cells[3].Value.ToString();
+        //    //}
+        //}
 
         private void btnDanhSach_Click(object sender, EventArgs e)
         {
-            if (txtMaLop.TextLength != 0)
-            {
-                DanhSachHocSinhCuaLop dshs = new DanhSachHocSinhCuaLop();
-                dshs.ShowDialog(this);
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một lớp", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            DanhSachHocSinhCuaLop dshs = new DanhSachHocSinhCuaLop();
+            dshs.ShowDialog(this);
             
         }
     }

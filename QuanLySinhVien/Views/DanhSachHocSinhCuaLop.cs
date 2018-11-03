@@ -29,9 +29,12 @@ namespace QuanLySinhVien.Views
 
         void loadLaiData()
         {
-            TextBox txtMaLop = ((ThongTinLopHoc)this.Owner).txtMaLop;
+            // Lấy dtgv của cha
+            DataGridView dtgv = ((ThongTinLopHoc)this.Owner).dtgvLop;
 
-            dshs.dataGridDsSv(dtgvDs, Convert.ToInt32(txtMaLop.Text));
+            int malop = Convert.ToInt32(dtgv.SelectedRows[0].Cells[0].Value);
+
+            dshs.dataGridDsSv(dtgvDs, malop);
         }
 
         private void DanhSachHocSinhCuaLop_Load(object sender, EventArgs e)
@@ -60,8 +63,12 @@ namespace QuanLySinhVien.Views
                 int ms = Convert.ToInt32(row.Cells[0].Value);
                 ComboBox cbHK = ((ThongTinLopHoc)this.Owner).cbHK;
                 ComboBox cbNamHoc = ((ThongTinLopHoc)this.Owner).cbNamHoc;
-                TextBox txtMaLop = ((ThongTinLopHoc)this.Owner).txtMaLop;
-                dshs.CapNhatDsDiem(tk, gk, ck, ms, Convert.ToInt32(txtMaLop.Text));
+
+                DataGridView dtgv = ((ThongTinLopHoc)this.Owner).dtgvLop;
+
+                int malop = Convert.ToInt32(dtgv.SelectedRows[0].Cells[0].Value);
+
+                dshs.CapNhatDsDiem(tk, gk, ck, ms, malop);
                 count++;
             }
             loadLaiData();
