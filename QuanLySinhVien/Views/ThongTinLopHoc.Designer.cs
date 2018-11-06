@@ -146,11 +146,11 @@
             // 
             // btnDanhSach
             // 
-            this.btnDanhSach.Location = new System.Drawing.Point(10, 283);
+            this.btnDanhSach.Location = new System.Drawing.Point(362, 283);
             this.btnDanhSach.Name = "btnDanhSach";
-            this.btnDanhSach.Size = new System.Drawing.Size(171, 23);
+            this.btnDanhSach.Size = new System.Drawing.Size(80, 23);
             this.btnDanhSach.TabIndex = 15;
-            this.btnDanhSach.Text = "Danh sách học sinh của lớp này";
+            this.btnDanhSach.Text = "Xem điểm";
             this.btnDanhSach.UseVisualStyleBackColor = true;
             this.btnDanhSach.Click += new System.EventHandler(this.btnDanhSach_Click);
             // 

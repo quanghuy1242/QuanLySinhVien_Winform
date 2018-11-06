@@ -20,6 +20,14 @@ namespace QuanLySinhVien.Views
             InitializeComponent();
             dshs = new DanhSachHocSinhController();
             dtgvDs.AutoGenerateColumns = false;
+            if (GlobalVariable.GVTuCach == 0)
+            {
+                dtgvDs.Columns["DiemTK"].ReadOnly = true;
+                dtgvDs.Columns["DiemGK"].ReadOnly = true;
+                dtgvDs.Columns["DiemCK"].ReadOnly = true;
+                btnUpdateDiem.Visible = false;
+                btnReport.Visible = false;
+            }
         }
 
         private void btnDong_Click(object sender, EventArgs e)
@@ -34,7 +42,31 @@ namespace QuanLySinhVien.Views
 
             int malop = Convert.ToInt32(dtgv.SelectedRows[0].Cells[0].Value);
 
-            dshs.dataGridDsSv(dtgvDs, malop);
+            if (GlobalVariable.GVTuCach == 0)
+            {
+                // Nếu người đăng nhập là sinh viên
+                dshs.dataGridDsSv(dtgvDs, malop, GlobalVariable.GVMaSo);
+            }
+            if (GlobalVariable.GVTuCach == 1)
+            {
+                // Nếu người đăng nhập là giảng viên
+                dshs.dataGridDsSv(dtgvDs, malop, -1);
+            }
+            if (GlobalVariable.GVTuCach == 2)
+            {
+                // Nếu người đăng nhập là admin
+                int tucach = ((QuanLyNguoiDung)this.Owner.Owner).cbTuCach.SelectedItem.ToString() == "Sinh Viên" ? 0 : 1;
+                if (tucach == 0)
+                {
+                    int masosv = Convert.ToInt32(((QuanLyNguoiDung)this.Owner.Owner).txtMa.Text);
+                    dshs.dataGridDsSv(dtgvDs, malop, masosv);
+                }
+                if(tucach == 1)
+                {
+                    dshs.dataGridDsSv(dtgvDs, malop, -1);
+                }
+            }
+
         }
 
         private void DanhSachHocSinhCuaLop_Load(object sender, EventArgs e)

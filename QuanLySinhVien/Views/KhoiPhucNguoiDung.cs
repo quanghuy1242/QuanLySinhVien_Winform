@@ -72,5 +72,18 @@ namespace QuanLySinhVien.Views
                 MessageBox.Show("Danh sách trống hoặc bạn chưa chọn một người dùng", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            string msg = "Lưu ý: \n" +
+            " - Khi xoá một người dùng ra khỏi hệ thống, các thông tin của người dùng bao gồm: các lớp đã học, đã dạy, thông tin điểm sẽ bị xoá sạch hoàn toàn và không thể phục hồi\n" +
+            "Bạn có muốn tiếp tục?";
+
+            DialogResult rs = MessageBox.Show(msg, "Cảnh báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (rs == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }

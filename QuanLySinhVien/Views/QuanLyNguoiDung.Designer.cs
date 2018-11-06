@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbTK = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnClassofPerson = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnChonAnh = new System.Windows.Forms.Button();
@@ -107,7 +108,7 @@
             this.dtgvDSND.Name = "dtgvDSND";
             this.dtgvDSND.ReadOnly = true;
             this.dtgvDSND.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgvDSND.Size = new System.Drawing.Size(664, 353);
+            this.dtgvDSND.Size = new System.Drawing.Size(664, 362);
             this.dtgvDSND.TabIndex = 0;
             this.dtgvDSND.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvDSND_CellClick);
             // 
@@ -194,6 +195,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnClassofPerson);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.btnChonAnh);
@@ -222,10 +224,20 @@
             this.groupBox1.Controls.Add(this.txtHo);
             this.groupBox1.Location = new System.Drawing.Point(682, 34);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(274, 359);
+            this.groupBox1.Size = new System.Drawing.Size(274, 368);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết";
+            // 
+            // btnClassofPerson
+            // 
+            this.btnClassofPerson.Location = new System.Drawing.Point(6, 279);
+            this.btnClassofPerson.Name = "btnClassofPerson";
+            this.btnClassofPerson.Size = new System.Drawing.Size(156, 23);
+            this.btnClassofPerson.TabIndex = 42;
+            this.btnClassofPerson.Text = "Lớp học";
+            this.btnClassofPerson.UseVisualStyleBackColor = true;
+            this.btnClassofPerson.Click += new System.EventHandler(this.btnClassofPerson_Click);
             // 
             // label13
             // 
@@ -352,7 +364,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(6, 296);
+            this.btnXoa.Location = new System.Drawing.Point(6, 308);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(156, 23);
             this.btnXoa.TabIndex = 29;
@@ -362,7 +374,7 @@
             // 
             // btnCapNhat
             // 
-            this.btnCapNhat.Location = new System.Drawing.Point(6, 325);
+            this.btnCapNhat.Location = new System.Drawing.Point(6, 337);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(156, 23);
             this.btnCapNhat.TabIndex = 26;
@@ -373,7 +385,7 @@
             // pbAnh
             // 
             this.pbAnh.Image = ((System.Drawing.Image)(resources.GetObject("pbAnh.Image")));
-            this.pbAnh.Location = new System.Drawing.Point(168, 226);
+            this.pbAnh.Location = new System.Drawing.Point(168, 236);
             this.pbAnh.Name = "pbAnh";
             this.pbAnh.Size = new System.Drawing.Size(100, 124);
             this.pbAnh.TabIndex = 4;
@@ -457,7 +469,7 @@
             // btnDong
             // 
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDong.Location = new System.Drawing.Point(881, 408);
+            this.btnDong.Location = new System.Drawing.Point(881, 421);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(75, 23);
             this.btnDong.TabIndex = 4;
@@ -507,9 +519,9 @@
             this.btnShowAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnShowAll.Location = new System.Drawing.Point(682, 10);
             this.btnShowAll.Name = "btnShowAll";
-            this.btnShowAll.Size = new System.Drawing.Size(90, 23);
+            this.btnShowAll.Size = new System.Drawing.Size(47, 23);
             this.btnShowAll.TabIndex = 10;
-            this.btnShowAll.Text = "Show All";
+            this.btnShowAll.Text = "Tất cả";
             this.btnShowAll.UseVisualStyleBackColor = true;
             this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
             // 
@@ -538,11 +550,11 @@
             // btnRestore
             // 
             this.btnRestore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRestore.Location = new System.Drawing.Point(778, 10);
+            this.btnRestore.Location = new System.Drawing.Point(735, 10);
             this.btnRestore.Name = "btnRestore";
-            this.btnRestore.Size = new System.Drawing.Size(69, 23);
+            this.btnRestore.Size = new System.Drawing.Size(112, 23);
             this.btnRestore.TabIndex = 13;
-            this.btnRestore.Text = "Restore";
+            this.btnRestore.Text = "Người dùng đã xoá";
             this.btnRestore.UseVisualStyleBackColor = true;
             this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
@@ -550,7 +562,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(13, 400);
+            this.label15.Location = new System.Drawing.Point(14, 413);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(211, 13);
             this.label15.TabIndex = 14;
@@ -560,7 +572,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(52, 418);
+            this.label16.Location = new System.Drawing.Point(53, 431);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(228, 13);
             this.label16.TabIndex = 15;
@@ -570,7 +582,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(968, 443);
+            this.ClientSize = new System.Drawing.Size(968, 456);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.btnRestore);
@@ -629,14 +641,12 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtTk;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cbTuCach;
         private System.Windows.Forms.Button btnChonAnh;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtTenDN;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtMa;
         private System.Windows.Forms.ComboBox cbLoaiTC;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridViewTextBoxColumn maso;
@@ -650,5 +660,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         public System.Windows.Forms.Button btnShowAll;
+        private System.Windows.Forms.Button btnClassofPerson;
+        public System.Windows.Forms.ComboBox cbTuCach;
+        public System.Windows.Forms.TextBox txtMa;
     }
 }

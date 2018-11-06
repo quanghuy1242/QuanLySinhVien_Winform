@@ -38,6 +38,7 @@
             this.quequan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRestore = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvRestore)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,11 +148,23 @@
             this.btnDong.UseVisualStyleBackColor = true;
             this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.Location = new System.Drawing.Point(383, 289);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(87, 23);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Xoá hoàn toàn";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // KhoiPhucNguoiDung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 321);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.dtgvRestore);
@@ -176,5 +189,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn birthday;
         private System.Windows.Forms.DataGridViewTextBoxColumn gioitinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn quequan;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

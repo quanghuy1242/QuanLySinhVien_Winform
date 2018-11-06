@@ -40,15 +40,15 @@ namespace QuanLySinhVien.Controllers
             cbNamHoc.ValueMember = "NamHoc";
         }
 
-        public void dataGridViewLopHocLoad(ComboBox cbHk, ComboBox cbNamHoc, DataGridView dtgv)
+        public void dataGridViewLopHocLoad(ComboBox cbHk, ComboBox cbNamHoc, DataGridView dtgv, int maso, int tucach)
         {
             SqlCommand cmd = new SqlCommand("sp_GetClassInfo");
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@hk", SqlDbType.Char, 5).Value = cbHk.SelectedValue;
             cmd.Parameters.Add("@namhoc", SqlDbType.Char, 15).Value = cbNamHoc.SelectedValue;
-            cmd.Parameters.Add("@ms", SqlDbType.Int).Value = GlobalVariable.GVMaSo;
-            cmd.Parameters.Add("@tc", SqlDbType.Int).Value = GlobalVariable.GVTuCach;
+            cmd.Parameters.Add("@ms", SqlDbType.Int).Value = maso;
+            cmd.Parameters.Add("@tc", SqlDbType.Int).Value = tucach;
 
             dtgv.DataSource = dangnhap.OpenDataSet(cmd).Tables[0];
         }

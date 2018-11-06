@@ -81,5 +81,56 @@ namespace QuanLySinhVien.Controllers
             return dt.Rows[0][3].ToString() + " " + dt.Rows[0][2].ToString();
         }
 
+        public void updateClass(int malop, int magv, int mamh, string hocky, string namhoc, int siso)
+        {
+            SqlCommand cmd = new SqlCommand("sp_updateClass");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@malop", SqlDbType.Int).Value = malop;
+            cmd.Parameters.Add("@magv", SqlDbType.Int).Value = magv;
+            cmd.Parameters.Add("@mamh", SqlDbType.Int).Value = mamh;
+            cmd.Parameters.Add("@hk", SqlDbType.Char, 5).Value = hocky;
+            cmd.Parameters.Add("@namhoc", SqlDbType.Char, 15).Value = namhoc;
+            cmd.Parameters.Add("@ss", SqlDbType.Int).Value = siso;
+
+            dangnhap.ExecuteNonQuery(cmd);
+        }
+
+        public void insertNewClass(int magv, int mamh, string hocky, string namhoc, int siso)
+        {
+            SqlCommand cmd = new SqlCommand("sp_addNewClass");
+            cmd.CommandType = CommandType.StoredProcedure;
+            
+            cmd.Parameters.Add("@magv", SqlDbType.Int).Value = magv;
+            cmd.Parameters.Add("@mamh", SqlDbType.Int).Value = mamh;
+            cmd.Parameters.Add("@hk", SqlDbType.Char, 5).Value = hocky;
+            cmd.Parameters.Add("@namhoc", SqlDbType.Char, 15).Value = namhoc;
+            cmd.Parameters.Add("@ss", SqlDbType.Int).Value = siso;
+
+            dangnhap.ExecuteNonQuery(cmd);
+        }
+
+        public bool checkGiangVienInLopHoc(int magv, string hk, string namhoc, int mamon)
+        {
+            SqlCommand cmd = new SqlCommand("sp_GetClassInfo");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@hk", SqlDbType.Char, 5).Value = hk;
+            cmd.Parameters.Add("@namhoc", SqlDbType.Char, 15).Value = namhoc;
+            cmd.Parameters.Add("@tc", SqlDbType.Int).Value = 1;
+            cmd.Parameters.Add("@ms", SqlDbType.Int).Value = magv;
+
+            DataTable dt = dangnhap.OpenDataSet(cmd).Tables[0];
+
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (mamon == Convert.ToInt32(dt.Rows[i][6]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

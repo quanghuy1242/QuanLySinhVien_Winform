@@ -20,10 +20,14 @@ namespace QuanLySinhVien.Views
             InitializeComponent();
             ttlhCon = new ThongTinLopHocController();
             dtgvLop.AutoGenerateColumns = false;
-            if(GlobalVariable.GVTuCach == 0)
-            {
-                btnDanhSach.Visible = false;
-            }
+            //if(GlobalVariable.GVTuCach == 0)
+            //{
+            //    btnDanhSach.Visible = false;
+            //}
+            //if (GlobalVariable.GVTuCach == 2)
+            //{
+            //    btnDanhSach.Visible = false;
+            //}
         }
 
         //private void cbHK_SelectedIndexChanged(object sender, EventArgs e)
@@ -40,7 +44,17 @@ namespace QuanLySinhVien.Views
         {
             ttlhCon.comboBoxHocKyLoad(cbHK);
             ttlhCon.comboBoxNamHocLoad(cbNamHoc);
-            ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop);
+            if(GlobalVariable.GVTuCach != 2)
+            {
+                // Nếu người đang đănng nhập không phải là admin, thì ds lớp sẽ được load từ ms, tucach
+                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, GlobalVariable.GVMaSo, GlobalVariable.GVTuCach);
+            }
+            else
+            {
+                int maso = Convert.ToInt32(((QuanLyNguoiDung)this.Owner).txtMa.Text);
+                int tucach = ((QuanLyNguoiDung)this.Owner).cbTuCach.SelectedItem.ToString() == "Sinh Viên" ? 0 : 1;
+                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, maso, tucach);
+            }
             //dtgvLop_CellClick(dtgvLop, new DataGridViewCellEventArgs(0, 0));
         }
 
@@ -51,7 +65,17 @@ namespace QuanLySinhVien.Views
 
         private void cbHK_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop);
+            if (GlobalVariable.GVTuCach != 2)
+            {
+                // Nếu người đang đănng nhập không phải là admin, thì ds lớp sẽ được load từ ms, tucach
+                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, GlobalVariable.GVMaSo, GlobalVariable.GVTuCach);
+            }
+            else
+            {
+                int maso = Convert.ToInt32(((QuanLyNguoiDung)this.Owner).txtMa);
+                int tucach = ((QuanLyNguoiDung)this.Owner).cbTuCach.SelectedItem.ToString() == "Sinh Viên" ? 0 : 1;
+                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, maso, tucach);
+            }
         }
 
         //private void dtgvLop_CellClick(object sender, DataGridViewCellEventArgs e)

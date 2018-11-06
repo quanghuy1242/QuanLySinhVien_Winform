@@ -231,6 +231,8 @@ namespace QuanLySinhVien.Views
                 DialogResult rs = MessageBox.Show("Bạn có chắc chắn?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if(rs == DialogResult.OK)
                 {
+
+
                     qlndC.DeleteUser(Convert.ToInt32(txtMa.Text), cbTuCach.SelectedItem.ToString() == "Sinh Viên" ? 0 : 1);
                 }
                 LoadKiemTra();
@@ -268,6 +270,12 @@ namespace QuanLySinhVien.Views
         private void btnRestore_Click(object sender, EventArgs e)
         {
             (new KhoiPhucNguoiDung()).ShowDialog(this);
+        }
+
+        private void btnClassofPerson_Click(object sender, EventArgs e)
+        {
+            ThongTinLopHoc thongTinLopHoc = new ThongTinLopHoc();
+            thongTinLopHoc.ShowDialog(this);
         }
     }
 }

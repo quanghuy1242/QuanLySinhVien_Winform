@@ -18,13 +18,22 @@ namespace QuanLySinhVien.Controllers
             dangnhap = new CdbController();
         }
 
-        public void dataGridDsSv(DataGridView dtgv, int malop)
+        public void dataGridDsSv(DataGridView dtgv, int malop, int manv)
         {
             SqlCommand cmd = new SqlCommand("sp_getDSSV");
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@malop", SqlDbType.Char, 5).Value = malop;
-            cmd.Parameters.Add("@magv", SqlDbType.Char, 15).Value = GlobalVariable.GVMaSo;
+
+            if (manv == -1)
+            {
+                cmd.Parameters.Add("@ma", SqlDbType.Char, 15).Value = DBNull.Value;
+            }
+            else
+            {
+                cmd.Parameters.Add("@ma", SqlDbType.Char, 15).Value = manv;
+            }
+            
 
             dtgv.DataSource = dangnhap.OpenDataSet(cmd).Tables[0];
         }

@@ -240,7 +240,7 @@ BEGIN
 		END
 	IF @tc = 1
 		BEGIN
-		    SELECT l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS TenGV, l.HocKy, l.NamHoc, l.SiSo
+		    SELECT l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS TenGV, l.HocKy, l.NamHoc, l.SiSo, l.MaMH
 			FROM dbo.LopHoc l JOIN dbo.GiangVien g ON l.MaGV = g.MSGV
 							  JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
 			WHERE l.MaGV = @ms AND l.HocKy = @hk AND l.NamHoc = @namhoc
@@ -314,24 +314,35 @@ END
 GO 
 
 -- Giảng viên xem thông tin điểm của một lớp
-SELECT s.MSSV, s.Ho + ' ' + s.Ten AS tenSV, ls.DiemTK, ls.DiemGK, ls.DiemCK, ls.DiemTongKet, ls.XepLoai
+SELECT s.MSSV, s.Ho + ' ' + s.Ten AS tenSV, ls.DiemTK, ls.DiemGK, ls.DiemCK, ls.DiemTongKet, ls.XepLoai, ls.MaSV
 FROM dbo.LopHoc l JOIN dbo.LopSinhVien ls ON ls.MaLop = l.MaLop
 				  JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
 				  JOIN dbo.SinhVien s ON ls.MaSV = s.MSSV
-WHERE MaGV = 1 AND l.MaLop = 1
+WHERE l.MaLop = 1
 GO 
 
-CREATE PROC sp_getDSSV @malop INT, @magv INT 
+CREATE PROC sp_getDSSV @malop INT, @ma INT 
 AS
 BEGIN
-    SELECT s.MSSV, s.Ho + ' ' + s.Ten AS tenSV, ls.DiemTK, ls.DiemGK, ls.DiemCK, ls.DiemTongKet, ls.XepLoai
-	FROM dbo.LopHoc l JOIN dbo.LopSinhVien ls ON ls.MaLop = l.MaLop
-					  JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
-					  JOIN dbo.SinhVien s ON ls.MaSV = s.MSSV
-	WHERE MaGV = @magv AND l.MaLop = @malop
+	IF @ma IS NULL
+		BEGIN
+			SELECT s.MSSV, s.Ho + ' ' + s.Ten AS tenSV, ls.DiemTK, ls.DiemGK, ls.DiemCK, ls.DiemTongKet, ls.XepLoai
+			FROM dbo.LopHoc l JOIN dbo.LopSinhVien ls ON ls.MaLop = l.MaLop
+							  JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
+							  JOIN dbo.SinhVien s ON ls.MaSV = s.MSSV
+			WHERE l.MaLop = @malop
+		END
+    ELSE
+		BEGIN
+		    SELECT s.MSSV, s.Ho + ' ' + s.Ten AS tenSV, ls.DiemTK, ls.DiemGK, ls.DiemCK, ls.DiemTongKet, ls.XepLoai
+			FROM dbo.LopHoc l JOIN dbo.LopSinhVien ls ON ls.MaLop = l.MaLop
+							  JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
+							  JOIN dbo.SinhVien s ON ls.MaSV = s.MSSV
+			WHERE l.MaLop = @malop AND ls.MaSV = @ma
+		END
 END
 
-EXEC dbo.sp_getDSSV 1, 1
+EXEC dbo.sp_getDSSV 1, NULL
 
 GO 
 CREATE PROC sp_CapNhatDiem @tk FLOAT, @gk FLOAT, @ck FLOAT, @masv INT, @malop INT 
@@ -507,3 +518,77 @@ EXEC dbo.sp_getAllSubject
 EXEC dbo.sp_GetClassFromSubject 1, 'HK1', '2018-2019'
 
 EXEC dbo.sp_GetInfo 1, 1
+
+SELECT * FROM LopHoc
+
+GO 
+CREATE PROC sp_updateClass 
+	@malop INT,
+	@magv INT,
+	@mamh INT,
+	@hk CHAR(5),
+	@namhoc CHAR(15),
+	@ss INT 
+AS
+BEGIN
+    UPDATE dbo.LopHoc
+	SET MaGV = @magv,
+		MaMH = @mamh,
+		HocKy = @hk,
+		NamHoc = @namhoc,
+		SiSo = @ss
+	WHERE MaLop = @malop
+END
+
+EXEC dbo.sp_updateClass 1, 1, 1, 'HK1', '2018-2019', 56
+GO 
+CREATE PROC sp_addNewClass
+	@magv INT,
+	@mamh INT,
+	@hk CHAR(5),
+	@namhoc CHAR(15),
+	@ss INT
+AS
+BEGIN
+    INSERT dbo.LopHoc(MaGV, MaMH, HocKy, NamHoc, SiSo)
+    VALUES(@magv, @mamh, @hk, @namhoc, @ss)
+END
+GO 
+CREATE PROC sp_getDSMon @mamh INT
+AS
+BEGIN
+    SELECT MaMH, TenMH, TinChi
+	FROM dbo.MonHoc
+END
+GO
+SELECT * FROM dbo.LopHoc
+
+SELECT * FROM dbo.GiangVien
+GO 
+SELECT * FROM dbo.LopSinhVien
+
+SELECT * FROM dbo.SinhVien
+
+SELECT * FROM dbo.LopHoc
+
+INSERT dbo.LopSinhVien(MaLop, MaSV)
+VALUES(4, 7)
+
+ALTER TABLE dbo.SinhVien NOCHECK CONSTRAINT ALL 
+
+
+-- xoá sinh viên
+
+ALTER TABLE dbo.LopSinhVien DROP CONSTRAINT FK__LopSinhVie__MaSV__1CF15040
+
+ALTER TABLE dbo.LopSinhVien ADD CONSTRAINT FK_Masv FOREIGN KEY (MaSV) REFERENCES dbo.SinhVien(MSSV) ON DELETE CASCADE
+
+DELETE FROM dbo.SinhVien WHERE MSSV = 7
+
+-- xoá gv
+SELECT * FROM dbo.GiangVien
+
+-- Kiểm tra một giáo viên bất kì dạy bao nhiêu lớp
+SELECT COUNT(*)
+FROM dbo.LopHoc l JOIN dbo.GiangVien g ON g.MSGV = l.MaGV
+WHERE l.MaGV = 2
