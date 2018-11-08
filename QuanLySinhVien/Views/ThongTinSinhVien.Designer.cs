@@ -205,6 +205,7 @@
             this.btnDangKyLop.TabIndex = 26;
             this.btnDangKyLop.Text = "Đăng ký lớp học";
             this.btnDangKyLop.UseVisualStyleBackColor = true;
+            this.btnDangKyLop.Click += new System.EventHandler(this.btnDangKyLop_Click);
             // 
             // btnQLMH
             // 

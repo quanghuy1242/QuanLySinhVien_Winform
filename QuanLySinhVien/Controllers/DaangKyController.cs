@@ -45,6 +45,8 @@ namespace QuanLySinhVien.Controllers
             SqlCommand cmd = new SqlCommand("sp_GetAllP");
             cmd.CommandType = CommandType.StoredProcedure;
 
+            cmd.Parameters.Add("@d", SqlDbType.Int).Value = DBNull.Value;
+
             DataTable dt = dangnhap.OpenDataSet(cmd).Tables[0];
 
             for (int i = 0; i < dt.Rows.Count; i++)

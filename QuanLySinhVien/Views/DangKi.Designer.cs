@@ -199,7 +199,7 @@
             // 
             // btnDong
             // 
-            this.btnDong.Location = new System.Drawing.Point(175, 349);
+            this.btnDong.Location = new System.Drawing.Point(256, 349);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(75, 23);
             this.btnDong.TabIndex = 19;
@@ -209,7 +209,7 @@
             // 
             // btnDangNhap
             // 
-            this.btnDangNhap.Location = new System.Drawing.Point(256, 349);
+            this.btnDangNhap.Location = new System.Drawing.Point(175, 349);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(75, 23);
             this.btnDangNhap.TabIndex = 20;

@@ -23,7 +23,7 @@ namespace QuanLySinhVien.Views
             InitializeComponent();
             qlndC = new QuanLyNguoiDungController();
             dtgvDSND.AutoGenerateColumns = false;
-            
+            cbLoaiTC.SelectedItem = "Tất Cả";
         }
 
         private void btnDong_Click(object sender, EventArgs e)
@@ -231,7 +231,14 @@ namespace QuanLySinhVien.Views
                 DialogResult rs = MessageBox.Show("Bạn có chắc chắn?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if(rs == DialogResult.OK)
                 {
-
+                    if((cbTuCach.SelectedItem.ToString() == "Sinh Viên" ? 0 : 1) == 1)
+                    {
+                        if (qlndC.getNumberOfClass(Convert.ToInt32(txtMa.Text)) != 0)
+                        {
+                            MessageBox.Show("Giảng viên này đang phụ trách dạy một số lớp, hãy chuyển giao các lớp cho một giảng viên khác trước khi xoá!");
+                            return;
+                        }
+                    }
 
                     qlndC.DeleteUser(Convert.ToInt32(txtMa.Text), cbTuCach.SelectedItem.ToString() == "Sinh Viên" ? 0 : 1);
                 }
@@ -253,8 +260,7 @@ namespace QuanLySinhVien.Views
             try
             {
                 int ltk = cbTK.SelectedItem.ToString() == "Mã Số" ? 0 : 1;
-                int ltc = cbLoaiTC.SelectedItem.ToString() == "Tất Cả" ? -1 : cbLoaiTC.SelectedItem.ToString() == "Sinh viên" ? 0 : 1;
-                qlndC.Search(ltk, txtTk.Text, ltc, dtgvDSND);
+                qlndC.Search(ltk, txtTk.Text, dtgvDSND);
             }
             catch
             {
@@ -276,6 +282,51 @@ namespace QuanLySinhVien.Views
         {
             ThongTinLopHoc thongTinLopHoc = new ThongTinLopHoc();
             thongTinLopHoc.ShowDialog(this);
+        }
+
+        private void cbLoaiTC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string loai = cbLoaiTC.SelectedItem.ToString();
+            if (loai == "Sinh viên")
+            {
+                foreach (DataGridViewRow row in dtgvDSND.Rows)
+                {
+                    CurrencyManager currencyManager = (CurrencyManager)BindingContext[dtgvDSND.DataSource];
+                    currencyManager.SuspendBinding();
+                    dtgvDSND.CurrentCell = null;
+                    row.Visible = true; ;
+                    if (Convert.ToInt32(row.Cells[1].Value) == 1)
+                    {
+                        row.Visible = false;
+                    }
+
+                }
+            }
+            else if(loai == "Giảng viên")
+            {
+                foreach (DataGridViewRow row in dtgvDSND.Rows)
+                {
+                    CurrencyManager currencyManager = (CurrencyManager)BindingContext[dtgvDSND.DataSource];
+                    currencyManager.SuspendBinding();
+                    dtgvDSND.CurrentCell = null;
+                    row.Visible = true; ;
+                    if (Convert.ToInt32(row.Cells[1].Value) == 0)
+                    {
+                        row.Visible = false;
+                    }
+
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dtgvDSND.Rows)
+                {
+                    CurrencyManager currencyManager = (CurrencyManager)BindingContext[dtgvDSND.DataSource];
+                    currencyManager.SuspendBinding();
+                    dtgvDSND.CurrentCell = null;
+                    row.Visible = true;
+                }
+            }
         }
     }
 }

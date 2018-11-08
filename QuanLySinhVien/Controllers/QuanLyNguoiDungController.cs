@@ -131,25 +131,27 @@ namespace QuanLySinhVien.Controllers
             return dangnhap.ExecuteNonQuery(cmd);
         }
 
-        public void Search(int loaitk, string nd, int loaitc, DataGridView dtgv)
+        public void Search(int loaitk, string nd, DataGridView dtgv)
         {
             SqlCommand cmd = new SqlCommand("sp_TimKiem");
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@loaiTK", SqlDbType.Int).Value = loaitk;
             cmd.Parameters.Add("@noidung", SqlDbType.NVarChar, 20).Value = nd;
-            if(loaitc != -1)
-            {
-                cmd.Parameters.Add("@tc", SqlDbType.Int).Value = loaitc;
-            }
-            else
-            {
-                cmd.Parameters.Add("@tc", SqlDbType.Int).Value = DBNull.Value;
-            }
 
             DataTable dt = dangnhap.OpenDataSet(cmd).Tables[0];
 
             dtgv.DataSource = dt;
+        }
+
+        public int getNumberOfClass(int magv)
+        {
+            SqlCommand cmd = new SqlCommand("sp_getNumberClassOfGV");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@magv", SqlDbType.Int).Value = magv;
+
+            return Convert.ToInt32(dangnhap.OpenDataSet(cmd).Tables[0].Rows[0][0]);
         }
     }
 }

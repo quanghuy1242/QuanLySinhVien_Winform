@@ -227,16 +227,25 @@ WHERE l.MaGV = 1 AND l.HocKy = 'HK1' AND l.NamHoc = '2018-2019'
 
 GO 
 
-CREATE PROC sp_GetClassInfo @hk CHAR(5), @namhoc CHAR(15), @tc INT, @ms INT 
+CREATE PROC sp_GetClassInfo @hk CHAR(5), @namhoc CHAR(15), @tc INT, @ms INT, @dadk INT 
 AS
 BEGIN
     IF @tc = 0 
 		BEGIN
-		    SELECT ls.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS TenGV, l.HocKy, l.NamHoc, l.SiSo
-			FROM dbo.LopSinhVien ls JOIN dbo.LopHoc l ON l.MaLop = ls.MaLop
-									JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
-									JOIN dbo.GiangVien g ON l.MaGV = g.MSGV
-			WHERE ls.MaSV = @ms AND l.HocKy = @hk AND l.NamHoc = @namhoc
+			IF @dadk = 1
+				BEGIN
+					SELECT ls.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS TenGV, l.HocKy, l.NamHoc, l.SiSo
+					FROM dbo.LopSinhVien ls JOIN dbo.LopHoc l ON l.MaLop = ls.MaLop
+											JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
+											JOIN dbo.GiangVien g ON l.MaGV = g.MSGV
+					WHERE ls.MaSV = @ms AND l.HocKy = @hk AND l.NamHoc = @namhoc
+				END
+			ELSE
+				BEGIN
+					SELECT *
+					FROM dbo.LopHoc
+					WHERE MaLop NOT IN (SELECT MaLop FROM dbo.LopSinhVien WHERE MaSV = @ms)
+				END
 		END
 	IF @tc = 1
 		BEGIN
@@ -361,12 +370,21 @@ GO
 GO 
 
 
-CREATE PROC sp_GetAllP @d INT
+ALTER PROC sp_GetAllP @d INT
 AS
 BEGIN
-	SELECT * 
-	FROM dbo.view_allP
-	WHERE Deleted = @d
+	IF @d IS NULL 
+	BEGIN
+	    SELECT * 
+		FROM dbo.view_allP
+	END
+	ELSE
+	BEGIN
+	    SELECT * 
+		FROM dbo.view_allP
+		WHERE Deleted = @d
+	END
+	
 END
 
 GO 
@@ -406,41 +424,20 @@ BEGIN
 END
 GO 
 -- tìm kiếm
-CREATE PROC sp_TimKiem @loaiTK INT, @noidung NVARCHAR(20), @tc INT 
-AS 
-BEGIN
-	IF @tc IS NULL
-		BEGIN
-		    IF @loaiTK = 0
-				BEGIN
-					SELECT MSSV, TenDangNhap, Ten, Ho, Pass, NgayThangNamSinh, GioiTinh, SoDienThoai, QueQuan, Anh, Tucach
-					FROM dbo.view_allP
-					WHERE MSSV = @noidung AND Deleted = 0
-				END
-			IF @loaiTK = 1
-				BEGIN
-					SELECT MSSV, TenDangNhap, Ten, Ho, Pass, NgayThangNamSinh, GioiTinh, SoDienThoai, QueQuan, Anh, Tucach
-					FROM dbo.view_allP
-					WHERE Ten LIKE @noidung + '%' AND Deleted = 0
-				END
-		END
-    ELSE
-		BEGIN
-		    IF @loaiTK = 0
-				BEGIN
-					SELECT MSSV, TenDangNhap, Ten, Ho, Pass, NgayThangNamSinh, GioiTinh, SoDienThoai, QueQuan, Anh, Tucach
-					FROM dbo.view_allP
-					WHERE MSSV = @noidung AND Tucach = @tc AND Deleted = 0
-				END
-			IF @loaiTK = 1
-				BEGIN
-					SELECT MSSV, TenDangNhap, Ten, Ho, Pass, NgayThangNamSinh, GioiTinh, SoDienThoai, QueQuan, Anh, Tucach
-					FROM dbo.view_allP
-					WHERE Ten LIKE @noidung + '%' AND Tucach = @tc AND Deleted = 0
-				END
-		END
-END
-GO 
+ALTER PROC sp_TimKiem @loaiTK INT, @noidung NVARCHAR(20)
+AS BEGIN
+    IF @loaiTK=0 BEGIN
+        SELECT MSSV, TenDangNhap, Ten, Ho, Pass, NgayThangNamSinh, GioiTinh, SoDienThoai, QueQuan, Anh, Tucach
+        FROM dbo.view_allP
+        WHERE MSSV=@noidung AND Deleted=0;
+    END;
+    IF @loaiTK=1 BEGIN
+        SELECT MSSV, TenDangNhap, Ten, Ho, Pass, NgayThangNamSinh, GioiTinh, SoDienThoai, QueQuan, Anh, Tucach
+        FROM dbo.view_allP
+        WHERE Ten LIKE @noidung+'%' AND Deleted=0;
+    END;
+END;
+GO
 EXEC dbo.sp_TimKiem 0, 1, NULL
 
 SELECT * FROM dbo.SinhVien
@@ -508,7 +505,7 @@ GO
 CREATE PROC sp_GetClassFromSubject @maMH INT, @hk CHAR(5), @nh CHAR(15)
 AS
 BEGIN
-    SELECT l.MaLop, g.Ten + ' ' + g.Ho AS HoTenGV, l.HocKy, l.NamHoc, l.SiSo, l.MaGV
+    SELECT l.MaLop, g.Ten + ' ' + g.Ho AS HoTenGV, l.HocKy, l.NamHoc, l.SiSo, l.MaGV, m.TenMH
 	FROM dbo.LopHoc l JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
 					  JOIN dbo.GiangVien g ON g.MSGV = l.MaGV
 	WHERE l.MaMH = @maMH AND l.HocKy = @hk AND l.NamHoc = @nh
@@ -592,3 +589,13 @@ SELECT * FROM dbo.GiangVien
 SELECT COUNT(*)
 FROM dbo.LopHoc l JOIN dbo.GiangVien g ON g.MSGV = l.MaGV
 WHERE l.MaGV = 2
+GO 
+CREATE PROC sp_getNumberClassOfGV @magv INT 
+AS
+BEGIN
+    SELECT COUNT(*)
+	FROM dbo.LopHoc l JOIN dbo.GiangVien g ON g.MSGV = l.MaGV
+	WHERE l.MaGV = @magv
+END
+GO 
+EXEC dbo.sp_getNumberClassOfGV @magv=5

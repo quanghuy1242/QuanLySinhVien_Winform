@@ -47,13 +47,13 @@ namespace QuanLySinhVien.Views
             if(GlobalVariable.GVTuCach != 2)
             {
                 // Nếu người đang đănng nhập không phải là admin, thì ds lớp sẽ được load từ ms, tucach
-                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, GlobalVariable.GVMaSo, GlobalVariable.GVTuCach);
+                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, GlobalVariable.GVMaSo, GlobalVariable.GVTuCach, 1);
             }
             else
             {
                 int maso = Convert.ToInt32(((QuanLyNguoiDung)this.Owner).txtMa.Text);
                 int tucach = ((QuanLyNguoiDung)this.Owner).cbTuCach.SelectedItem.ToString() == "Sinh Viên" ? 0 : 1;
-                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, maso, tucach);
+                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, maso, tucach, 1);
             }
             //dtgvLop_CellClick(dtgvLop, new DataGridViewCellEventArgs(0, 0));
         }
@@ -68,13 +68,13 @@ namespace QuanLySinhVien.Views
             if (GlobalVariable.GVTuCach != 2)
             {
                 // Nếu người đang đănng nhập không phải là admin, thì ds lớp sẽ được load từ ms, tucach
-                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, GlobalVariable.GVMaSo, GlobalVariable.GVTuCach);
+                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, GlobalVariable.GVMaSo, GlobalVariable.GVTuCach, 1);
             }
             else
             {
-                int maso = Convert.ToInt32(((QuanLyNguoiDung)this.Owner).txtMa);
+                int maso = Convert.ToInt32(((QuanLyNguoiDung)this.Owner).txtMa.Text);
                 int tucach = ((QuanLyNguoiDung)this.Owner).cbTuCach.SelectedItem.ToString() == "Sinh Viên" ? 0 : 1;
-                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, maso, tucach);
+                ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, maso, tucach, 1);
             }
         }
 

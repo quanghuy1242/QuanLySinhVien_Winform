@@ -490,7 +490,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(462, 11);
+            this.btnSearch.Location = new System.Drawing.Point(315, 11);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(59, 23);
             this.btnSearch.TabIndex = 9;
@@ -500,7 +500,7 @@
             // 
             // txtTk
             // 
-            this.txtTk.Location = new System.Drawing.Point(378, 13);
+            this.txtTk.Location = new System.Drawing.Point(231, 13);
             this.txtTk.Name = "txtTk";
             this.txtTk.Size = new System.Drawing.Size(78, 20);
             this.txtTk.TabIndex = 8;
@@ -508,7 +508,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(319, 16);
+            this.label10.Location = new System.Drawing.Point(172, 16);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 13);
             this.label10.TabIndex = 7;
@@ -533,15 +533,16 @@
             "Tất Cả",
             "Sinh viên",
             "Giảng viên"});
-            this.cbLoaiTC.Location = new System.Drawing.Point(246, 12);
+            this.cbLoaiTC.Location = new System.Drawing.Point(597, 11);
             this.cbLoaiTC.Name = "cbLoaiTC";
-            this.cbLoaiTC.Size = new System.Drawing.Size(67, 21);
+            this.cbLoaiTC.Size = new System.Drawing.Size(79, 21);
             this.cbLoaiTC.TabIndex = 12;
+            this.cbLoaiTC.SelectedIndexChanged += new System.EventHandler(this.cbLoaiTC_SelectedIndexChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(171, 16);
+            this.label14.Location = new System.Drawing.Point(522, 15);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(69, 13);
             this.label14.TabIndex = 11;

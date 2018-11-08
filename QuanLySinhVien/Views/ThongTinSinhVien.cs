@@ -94,5 +94,10 @@ namespace QuanLySinhVien.Views
         {
             (new QuanLyMonHoc()).ShowDialog();
         }
+
+        private void btnDangKyLop_Click(object sender, EventArgs e)
+        {
+            (new DangKiHocPhan()).ShowDialog();
+        }
     }
 }

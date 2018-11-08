@@ -27,6 +27,12 @@ namespace QuanLySinhVien.Controllers
             cbHK.DataSource = dt;
             cbHK.DisplayMember = "HocKy";
             cbHK.ValueMember = "HocKy";
+
+            //DataRow dr = dt.NewRow();
+            //dr["HocKy"] = "Tất cả";
+
+            //dt.Rows.InsertAt(dr, 0);
+            //cbHK.Items.Add(new { Text = "Tất cả", Value = "all" });
         }
 
         public void comboBoxNamHocLoad(ComboBox cbNamHoc)
@@ -40,7 +46,7 @@ namespace QuanLySinhVien.Controllers
             cbNamHoc.ValueMember = "NamHoc";
         }
 
-        public void dataGridViewLopHocLoad(ComboBox cbHk, ComboBox cbNamHoc, DataGridView dtgv, int maso, int tucach)
+        public void dataGridViewLopHocLoad(ComboBox cbHk, ComboBox cbNamHoc, DataGridView dtgv, int maso, int tucach, int dadk)
         {
             SqlCommand cmd = new SqlCommand("sp_GetClassInfo");
             cmd.CommandType = CommandType.StoredProcedure;
@@ -49,6 +55,7 @@ namespace QuanLySinhVien.Controllers
             cmd.Parameters.Add("@namhoc", SqlDbType.Char, 15).Value = cbNamHoc.SelectedValue;
             cmd.Parameters.Add("@ms", SqlDbType.Int).Value = maso;
             cmd.Parameters.Add("@tc", SqlDbType.Int).Value = tucach;
+            cmd.Parameters.Add("@dadk", SqlDbType.Int).Value = dadk;
 
             dtgv.DataSource = dangnhap.OpenDataSet(cmd).Tables[0];
         }
