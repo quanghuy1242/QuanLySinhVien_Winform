@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KhoiPhucNguoiDung));
             this.dtgvRestore = new System.Windows.Forms.DataGridView();
             this.manv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TuCach = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -168,6 +169,7 @@
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.dtgvRestore);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "KhoiPhucNguoiDung";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Khôi phục người dùng";

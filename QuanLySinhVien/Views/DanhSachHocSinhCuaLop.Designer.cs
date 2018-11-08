@@ -31,10 +31,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DanhSachHocSinhCuaLop));
             this.dtgvDs = new System.Windows.Forms.DataGridView();
-            this.btnDong = new System.Windows.Forms.Button();
-            this.btnUpdateDiem = new System.Windows.Forms.Button();
-            this.btnReport = new System.Windows.Forms.Button();
             this.mssv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hovaten = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiemTK = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +40,9 @@
             this.DiemCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TongKet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.XepLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDong = new System.Windows.Forms.Button();
+            this.btnUpdateDiem = new System.Windows.Forms.Button();
+            this.btnReport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,6 +90,66 @@
             this.dtgvDs.Size = new System.Drawing.Size(622, 189);
             this.dtgvDs.TabIndex = 0;
             // 
+            // mssv
+            // 
+            this.mssv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.mssv.DataPropertyName = "MSSV";
+            this.mssv.HeaderText = "MSSV";
+            this.mssv.Name = "mssv";
+            this.mssv.ReadOnly = true;
+            this.mssv.Width = 62;
+            // 
+            // hovaten
+            // 
+            this.hovaten.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.hovaten.DataPropertyName = "tenSV";
+            this.hovaten.HeaderText = "Họ Và Tên";
+            this.hovaten.Name = "hovaten";
+            this.hovaten.ReadOnly = true;
+            this.hovaten.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // DiemTK
+            // 
+            this.DiemTK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DiemTK.DataPropertyName = "DiemTK";
+            this.DiemTK.HeaderText = "Thường Kì";
+            this.DiemTK.Name = "DiemTK";
+            this.DiemTK.Width = 75;
+            // 
+            // DiemGK
+            // 
+            this.DiemGK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DiemGK.DataPropertyName = "DiemGK";
+            this.DiemGK.HeaderText = "Giữa Kỳ";
+            this.DiemGK.Name = "DiemGK";
+            this.DiemGK.Width = 64;
+            // 
+            // DiemCK
+            // 
+            this.DiemCK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DiemCK.DataPropertyName = "DiemCK";
+            this.DiemCK.HeaderText = "Cuối Kỳ";
+            this.DiemCK.Name = "DiemCK";
+            this.DiemCK.Width = 63;
+            // 
+            // TongKet
+            // 
+            this.TongKet.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.TongKet.DataPropertyName = "DiemTongKet";
+            this.TongKet.HeaderText = "Tổng Kết";
+            this.TongKet.Name = "TongKet";
+            this.TongKet.ReadOnly = true;
+            this.TongKet.Width = 70;
+            // 
+            // XepLoai
+            // 
+            this.XepLoai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.XepLoai.DataPropertyName = "XepLoai";
+            this.XepLoai.HeaderText = "Xếp Loại";
+            this.XepLoai.Name = "XepLoai";
+            this.XepLoai.ReadOnly = true;
+            this.XepLoai.Width = 69;
+            // 
             // btnDong
             // 
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -121,66 +182,6 @@
             this.btnReport.Text = "Tạo báo cáo";
             this.btnReport.UseVisualStyleBackColor = true;
             // 
-            // mssv
-            // 
-            this.mssv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.mssv.DataPropertyName = "MSSV";
-            this.mssv.HeaderText = "MSSV";
-            this.mssv.Name = "mssv";
-            this.mssv.ReadOnly = true;
-            this.mssv.Width = 62;
-            // 
-            // hovaten
-            // 
-            this.hovaten.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.hovaten.DataPropertyName = "tenSV";
-            this.hovaten.HeaderText = "Họ Và Tên";
-            this.hovaten.Name = "hovaten";
-            this.hovaten.ReadOnly = true;
-            this.hovaten.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // DiemTK
-            // 
-            this.DiemTK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DiemTK.DataPropertyName = "DiemTK";
-            this.DiemTK.HeaderText = "Thường Kì";
-            this.DiemTK.Name = "DiemTK";
-            this.DiemTK.Width = 81;
-            // 
-            // DiemGK
-            // 
-            this.DiemGK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DiemGK.DataPropertyName = "DiemGK";
-            this.DiemGK.HeaderText = "Giữa Kỳ";
-            this.DiemGK.Name = "DiemGK";
-            this.DiemGK.Width = 69;
-            // 
-            // DiemCK
-            // 
-            this.DiemCK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DiemCK.DataPropertyName = "DiemCK";
-            this.DiemCK.HeaderText = "Cuối Kỳ";
-            this.DiemCK.Name = "DiemCK";
-            this.DiemCK.Width = 68;
-            // 
-            // TongKet
-            // 
-            this.TongKet.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.TongKet.DataPropertyName = "DiemTongKet";
-            this.TongKet.HeaderText = "Tổng Kết";
-            this.TongKet.Name = "TongKet";
-            this.TongKet.ReadOnly = true;
-            this.TongKet.Width = 76;
-            // 
-            // XepLoai
-            // 
-            this.XepLoai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.XepLoai.DataPropertyName = "XepLoai";
-            this.XepLoai.HeaderText = "Xếp Loại";
-            this.XepLoai.Name = "XepLoai";
-            this.XepLoai.ReadOnly = true;
-            this.XepLoai.Width = 74;
-            // 
             // DanhSachHocSinhCuaLop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,6 +191,7 @@
             this.Controls.Add(this.btnUpdateDiem);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.dtgvDs);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DanhSachHocSinhCuaLop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh sách học sinh";
