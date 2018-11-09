@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Reporting.WinForms;
 using QuanLySinhVien.Controllers;
+using QuanLySinhVien.Models;
 
 namespace QuanLySinhVien.Views
 {
@@ -70,6 +72,35 @@ namespace QuanLySinhVien.Views
 
         private void btnUpdateDiem_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnReportMark_Click(object sender, EventArgs e)
+        {
+            List<MonHoc> lst = new List<MonHoc>();
+            foreach (DataGridViewRow row in dtgvDiem.Rows)
+            {
+                lst.Add(new MonHoc
+                {
+                    TenMon = row.Cells[1].Value.ToString(),
+                    ThuongKy = row.Cells[2].Value.ToString(),
+                    GiuaKy = row.Cells[3].Value.ToString(),
+                    CuoiKy = row.Cells[4].Value.ToString(),
+                    TongKet = row.Cells[5].Value.ToString(),
+                    XepLoai = row.Cells[6].Value.ToString()
+                });
+            }
+            ReportDataSource rs = new ReportDataSource();
+            rs.Name = "DataSet1";
+            rs.Value = lst;
+            BaoCaoDiem baoCaoDiem = new BaoCaoDiem();
+            baoCaoDiem.reportViewer1.LocalReport.DataSources.Clear();
+            baoCaoDiem.reportViewer1.LocalReport.DataSources.Add(rs);
+            baoCaoDiem.reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLySinhVien.Report1.rdlc";
+
+            string hoten = ((ThongTinSinhVien)this.Owner).txtHoTen.Text;
+            baoCaoDiem.reportViewer1.LocalReport.SetParameters(new ReportParameter("Name", hoten));
+            baoCaoDiem.ShowDialog(this);
 
         }
     }

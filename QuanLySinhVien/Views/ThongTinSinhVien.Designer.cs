@@ -342,7 +342,6 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtHoTen;
         private System.Windows.Forms.TextBox txtNgaySinh;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -367,5 +366,6 @@
         private System.Windows.Forms.Button btnDangKyLop;
         private System.Windows.Forms.Button btnAbout;
         public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.TextBox txtHoTen;
     }
 }

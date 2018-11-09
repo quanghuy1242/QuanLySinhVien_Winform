@@ -36,8 +36,35 @@
     <ApplicationIcon>Graphicloads-100-Flat-Student.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,6 +90,7 @@
     <Compile Include="Controllers\QuanLyNguoiDungController.cs" />
     <Compile Include="Controllers\ThongTinLopHocController.cs" />
     <Compile Include="Controllers\ThongTinSinhVienController.cs" />
+    <Compile Include="Models\MonHoc.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\BangDiem.cs">
@@ -70,6 +98,12 @@
     </Compile>
     <Compile Include="Views\BangDiem.Designer.cs">
       <DependentUpon>BangDiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BaoCaoDiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BaoCaoDiem.Designer.cs">
+      <DependentUpon>BaoCaoDiem.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CapNhatThongTin.cs">
       <SubType>Form</SubType>
@@ -146,8 +180,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="Views\BangDiem.resx">
       <DependentUpon>BangDiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BaoCaoDiem.resx">
+      <DependentUpon>BaoCaoDiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CapNhatThongTin.resx">
       <DependentUpon>CapNhatThongTin.cs</DependentUpon>
@@ -182,6 +220,9 @@
     <EmbeddedResource Include="Views\DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\QuanLySinhVien.Models.MonHoc.datasource" />
+    <None Include="Properties\DataSources\QuanLySinhVien.QuanLySinhVien2DataSetTableAdapters.QueriesTableAdapter.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -197,6 +238,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Graphicloads-100-Flat-Student.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

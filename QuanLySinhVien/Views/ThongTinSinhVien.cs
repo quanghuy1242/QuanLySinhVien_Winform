@@ -76,7 +76,7 @@ namespace QuanLySinhVien.Views
 
         private void btnMarkInfo_Click(object sender, EventArgs e)
         {
-            (new BangDiem()).ShowDialog();
+            (new BangDiem()).ShowDialog(this);
         }
 
         private void btnUserManagement_Click(object sender, EventArgs e)

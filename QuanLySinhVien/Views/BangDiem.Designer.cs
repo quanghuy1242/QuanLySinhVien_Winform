@@ -43,7 +43,7 @@
             this.diemTong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xepLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDong = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnReportMark = new System.Windows.Forms.Button();
             this.cbNamHoc = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDiem)).BeginInit();
@@ -180,14 +180,15 @@
             this.btnDong.UseVisualStyleBackColor = true;
             this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
-            // button2
+            // btnReportMark
             // 
-            this.button2.Location = new System.Drawing.Point(424, 272);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Tạo báo cáo";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnReportMark.Location = new System.Drawing.Point(424, 272);
+            this.btnReportMark.Name = "btnReportMark";
+            this.btnReportMark.Size = new System.Drawing.Size(87, 23);
+            this.btnReportMark.TabIndex = 7;
+            this.btnReportMark.Text = "Tạo báo cáo";
+            this.btnReportMark.UseVisualStyleBackColor = true;
+            this.btnReportMark.Click += new System.EventHandler(this.btnReportMark_Click);
             // 
             // cbNamHoc
             // 
@@ -215,7 +216,7 @@
             this.ClientSize = new System.Drawing.Size(604, 302);
             this.Controls.Add(this.cbNamHoc);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnReportMark);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.dtgvDiem);
             this.Controls.Add(this.cbHK);
@@ -237,9 +238,8 @@
 
         private System.Windows.Forms.ComboBox cbHK;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dtgvDiem;
         private System.Windows.Forms.Button btnDong;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnReportMark;
         private System.Windows.Forms.ComboBox cbNamHoc;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;
@@ -249,5 +249,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn diemCK;
         private System.Windows.Forms.DataGridViewTextBoxColumn diemTong;
         private System.Windows.Forms.DataGridViewTextBoxColumn xepLoai;
+        public System.Windows.Forms.DataGridView dtgvDiem;
     }
 }
