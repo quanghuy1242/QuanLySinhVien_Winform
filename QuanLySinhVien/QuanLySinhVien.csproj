@@ -54,6 +54,7 @@
     <Compile Include="Controllers\CapNhatThongTinController.cs" />
     <Compile Include="Controllers\CdbController.cs" />
     <Compile Include="Controllers\DaangKyController.cs" />
+    <Compile Include="Controllers\DangKyLopHocPhanController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\DanhSachHocSinhController.cs" />
     <Compile Include="Controllers\GlobalVariable.cs" />

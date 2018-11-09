@@ -62,16 +62,13 @@
             this.btnHuyThem = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnDK = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtMaLopHuy = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtMaSV = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvMonHoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvLopHoc)).BeginInit();
@@ -79,7 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSiSo)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dtgvMonHoc
@@ -381,7 +377,6 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(414, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -390,13 +385,13 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.btnHuy);
+            this.tabPage1.Controls.Add(this.btnDK);
             this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this.txtMaLopHuy);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.txtMaSV);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -405,23 +400,23 @@
             this.tabPage1.Text = "Huỷ lớp sinh viên";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnHuy
             // 
-            this.button3.Location = new System.Drawing.Point(111, 103);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 55;
-            this.button3.Text = "Huỷ lớp";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnHuy.Location = new System.Drawing.Point(111, 103);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(75, 23);
+            this.btnHuy.TabIndex = 55;
+            this.btnHuy.Text = "Huỷ lớp";
+            this.btnHuy.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnDK
             // 
-            this.button1.Location = new System.Drawing.Point(30, 103);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 54;
-            this.button1.Text = "Đăng kí";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnDK.Location = new System.Drawing.Point(30, 103);
+            this.btnDK.Name = "btnDK";
+            this.btnDK.Size = new System.Drawing.Size(75, 23);
+            this.btnDK.TabIndex = 54;
+            this.btnDK.Text = "Đăng kí";
+            this.btnDK.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -433,12 +428,12 @@
             this.label3.TabIndex = 49;
             this.label3.Text = "HUỶ LỚP HỌC SINH VIÊN";
             // 
-            // textBox2
+            // txtMaLopHuy
             // 
-            this.textBox2.Location = new System.Drawing.Point(91, 72);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(116, 20);
-            this.textBox2.TabIndex = 53;
+            this.txtMaLopHuy.Location = new System.Drawing.Point(91, 72);
+            this.txtMaLopHuy.Name = "txtMaLopHuy";
+            this.txtMaLopHuy.Size = new System.Drawing.Size(116, 20);
+            this.txtMaLopHuy.TabIndex = 53;
             // 
             // label4
             // 
@@ -458,40 +453,12 @@
             this.label5.TabIndex = 52;
             this.label5.Text = "Mã lớp huỷ:";
             // 
-            // textBox1
+            // txtMaSV
             // 
-            this.textBox1.Location = new System.Drawing.Point(91, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(116, 20);
-            this.textBox1.TabIndex = 51;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.textBox3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(220, 150);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Danh sách lớp giáo viên";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 47);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 13);
-            this.label6.TabIndex = 52;
-            this.label6.Text = "Mã Giảng viên:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(92, 44);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(116, 20);
-            this.textBox3.TabIndex = 53;
+            this.txtMaSV.Location = new System.Drawing.Point(91, 46);
+            this.txtMaSV.Name = "txtMaSV";
+            this.txtMaSV.Size = new System.Drawing.Size(116, 20);
+            this.txtMaSV.TabIndex = 51;
             // 
             // button2
             // 
@@ -534,8 +501,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -569,11 +534,10 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtMaLopHuy;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TextBox txtMaSV;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn malop;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaGV;
@@ -582,9 +546,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HocKy;
         private System.Windows.Forms.DataGridViewTextBoxColumn namhoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn siso;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnHuy;
+        private System.Windows.Forms.Button btnDK;
     }
 }

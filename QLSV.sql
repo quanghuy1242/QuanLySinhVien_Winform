@@ -227,7 +227,7 @@ WHERE l.MaGV = 1 AND l.HocKy = 'HK1' AND l.NamHoc = '2018-2019'
 
 GO 
 
-CREATE PROC sp_GetClassInfo @hk CHAR(5), @namhoc CHAR(15), @tc INT, @ms INT, @dadk INT 
+ALTER PROC sp_GetClassInfo @hk CHAR(5), @namhoc CHAR(15), @tc INT, @ms INT, @dadk INT 
 AS
 BEGIN
     IF @tc = 0 
@@ -242,9 +242,12 @@ BEGIN
 				END
 			ELSE
 				BEGIN
-					SELECT *
-					FROM dbo.LopHoc
-					WHERE MaLop NOT IN (SELECT MaLop FROM dbo.LopSinhVien WHERE MaSV = @ms)
+					SELECT l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS hoten, l.HocKy, l.NamHoc, l.SiSo, COUNT(l.MaLop) AS DaDK
+					FROM dbo.LopSinhVien ls RIGHT JOIN dbo.LopHoc l ON l.MaLop = ls.MaLop
+											JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
+											JOIN dbo.GiangVien g ON g.MSGV = l.MaGV
+					WHERE l.MaLop NOT IN (SELECT MaLop FROM dbo.LopSinhVien WHERE MaSV = @ms)
+					GROUP BY l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten, l.HocKy, l.NamHoc, l.SiSo
 				END
 		END
 	IF @tc = 1
@@ -256,15 +259,35 @@ BEGIN
 		END
 END
 GO 
-EXEC dbo.sp_GetClassInfo 'HK1', '2018-2019', 1, 1
+EXEC dbo.sp_GetClassInfo 'HK1', '2018-2019', 0, 1, 0
 
+-- Lớp có mã 1, đã có bao nhiêu sv đk:
 
+SELECT l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS hoten, l.HocKy, l.NamHoc, l.SiSo, COUNT(l.MaLop) AS DaDK
+FROM dbo.LopSinhVien ls RIGHT JOIN dbo.LopHoc l ON l.MaLop = ls.MaLop
+						JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
+						JOIN dbo.GiangVien g ON g.MSGV = l.MaGV
+WHERE l.MaLop NOT IN (SELECT MaLop FROM dbo.LopSinhVien WHERE MaSV = 1)
+GROUP BY l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten, l.HocKy, l.NamHoc, l.SiSo
 
 -- sinh viên xem tất cả điểm
 SELECT m.TenMH, ls.DiemTK, ls.DiemGK, ls.DiemCK, [DiemTongKet], [XepLoai]
 FROM dbo.LopSinhVien ls JOIN dbo.LopHoc l ON l.MaLop = ls.MaLop
 						JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
 WHERE ls.MaSV = 1 AND l.HocKy = 'HK1' AND l.NamHoc = '2018-2019'
+GO 
+---------------------
+
+GO 
+CREATE PROC sp_InsertNewStudenttoClass @malop INT, @masv INT 
+AS
+BEGIN
+    INSERT dbo.LopSinhVien(MaLop, MaSV)
+	VALUES(@malop, @masv)
+END
+GO 
+---------------------
+SELECT * FROM dbo.LopSinhVien
 GO 
 
 CREATE PROC sp_GetMarkInfo @hk CHAR(5), @namhoc CHAR(15), @masv INT

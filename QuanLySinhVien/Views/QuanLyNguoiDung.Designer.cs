@@ -78,6 +78,7 @@
             this.btnRestore = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.btnDKLop = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDSND)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAnh)).BeginInit();
@@ -195,6 +196,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnDKLop);
             this.groupBox1.Controls.Add(this.btnClassofPerson);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label11);
@@ -231,7 +233,7 @@
             // 
             // btnClassofPerson
             // 
-            this.btnClassofPerson.Location = new System.Drawing.Point(6, 279);
+            this.btnClassofPerson.Location = new System.Drawing.Point(5, 308);
             this.btnClassofPerson.Name = "btnClassofPerson";
             this.btnClassofPerson.Size = new System.Drawing.Size(156, 23);
             this.btnClassofPerson.TabIndex = 42;
@@ -364,9 +366,9 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(6, 308);
+            this.btnXoa.Location = new System.Drawing.Point(5, 337);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(156, 23);
+            this.btnXoa.Size = new System.Drawing.Size(73, 23);
             this.btnXoa.TabIndex = 29;
             this.btnXoa.Text = "Xoá";
             this.btnXoa.UseVisualStyleBackColor = true;
@@ -374,9 +376,9 @@
             // 
             // btnCapNhat
             // 
-            this.btnCapNhat.Location = new System.Drawing.Point(6, 337);
+            this.btnCapNhat.Location = new System.Drawing.Point(84, 337);
             this.btnCapNhat.Name = "btnCapNhat";
-            this.btnCapNhat.Size = new System.Drawing.Size(156, 23);
+            this.btnCapNhat.Size = new System.Drawing.Size(78, 23);
             this.btnCapNhat.TabIndex = 26;
             this.btnCapNhat.Text = "Cập nhật";
             this.btnCapNhat.UseVisualStyleBackColor = true;
@@ -579,6 +581,15 @@
             this.label16.TabIndex = 15;
             this.label16.Text = "Ở phần tư cách, 0 là Sinh viên, 1 là Giảng viên";
             // 
+            // btnDKLop
+            // 
+            this.btnDKLop.Location = new System.Drawing.Point(6, 279);
+            this.btnDKLop.Name = "btnDKLop";
+            this.btnDKLop.Size = new System.Drawing.Size(156, 23);
+            this.btnDKLop.TabIndex = 43;
+            this.btnDKLop.Text = "Đăng Kí Lớp Học";
+            this.btnDKLop.UseVisualStyleBackColor = true;
+            // 
             // QuanLyNguoiDung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -665,5 +676,6 @@
         private System.Windows.Forms.Button btnClassofPerson;
         public System.Windows.Forms.ComboBox cbTuCach;
         public System.Windows.Forms.TextBox txtMa;
+        private System.Windows.Forms.Button btnDKLop;
     }
 }
