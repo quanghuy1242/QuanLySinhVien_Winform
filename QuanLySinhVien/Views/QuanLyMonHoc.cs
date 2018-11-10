@@ -93,12 +93,12 @@ namespace QuanLySinhVien.Views
                 {
                     txtTenGV.Text = qlmhC.getTenGV(Convert.ToInt32(txtMaGV.Text));
                 }
-                catch(Exception ex)
+                catch
                 {
                     //MessageBox.Show(ex.Message);
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 //MessageBox.Show(ex.Message);
             }

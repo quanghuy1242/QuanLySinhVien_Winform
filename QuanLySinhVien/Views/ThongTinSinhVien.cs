@@ -58,7 +58,7 @@ namespace QuanLySinhVien.Views
 
         private void btnDong_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
             (new DangNhap()).Show();
         }
 
@@ -98,6 +98,11 @@ namespace QuanLySinhVien.Views
         private void btnDangKyLop_Click(object sender, EventArgs e)
         {
             (new DangKiHocPhan()).ShowDialog();
+        }
+
+        private void ThongTinSinhVien_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

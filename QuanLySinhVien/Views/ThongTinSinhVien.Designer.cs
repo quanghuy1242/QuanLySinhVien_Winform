@@ -332,6 +332,7 @@
             this.Name = "ThongTinSinhVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chương trình quản lý sinh viên";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ThongTinSinhVien_FormClosing);
             this.Load += new System.EventHandler(this.BangChucNang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);

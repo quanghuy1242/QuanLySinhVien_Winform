@@ -314,6 +314,7 @@
             this.Name = "DangKi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng kí";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DangKi_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

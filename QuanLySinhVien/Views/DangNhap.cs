@@ -43,5 +43,10 @@ namespace QuanLySinhVien.Views
         {
             Application.Exit();
         }
+
+        private void DangNhap_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

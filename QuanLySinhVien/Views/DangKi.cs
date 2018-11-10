@@ -111,7 +111,12 @@ namespace QuanLySinhVien.Views
         {
             DangNhap dn = new DangNhap();
             dn.Show();
-            this.Close();
+            this.Hide();
+        }
+
+        private void DangKi_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
