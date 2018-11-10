@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbTK = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDKLop = new System.Windows.Forms.Button();
             this.btnClassofPerson = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -78,7 +79,6 @@
             this.btnRestore = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.btnDKLop = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDSND)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAnh)).BeginInit();
@@ -230,6 +230,16 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết";
+            // 
+            // btnDKLop
+            // 
+            this.btnDKLop.Location = new System.Drawing.Point(6, 279);
+            this.btnDKLop.Name = "btnDKLop";
+            this.btnDKLop.Size = new System.Drawing.Size(156, 23);
+            this.btnDKLop.TabIndex = 43;
+            this.btnDKLop.Text = "Đăng Kí Lớp Học";
+            this.btnDKLop.UseVisualStyleBackColor = true;
+            this.btnDKLop.Visible = false;
             // 
             // btnClassofPerson
             // 
@@ -580,15 +590,6 @@
             this.label16.Size = new System.Drawing.Size(228, 13);
             this.label16.TabIndex = 15;
             this.label16.Text = "Ở phần tư cách, 0 là Sinh viên, 1 là Giảng viên";
-            // 
-            // btnDKLop
-            // 
-            this.btnDKLop.Location = new System.Drawing.Point(6, 279);
-            this.btnDKLop.Name = "btnDKLop";
-            this.btnDKLop.Size = new System.Drawing.Size(156, 23);
-            this.btnDKLop.TabIndex = 43;
-            this.btnDKLop.Text = "Đăng Kí Lớp Học";
-            this.btnDKLop.UseVisualStyleBackColor = true;
             // 
             // QuanLyNguoiDung
             // 

@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Reporting.WinForms;
 using QuanLySinhVien.Controllers;
+using QuanLySinhVien.Models;
 
 namespace QuanLySinhVien.Views
 {
@@ -26,6 +28,10 @@ namespace QuanLySinhVien.Views
                 dtgvDs.Columns["DiemGK"].ReadOnly = true;
                 dtgvDs.Columns["DiemCK"].ReadOnly = true;
                 btnUpdateDiem.Visible = false;
+                btnReport.Visible = false;
+            }
+            if (GlobalVariable.GVTuCach == 2)
+            {
                 btnReport.Visible = false;
             }
         }
@@ -105,6 +111,43 @@ namespace QuanLySinhVien.Views
             }
             loadLaiData();
             MessageBox.Show(count.ToString() + " sinh viên được cập nhật điểm", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            List<HocSinh> lst = new List<HocSinh>();
+            foreach(DataGridViewRow row in dtgvDs.Rows)
+            {
+                HocSinh hs = new HocSinh
+                {
+                    MaSo = row.Cells[0].Value.ToString(),
+                    HovaTen = row.Cells[1].Value.ToString(),
+                    ThuongKy = row.Cells[2].Value.ToString(),
+                    GiuaKy = row.Cells[3].Value.ToString(),
+                    CuoiKy = row.Cells[4].Value.ToString(),
+                    TongKet = row.Cells[5].Value.ToString(),
+                    XepLoai = row.Cells[6].Value.ToString(),
+
+                };
+                lst.Add(hs);
+            }
+            ReportDataSource rs = new ReportDataSource();
+            rs.Name = "DataSet2";
+            rs.Value = lst;
+            BaoCaoDanhSachSinhVien baoCaoDanhSachSinhVien = new BaoCaoDanhSachSinhVien();
+            baoCaoDanhSachSinhVien.reportViewer1.LocalReport.DataSources.Clear();
+            baoCaoDanhSachSinhVien.reportViewer1.LocalReport.DataSources.Add(rs);
+            baoCaoDanhSachSinhVien.reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLySinhVien.Report2.rdlc";
+
+            string MaLop = ((ThongTinLopHoc)this.Owner).dtgvLop.SelectedRows[0].Cells[0].Value.ToString();
+            string HoTen = ((ThongTinLopHoc)this.Owner).dtgvLop.SelectedRows[0].Cells[1].Value.ToString();
+            string TenMon = ((ThongTinLopHoc)this.Owner).dtgvLop.SelectedRows[0].Cells[2].Value.ToString();
+
+            baoCaoDanhSachSinhVien.reportViewer1.LocalReport.SetParameters(new ReportParameter("Malop", MaLop));
+            baoCaoDanhSachSinhVien.reportViewer1.LocalReport.SetParameters(new ReportParameter("Tengv", HoTen));
+            baoCaoDanhSachSinhVien.reportViewer1.LocalReport.SetParameters(new ReportParameter("TenMH", TenMon));
+
+            baoCaoDanhSachSinhVien.ShowDialog();
         }
     }
 }

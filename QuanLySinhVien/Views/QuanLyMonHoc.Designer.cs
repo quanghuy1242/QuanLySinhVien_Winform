@@ -253,6 +253,7 @@
             this.cbHK.Name = "cbHK";
             this.cbHK.Size = new System.Drawing.Size(76, 21);
             this.cbHK.TabIndex = 32;
+            this.cbHK.SelectedIndexChanged += new System.EventHandler(this.cbHK_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -408,6 +409,7 @@
             this.btnHuy.TabIndex = 55;
             this.btnHuy.Text = "Huỷ lớp";
             this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // btnDK
             // 
@@ -417,6 +419,7 @@
             this.btnDK.TabIndex = 54;
             this.btnDK.Text = "Đăng kí";
             this.btnDK.UseVisualStyleBackColor = true;
+            this.btnDK.Click += new System.EventHandler(this.btnDK_Click);
             // 
             // label3
             // 
@@ -449,9 +452,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(13, 75);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.Size = new System.Drawing.Size(42, 13);
             this.label5.TabIndex = 52;
-            this.label5.Text = "Mã lớp huỷ:";
+            this.label5.Text = "Mã lớp:";
             // 
             // txtMaSV
             // 

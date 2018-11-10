@@ -622,3 +622,26 @@ BEGIN
 END
 GO 
 EXEC dbo.sp_getNumberClassOfGV @magv=5
+
+GO 
+EXEC dbo.sp_GetAllPerson
+GO 
+CREATE PROC sp_checkSVMaLopDaCo @MaLop INT, @MaSV INT 
+AS
+BEGIN
+    IF @MaLop IN (SELECT MaLop FROM dbo.LopSinhVien WHERE MaSV = @MaSV)
+		SELECT 1
+	ELSE 
+		SELECT 0
+END
+GO 
+EXEC dbo.sp_checkSVMaLopDaCo 3, 1
+GO 
+CREATE PROC sp_HuyHocPhan @MaLop INT, @MaSV INT 
+AS
+BEGIN
+    DELETE FROM dbo.LopSinhVien
+	WHERE MaLop = @MaLop AND MaSV = @MaSV
+END
+GO 
+SELECT * FROM dbo.LopSinhVien WHERE MaLop = 3 AND MaSV = 1

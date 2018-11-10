@@ -84,22 +84,23 @@ namespace QuanLySinhVien.Views
 
                 txtMaLop.Text = dtgvLopHoc.Rows[selectedcell].Cells[0].Value.ToString();
                 txtMaGV.Text = dtgvLopHoc.Rows[selectedcell].Cells[1].Value.ToString();
-                nudSiSo.Value = Convert.ToInt32(dtgvLopHoc.Rows[selectedcell].Cells[5].Value);
-                txtHK.Text = dtgvLopHoc.Rows[selectedcell].Cells[3].Value.ToString();
-                txtNamHoc.Text = dtgvLopHoc.Rows[selectedcell].Cells[4].Value.ToString();
+                nudSiSo.Value = Convert.ToInt32(dtgvLopHoc.Rows[selectedcell].Cells[6].Value);
+                //string s = dtgvLopHoc.Rows[selectedcell].Cells[5].Value.ToString();
+                txtHK.Text = dtgvLopHoc.Rows[selectedcell].Cells[4].Value.ToString().Trim();
+                txtNamHoc.Text = dtgvLopHoc.Rows[selectedcell].Cells[5].Value.ToString().Trim();
 
                 try
                 {
                     txtTenGV.Text = qlmhC.getTenGV(Convert.ToInt32(txtMaGV.Text));
                 }
-                catch
+                catch(Exception ex)
                 {
-
+                    //MessageBox.Show(ex.Message);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                //MessageBox.Show(ex.Message);
             }
         }
 
@@ -112,8 +113,8 @@ namespace QuanLySinhVien.Views
                 
                 magv = Convert.ToInt32(txtMaGV.Text);
                 mamh = Convert.ToInt32(dtgvMonHoc.SelectedRows[0].Cells[0].Value);
-                hocky = (cbHK.SelectedValue.ToString());
-                namhoc = (cbNamHoc.SelectedValue.ToString());
+                hocky = txtHK.Text;
+                namhoc = txtNamHoc.Text;
                 siso = Convert.ToInt32(nudSiSo.Value);
             }
             catch
@@ -130,6 +131,8 @@ namespace QuanLySinhVien.Views
                 malop = Convert.ToInt32(txtMaLop.Text);
 
                 qlmhC.updateClass(malop, magv, mamh, hocky, namhoc, siso);
+                qlmhC.comboBoxHocKyLoad(cbHK);
+                qlmhC.comboBoxNamHocLoad(cbNamHoc);
                 MessageBox.Show("Cập nhật thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -205,6 +208,70 @@ namespace QuanLySinhVien.Views
             btnUpdateAdd.Text = "Cập nhật";
             panel1.BackColor = Color.WhiteSmoke;
             btnHuyThem.Visible = false;
+        }
+
+        private void cbHK_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dtgvLopHoc_CellClick(dtgvMonHoc, new DataGridViewCellEventArgs(0, 0));
+            }
+            catch
+            {
+
+            }
+            
+        }
+
+        private void btnDK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!qlmhC.checkMaSinhVien(Convert.ToInt32(txtMaSV.Text)))
+                {
+                    MessageBox.Show("Mã Số Sinh viên không tồn tại!");
+                    return;
+                }
+
+                if (qlmhC.checkLopSVDaHoc(Convert.ToInt32(txtMaLopHuy.Text), Convert.ToInt32(txtMaSV.Text)) == 1)
+                {
+                    MessageBox.Show("Sinh viên đã học lớp này!");
+                    return;
+                }
+
+                qlmhC.DangKiHocPhan(Convert.ToInt32(txtMaLopHuy.Text), Convert.ToInt32(txtMaSV.Text));
+                MessageBox.Show("Đăng kí thành công!");
+            }
+            catch
+            {
+                MessageBox.Show("Hãy điền đủ thông tin!");
+            }
+            
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!qlmhC.checkMaSinhVien(Convert.ToInt32(txtMaSV.Text)))
+                {
+                    MessageBox.Show("Mã Số Sinh viên không tồn tại!");
+                    return;
+                }
+
+                if (qlmhC.checkLopSVDaHoc(Convert.ToInt32(txtMaLopHuy.Text), Convert.ToInt32(txtMaSV.Text)) == 0)
+                {
+                    MessageBox.Show("Sinh viên chưa học lớp này!");
+                    return;
+                }
+
+                qlmhC.HuyHocPhan(Convert.ToInt32(txtMaLopHuy.Text), Convert.ToInt32(txtMaSV.Text));
+                MessageBox.Show("Huỷ thành công!");
+            }
+            catch
+            {
+                MessageBox.Show("Hãy điền đủ thông tin!");
+            }
         }
     }
 }

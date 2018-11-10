@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace QuanLySinhVien.Views
 {
-    public partial class Thongtin : Form
+    public partial class BaoCaoDanhSachSinhVien : Form
     {
-        public Thongtin()
+        public BaoCaoDanhSachSinhVien()
         {
             InitializeComponent();
-            rtxtDes.Text = "Chương trình Quản lý thông tin \n2018";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BaoCaoDanhSachSinhVien_Load(object sender, EventArgs e)
         {
-            this.Close();
+
+            this.reportViewer1.RefreshReport();
         }
     }
 }

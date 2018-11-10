@@ -132,5 +132,55 @@ namespace QuanLySinhVien.Controllers
 
             return true;
         }
+
+        public bool checkMaSinhVien(int ma)
+        {
+            SqlCommand cmd = new SqlCommand("sp_GetAllPerson");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            DataTable dt = dangnhap.OpenDataSet(cmd).Tables[0];
+
+            for (int e = 0; e < dt.Rows.Count;e++)
+            {
+                if(Convert.ToInt32(dt.Rows[e][2]) == ma)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public int checkLopSVDaHoc(int malop, int masv)
+        {
+            SqlCommand cmd = new SqlCommand("sp_checkSVMaLopDaCo");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@MaLop", SqlDbType.Int).Value = malop;
+            cmd.Parameters.Add("@MaSV", SqlDbType.Int).Value = masv;
+
+            return Convert.ToInt32(dangnhap.OpenDataSet(cmd).Tables[0].Rows[0][0]);
+        }
+
+        public void DangKiHocPhan(int malop, int masv)
+        {
+            SqlCommand cmd = new SqlCommand("sp_InsertNewStudenttoClass");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@malop", SqlDbType.Int).Value = malop;
+            cmd.Parameters.Add("@masv", SqlDbType.Int).Value = masv;
+
+            dangnhap.ExecuteNonQuery(cmd);
+        }
+
+        public void HuyHocPhan(int malop, int masv)
+        {
+            SqlCommand cmd = new SqlCommand("sp_HuyHocPhan");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@malop", SqlDbType.Int).Value = malop;
+            cmd.Parameters.Add("@masv", SqlDbType.Int).Value = masv;
+
+            dangnhap.ExecuteNonQuery(cmd);
+        }
     }
 }

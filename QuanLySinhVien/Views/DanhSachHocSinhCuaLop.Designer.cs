@@ -181,6 +181,7 @@
             this.btnReport.TabIndex = 9;
             this.btnReport.Text = "Tạo báo cáo";
             this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // DanhSachHocSinhCuaLop
             // 

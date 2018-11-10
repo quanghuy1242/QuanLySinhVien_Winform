@@ -30,9 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DangKiHocPhan));
             this.dtgvLopChuaDK = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnDangKy = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenMon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,6 +37,9 @@
             this.NamHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SLDDK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Siso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnDangKy = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvLopChuaDK)).BeginInit();
             this.SuspendLayout();
@@ -69,6 +69,68 @@
             this.dtgvLopChuaDK.Size = new System.Drawing.Size(651, 252);
             this.dtgvLopChuaDK.TabIndex = 0;
             // 
+            // MaLop
+            // 
+            this.MaLop.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.MaLop.DataPropertyName = "MaLop";
+            this.MaLop.HeaderText = "Mã Lớp";
+            this.MaLop.Name = "MaLop";
+            this.MaLop.ReadOnly = true;
+            this.MaLop.Width = 68;
+            // 
+            // TenMon
+            // 
+            this.TenMon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.TenMon.DataPropertyName = "TenMH";
+            this.TenMon.HeaderText = "Tên Môn";
+            this.TenMon.Name = "TenMon";
+            this.TenMon.ReadOnly = true;
+            this.TenMon.Width = 69;
+            // 
+            // TenGV
+            // 
+            this.TenGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TenGV.DataPropertyName = "hoten";
+            this.TenGV.HeaderText = "Giảng Viên";
+            this.TenGV.Name = "TenGV";
+            this.TenGV.ReadOnly = true;
+            // 
+            // HocKy
+            // 
+            this.HocKy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.HocKy.DataPropertyName = "HocKy";
+            this.HocKy.HeaderText = "Học Kỳ";
+            this.HocKy.Name = "HocKy";
+            this.HocKy.ReadOnly = true;
+            this.HocKy.Width = 62;
+            // 
+            // NamHoc
+            // 
+            this.NamHoc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.NamHoc.DataPropertyName = "NamHoc";
+            this.NamHoc.HeaderText = "Năm Học";
+            this.NamHoc.Name = "NamHoc";
+            this.NamHoc.ReadOnly = true;
+            this.NamHoc.Width = 71;
+            // 
+            // SLDDK
+            // 
+            this.SLDDK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.SLDDK.DataPropertyName = "DaDK";
+            this.SLDDK.HeaderText = "Đã ĐK";
+            this.SLDDK.Name = "SLDDK";
+            this.SLDDK.ReadOnly = true;
+            this.SLDDK.Width = 60;
+            // 
+            // Siso
+            // 
+            this.Siso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Siso.DataPropertyName = "SiSo";
+            this.Siso.HeaderText = "Sỉ số";
+            this.Siso.Name = "Siso";
+            this.Siso.ReadOnly = true;
+            this.Siso.Width = 51;
+            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -97,71 +159,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 320);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(273, 13);
+            this.label2.Size = new System.Drawing.Size(205, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Để huỷ lớp học chưa có điểm, vui lòng liên hệ với Admin";
-            // 
-            // MaLop
-            // 
-            this.MaLop.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.MaLop.DataPropertyName = "MaLop";
-            this.MaLop.HeaderText = "Mã Lớp";
-            this.MaLop.Name = "MaLop";
-            this.MaLop.ReadOnly = true;
-            this.MaLop.Width = 68;
-            // 
-            // TenMon
-            // 
-            this.TenMon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.TenMon.DataPropertyName = "TenMH";
-            this.TenMon.HeaderText = "Tên Môn";
-            this.TenMon.Name = "TenMon";
-            this.TenMon.ReadOnly = true;
-            this.TenMon.Width = 75;
-            // 
-            // TenGV
-            // 
-            this.TenGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TenGV.DataPropertyName = "hoten";
-            this.TenGV.HeaderText = "Giảng Viên";
-            this.TenGV.Name = "TenGV";
-            this.TenGV.ReadOnly = true;
-            // 
-            // HocKy
-            // 
-            this.HocKy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.HocKy.DataPropertyName = "HocKy";
-            this.HocKy.HeaderText = "Học Kỳ";
-            this.HocKy.Name = "HocKy";
-            this.HocKy.ReadOnly = true;
-            this.HocKy.Width = 67;
-            // 
-            // NamHoc
-            // 
-            this.NamHoc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.NamHoc.DataPropertyName = "NamHoc";
-            this.NamHoc.HeaderText = "Năm Học";
-            this.NamHoc.Name = "NamHoc";
-            this.NamHoc.ReadOnly = true;
-            this.NamHoc.Width = 77;
-            // 
-            // SLDDK
-            // 
-            this.SLDDK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.SLDDK.DataPropertyName = "DaDK";
-            this.SLDDK.HeaderText = "Đã ĐK";
-            this.SLDDK.Name = "SLDDK";
-            this.SLDDK.ReadOnly = true;
-            this.SLDDK.Width = 64;
-            // 
-            // Siso
-            // 
-            this.Siso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Siso.DataPropertyName = "SiSo";
-            this.Siso.HeaderText = "Sỉ số";
-            this.Siso.Name = "Siso";
-            this.Siso.ReadOnly = true;
-            this.Siso.Width = 55;
+            this.label2.Text = "Để huỷ lớp học, vui lòng liên hệ với Admin";
             // 
             // button1
             // 
