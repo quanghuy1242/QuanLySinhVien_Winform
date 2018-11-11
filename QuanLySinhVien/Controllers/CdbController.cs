@@ -11,7 +11,7 @@ namespace QuanLySinhVien.Controllers
 {
     class CdbController
     {
-        private string connectionString = @"Data Source=.\sqlexpress;Initial Catalog=QuanLySinhVien2;Integrated Security=True";
+        private string connectionString = ConnectionString.LOCAL_STRING;
 
         public CdbController()
         {

@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionString.cs" />
     <Compile Include="Controllers\BangDiemController.cs" />
     <Compile Include="Controllers\CapNhatThongTinController.cs" />
     <Compile Include="Controllers\CdbController.cs" />
