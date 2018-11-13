@@ -129,7 +129,7 @@ namespace QuanLySinhVien.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
             }
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -143,7 +143,7 @@ namespace QuanLySinhVien.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
             }
             finally
             {

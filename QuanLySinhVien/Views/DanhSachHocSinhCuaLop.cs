@@ -78,6 +78,8 @@ namespace QuanLySinhVien.Views
         private void DanhSachHocSinhCuaLop_Load(object sender, EventArgs e)
         {
             loadLaiData();
+            dtgvDs.CellValidating += new DataGridViewCellValidatingEventHandler(dtgvDs_CellValidating);
+            dtgvDs.CellEndEdit += new DataGridViewCellEventHandler(dtgvDs_CellEndEdit);
         }
 
         //private void dtgvDs_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -88,7 +90,21 @@ namespace QuanLySinhVien.Views
         //        txtHoTen.Text = dtgvDs.SelectedRows[0].Cells[1].Value.ToString();
         //    }
         //}
-        
+
+        private void dtgvDs_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            int text = Convert.ToInt32(e.FormattedValue);
+            if (text > 10)
+            {
+                dtgvDs.Rows[e.RowIndex].ErrorText = "Điểm không thể lớn hơn 10";
+                e.Cancel = true;
+            }
+        }
+
+        private void dtgvDs_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dtgvDs.Rows[e.RowIndex].ErrorText = String.Empty;
+        }
 
         private void btnUpdateDiem_Click(object sender, EventArgs e)
         {

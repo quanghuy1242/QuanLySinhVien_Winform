@@ -39,25 +39,33 @@ namespace QuanLySinhVien.Views
 
             await Task.Run(() =>
             {
-                if (dangNhapController.checkDangNhap(txtMaSo, txtPassword))
+                try
                 {
-                    
-                    //this.Hide();
-                    this.Invoke(new Action(() => this.Hide()));
-                    //ttsv.Invoke(new Action(() => ttsv.Show()));
-                    flag = true;
-                    //return;
+                    if (dangNhapController.checkDangNhap(txtMaSo, txtPassword))
+                    {
+                        this.Invoke(new Action(() => this.Hide()));
+                        flag = true;
+                    }
+                    else
+                    {
+                        // tắt process bar khi có lỗi
+                        progressBar1.Invoke(new Action(() =>
+                        {
+                            progressBar1.Style = ProgressBarStyle.Continuous;
+                            progressBar1.MarqueeAnimationSpeed = 0;
+                        }));
+
+                        MessageBox.Show("Không thể đăng nhập!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch
                 {
-                    // tắt process bar khi có lỗi
                     progressBar1.Invoke(new Action(() =>
                     {
                         progressBar1.Style = ProgressBarStyle.Continuous;
                         progressBar1.MarqueeAnimationSpeed = 0;
                     }));
-
-                    MessageBox.Show("Không thể đăng nhập!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Không kết nối được với server!");
                 }
             });
 
