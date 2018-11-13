@@ -62,7 +62,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BaoCaoDiem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BaoCaoDiem";
+            this.Text = "Báo Cáo Điểm";
             this.Load += new System.EventHandler(this.BaoCaoDiem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MonHocBindingSource)).EndInit();
             this.ResumeLayout(false);

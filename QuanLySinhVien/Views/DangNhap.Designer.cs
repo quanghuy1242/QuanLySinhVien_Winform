@@ -37,6 +37,7 @@
             this.btnDangNhap = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnDangKy = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // label1
@@ -112,11 +113,19 @@
             this.btnDangKy.UseVisualStyleBackColor = true;
             this.btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 151);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(326, 10);
+            this.progressBar1.TabIndex = 10;
+            // 
             // DangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(351, 156);
+            this.ClientSize = new System.Drawing.Size(351, 173);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnDangKy);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnDangNhap);
@@ -147,5 +156,6 @@
         private System.Windows.Forms.Button btnDangNhap;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Button btnDangKy;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

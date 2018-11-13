@@ -98,12 +98,12 @@ CREATE TABLE LopSinhVien
 (
 	MaLop INT NOT NULL FOREIGN KEY REFERENCES LopHoc(MaLop),
 	MaSV INT FOREIGN KEY REFERENCES dbo.SinhVien(MSSV),
-	--MaDiem int FOREIGN KEY REFERENCES dbo.Diem(MaDiem)
 	DiemTK FLOAT DEFAULT 0,
 	DiemGK FLOAT DEFAULT 0,
 	DiemCK FLOAT DEFAULT 0,
 	DiemTongKet FLOAT DEFAULT 0,
-	XepLoai CHAR(5) CHECK(XepLoai IN ('A', 'B', 'C', 'D', 'F'))
+	XepLoai CHAR(5) CHECK(XepLoai IN ('A', 'B', 'C', 'D'))
+	PRIMARY KEY(MaLop, MaSV)
 )
 
 GO

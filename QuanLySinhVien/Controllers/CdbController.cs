@@ -153,4 +153,22 @@ namespace QuanLySinhVien.Controllers
             return ds;
         }
     }
+
+    public static class TryConnect
+    {
+        public static bool isAvailable(this SqlConnection conn)
+        {
+            try
+            {
+                conn.Open();
+                conn.Close();
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Không thể kết nối đến Database!");
+                return false;
+            }
+            return true;
+        }
+    }
 }
