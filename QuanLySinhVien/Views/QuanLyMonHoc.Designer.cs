@@ -44,7 +44,6 @@
             this.btnNewClass = new System.Windows.Forms.Button();
             this.btnUpdateAdd = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
-            this.txtTenGV = new System.Windows.Forms.TextBox();
             this.cbNamHoc = new System.Windows.Forms.ComboBox();
             this.cbHK = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -69,7 +68,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtMaSV = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtTenGV = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvMonHoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvLopHoc)).BeginInit();
             this.panel1.SuspendLayout();
@@ -200,7 +200,7 @@
             // 
             // btnNewClass
             // 
-            this.btnNewClass.Location = new System.Drawing.Point(310, 407);
+            this.btnNewClass.Location = new System.Drawing.Point(12, 407);
             this.btnNewClass.Name = "btnNewClass";
             this.btnNewClass.Size = new System.Drawing.Size(88, 23);
             this.btnNewClass.TabIndex = 4;
@@ -210,7 +210,7 @@
             // 
             // btnUpdateAdd
             // 
-            this.btnUpdateAdd.Location = new System.Drawing.Point(485, 407);
+            this.btnUpdateAdd.Location = new System.Drawing.Point(106, 407);
             this.btnUpdateAdd.Name = "btnUpdateAdd";
             this.btnUpdateAdd.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateAdd.TabIndex = 25;
@@ -227,14 +227,6 @@
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
             this.btnDong.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // txtTenGV
-            // 
-            this.txtTenGV.Location = new System.Drawing.Point(206, 4);
-            this.txtTenGV.Name = "txtTenGV";
-            this.txtTenGV.ReadOnly = true;
-            this.txtTenGV.Size = new System.Drawing.Size(122, 20);
-            this.txtTenGV.TabIndex = 18;
             // 
             // cbNamHoc
             // 
@@ -257,6 +249,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.txtNamHoc);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtHK);
@@ -275,7 +268,7 @@
             // 
             // txtNamHoc
             // 
-            this.txtNamHoc.Location = new System.Drawing.Point(551, 6);
+            this.txtNamHoc.Location = new System.Drawing.Point(553, 4);
             this.txtNamHoc.Name = "txtNamHoc";
             this.txtNamHoc.Size = new System.Drawing.Size(70, 20);
             this.txtNamHoc.TabIndex = 44;
@@ -283,7 +276,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(513, 9);
+            this.label2.Location = new System.Drawing.Point(522, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 43;
@@ -291,7 +284,7 @@
             // 
             // txtHK
             // 
-            this.txtHK.Location = new System.Drawing.Point(473, 6);
+            this.txtHK.Location = new System.Drawing.Point(480, 4);
             this.txtHK.Name = "txtHK";
             this.txtHK.Size = new System.Drawing.Size(36, 20);
             this.txtHK.TabIndex = 42;
@@ -299,7 +292,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(419, 9);
+            this.label1.Location = new System.Drawing.Point(436, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 41;
@@ -307,7 +300,7 @@
             // 
             // nudSiSo
             // 
-            this.nudSiSo.Location = new System.Drawing.Point(373, 4);
+            this.nudSiSo.Location = new System.Drawing.Point(394, 4);
             this.nudSiSo.Name = "nudSiSo";
             this.nudSiSo.Size = new System.Drawing.Size(40, 20);
             this.nudSiSo.TabIndex = 40;
@@ -315,7 +308,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(334, 9);
+            this.label10.Location = new System.Drawing.Point(359, 7);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(33, 13);
             this.label10.TabIndex = 39;
@@ -323,7 +316,7 @@
             // 
             // txtMaGV
             // 
-            this.txtMaGV.Location = new System.Drawing.Point(150, 4);
+            this.txtMaGV.Location = new System.Drawing.Point(138, 4);
             this.txtMaGV.Name = "txtMaGV";
             this.txtMaGV.Size = new System.Drawing.Size(50, 20);
             this.txtMaGV.TabIndex = 34;
@@ -332,7 +325,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(101, 6);
+            this.label7.Location = new System.Drawing.Point(94, 7);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(43, 13);
             this.label7.TabIndex = 33;
@@ -340,7 +333,9 @@
             // 
             // txtMaLop
             // 
-            this.txtMaLop.Location = new System.Drawing.Point(49, 4);
+            this.txtMaLop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaLop.Enabled = false;
+            this.txtMaLop.Location = new System.Drawing.Point(42, 4);
             this.txtMaLop.Name = "txtMaLop";
             this.txtMaLop.ReadOnly = true;
             this.txtMaLop.Size = new System.Drawing.Size(50, 20);
@@ -367,7 +362,7 @@
             // 
             // btnHuyThem
             // 
-            this.btnHuyThem.Location = new System.Drawing.Point(229, 407);
+            this.btnHuyThem.Location = new System.Drawing.Point(185, 407);
             this.btnHuyThem.Name = "btnHuyThem";
             this.btnHuyThem.Size = new System.Drawing.Size(75, 23);
             this.btnHuyThem.TabIndex = 38;
@@ -463,21 +458,30 @@
             this.txtMaSV.Size = new System.Drawing.Size(116, 20);
             this.txtMaSV.TabIndex = 51;
             // 
-            // button2
+            // txtTenGV
             // 
-            this.button2.Location = new System.Drawing.Point(404, 407);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 40;
-            this.button2.Text = "Refresh";
-            this.button2.UseVisualStyleBackColor = true;
+            this.txtTenGV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTenGV.Enabled = false;
+            this.txtTenGV.Location = new System.Drawing.Point(235, 4);
+            this.txtTenGV.Name = "txtTenGV";
+            this.txtTenGV.ReadOnly = true;
+            this.txtTenGV.Size = new System.Drawing.Size(123, 20);
+            this.txtTenGV.TabIndex = 18;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(188, 7);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 13);
+            this.label6.TabIndex = 45;
+            this.label6.Text = "Tên GV:";
             // 
             // QuanLyMonHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(653, 437);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnHuyThem);
             this.Controls.Add(this.btnUpdateSubject);
@@ -515,7 +519,6 @@
         private System.Windows.Forms.Button btnNewClass;
         private System.Windows.Forms.Button btnUpdateAdd;
         private System.Windows.Forms.Button btnDong;
-        private System.Windows.Forms.TextBox txtTenGV;
         public System.Windows.Forms.ComboBox cbNamHoc;
         public System.Windows.Forms.ComboBox cbHK;
         private System.Windows.Forms.Panel panel1;
@@ -541,7 +544,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtMaSV;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn malop;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenGV;
@@ -551,5 +553,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn siso;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnDK;
+        private System.Windows.Forms.TextBox txtTenGV;
+        private System.Windows.Forms.Label label6;
     }
 }

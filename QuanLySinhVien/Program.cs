@@ -16,6 +16,7 @@ namespace QuanLySinhVien
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Controllers.GlobalVariable.moLanDauTien = 0;
             Application.Run(new Views.DangNhap());
         }
     }

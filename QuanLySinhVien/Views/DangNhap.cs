@@ -18,8 +18,27 @@ namespace QuanLySinhVien.Views
 
         public DangNhap()
         {
+            //this.TopMost = true;
+            //Thread t = new Thread(new ThreadStart(startSplash));
+
+            //if (GlobalVariable.moLanDauTien == 0)
+            //{
+            //    t.Start();
+            //    Thread.Sleep(2000);
+            //}
+            
             InitializeComponent();
+
+            //t.Abort();
+
+            GlobalVariable.moLanDauTien++;
+            
             dangNhapController = new DangNhapController();
+        }
+
+        private void startSplash()
+        {
+            Application.Run(new SplashScreen());
         }
 
         private async void btnDangNhap_Click(object sender, EventArgs e)
@@ -32,8 +51,9 @@ namespace QuanLySinhVien.Views
             txtPassword.Enabled = false;
 
             bool flag = false;
-            
+
             // Mở process bar
+            progressBar1.Visible = true;
             progressBar1.Style = ProgressBarStyle.Marquee;
             progressBar1.MarqueeAnimationSpeed = 30;
 

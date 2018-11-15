@@ -91,21 +91,21 @@ namespace QuanLySinhVien.Views
 
                 byte[] picbyte;
 
-                if (txtTen.TextLength == 0) { loi = "Tên không để trống\n"; }
-                if (txtHo.TextLength == 0) { loi = "Họ và tên lót đăng nhập không để trống\n"; }
-                if (txtPass.TextLength == 0) { loi = "Password đăng nhập không để trống\n"; }
+                if (txtTen.TextLength == 0) { loi += "Tên không để trống\n"; }
+                if (txtHo.TextLength == 0) { loi += "Họ và tên lót đăng nhập không để trống\n"; }
+                if (txtPass.TextLength == 0) { loi += "Password đăng nhập không để trống\n"; }
 
                 try
                 {
-                    if (cbGioiTinh.SelectedItem.ToString() == "") { loi = "Vui lòng chọn giới tính\n"; }
+                    if (cbGioiTinh.SelectedItem.ToString() == "") { loi += "Vui lòng chọn giới tính\n"; }
                 }
                 catch
                 {
                     loi = "Vui lòng chọn giới tính\n";
                 }
 
-                if (txtSdt.TextLength == 0) { loi = "Số điện thoại không để trống\n"; }
-                if (txtQueQuan.TextLength == 0) { loi = "Quê quán không để trống\n"; }
+                if (txtSdt.TextLength == 0) { loi += "Số điện thoại không để trống\n"; }
+                if (txtQueQuan.TextLength == 0) { loi += "Quê quán không để trống\n"; }
 
                 if (openFileDialog.FileName == "")
                 {
@@ -118,6 +118,11 @@ namespace QuanLySinhVien.Views
                     fs.Read(picbyte, 0, Convert.ToInt32(fs.Length));
                     fs.Close();
                 }
+                if (DateTime.Now.Year - datetimeSN.Value.Year < 17)
+                {
+                    loi += "Sinh viên phải có tuổi lớn hơn hoặc bằng 17";
+                }
+
                 if (loi.Length != 0)
                 {
                     MessageBox.Show(loi, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);

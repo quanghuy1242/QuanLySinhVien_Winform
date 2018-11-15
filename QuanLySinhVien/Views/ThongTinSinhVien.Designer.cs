@@ -79,6 +79,9 @@
             // 
             // txtHoTen
             // 
+            this.txtHoTen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtHoTen.CausesValidation = false;
+            this.txtHoTen.ForeColor = System.Drawing.Color.Black;
             this.txtHoTen.Location = new System.Drawing.Point(196, 6);
             this.txtHoTen.Name = "txtHoTen";
             this.txtHoTen.ReadOnly = true;
@@ -87,6 +90,8 @@
             // 
             // txtNgaySinh
             // 
+            this.txtNgaySinh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNgaySinh.ForeColor = System.Drawing.Color.Black;
             this.txtNgaySinh.Location = new System.Drawing.Point(196, 32);
             this.txtNgaySinh.Name = "txtNgaySinh";
             this.txtNgaySinh.ReadOnly = true;
@@ -113,6 +118,8 @@
             // 
             // txtGioiTinh
             // 
+            this.txtGioiTinh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtGioiTinh.ForeColor = System.Drawing.Color.Black;
             this.txtGioiTinh.Location = new System.Drawing.Point(408, 32);
             this.txtGioiTinh.Name = "txtGioiTinh";
             this.txtGioiTinh.ReadOnly = true;
@@ -121,6 +128,8 @@
             // 
             // txtSdt
             // 
+            this.txtSdt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSdt.ForeColor = System.Drawing.Color.Black;
             this.txtSdt.Location = new System.Drawing.Point(196, 58);
             this.txtSdt.Name = "txtSdt";
             this.txtSdt.ReadOnly = true;
@@ -138,6 +147,8 @@
             // 
             // txtQueQuan
             // 
+            this.txtQueQuan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtQueQuan.ForeColor = System.Drawing.Color.Black;
             this.txtQueQuan.Location = new System.Drawing.Point(196, 84);
             this.txtQueQuan.Name = "txtQueQuan";
             this.txtQueQuan.ReadOnly = true;
@@ -155,6 +166,8 @@
             // 
             // txtTuCach
             // 
+            this.txtTuCach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTuCach.ForeColor = System.Drawing.Color.Black;
             this.txtTuCach.Location = new System.Drawing.Point(196, 110);
             this.txtTuCach.Name = "txtTuCach";
             this.txtTuCach.ReadOnly = true;
@@ -278,6 +291,8 @@
             // 
             // txtMaSo
             // 
+            this.txtMaSo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaSo.ForeColor = System.Drawing.Color.Black;
             this.txtMaSo.Location = new System.Drawing.Point(408, 6);
             this.txtMaSo.Name = "txtMaSo";
             this.txtMaSo.ReadOnly = true;

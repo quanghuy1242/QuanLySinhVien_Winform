@@ -119,6 +119,7 @@ namespace QuanLySinhVien.Controllers
             cmd.Parameters.Add("@namhoc", SqlDbType.Char, 15).Value = namhoc;
             cmd.Parameters.Add("@tc", SqlDbType.Int).Value = 1;
             cmd.Parameters.Add("@ms", SqlDbType.Int).Value = magv;
+            cmd.Parameters.Add("@dadk", SqlDbType.Int).Value = 0;
 
             DataTable dt = dangnhap.OpenDataSet(cmd).Tables[0];
 
@@ -129,7 +130,6 @@ namespace QuanLySinhVien.Controllers
                     return false;
                 }
             }
-
             return true;
         }
 

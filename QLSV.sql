@@ -259,7 +259,7 @@ BEGIN
 		END
 END
 GO 
-EXEC dbo.sp_GetClassInfo 'HK1', '2018-2019', 0, 1, 0
+EXEC dbo.sp_GetClassInfo 'HK1', '2018-2019', 1, 1, 0
 
 -- Lớp có mã 1, đã có bao nhiêu sv đk:
 

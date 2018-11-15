@@ -35,6 +35,9 @@ namespace QuanLySinhVien.Views
             qlmhC.comboBoxHocKyLoad(cbHK);
             qlmhC.comboBoxNamHocLoad(cbNamHoc);
             qlmhC.dataGridViewMonHocLoad(dtgvMonHoc);
+
+            dtgvLopHoc_CellClick(dtgvMonHoc, new DataGridViewCellEventArgs(0, 0));
+
         }
 
         private void btnUpdateSubject_Click(object sender, EventArgs e)
@@ -115,11 +118,32 @@ namespace QuanLySinhVien.Views
                 mamh = Convert.ToInt32(dtgvMonHoc.SelectedRows[0].Cells[0].Value);
                 hocky = txtHK.Text;
                 namhoc = txtNamHoc.Text;
+                namhoc = namhoc.Replace(" ", "");
                 siso = Convert.ToInt32(nudSiSo.Value);
+
+                string[] Arrayhk = { "HK1", "HK2", "HK3" };
+                int count = 0;
+                foreach(var str in Arrayhk)
+                {
+                    if (str != hocky) count++;
+                    if(count == 3)
+                    {
+                        MessageBox.Show("Năm học không hợp lệ!");
+                        return;
+                    }
+                }
+
+                if (siso == 0)
+                {
+                    MessageBox.Show("Sỉ số lớp phải lớn hơn 0");
+                    return;
+                }
+                
+
             }
             catch
             {
-                MessageBox.Show("Có lỗi xảy ra", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không có gì để cập nhật hoặc điền lỗi", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -159,11 +183,15 @@ namespace QuanLySinhVien.Views
 
             }
             isUpdate = true;
-            btnUpdateAdd.Text = "Cập nhật";
-            panel1.BackColor = Color.WhiteSmoke;
-
             dtgvLopHoc.Enabled = true;
             dtgvMonHoc.Enabled = true;
+
+            isUpdate = true;
+            btnUpdateAdd.Text = "Cập nhật";
+            panel1.BackColor = Color.WhiteSmoke;
+            btnHuyThem.Visible = false;
+
+            btnNewClass.Enabled = true;
 
 
         }
@@ -182,9 +210,21 @@ namespace QuanLySinhVien.Views
 
         private void btnNewClass_Click(object sender, EventArgs e)
         {
+            try
+            {
+                dtgvMonHoc.SelectedRows[0].Cells[0].Value.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa chọn một môn học!");
+                return;
+            }
+            
+
             isUpdate = false;
             btnUpdateAdd.Text = "Thêm";
             panel1.BackColor = Color.Aqua;
+            btnNewClass.Enabled = false;
 
             btnHuyThem.Visible = true;
 
@@ -197,6 +237,8 @@ namespace QuanLySinhVien.Views
             txtHK.Text = "";
             txtNamHoc.Text = "";
             txtTenGV.Text = "";
+
+            txtMaLop.Text = "[...]";
         }
 
         private void btnHuyThem_Click(object sender, EventArgs e)
@@ -208,6 +250,8 @@ namespace QuanLySinhVien.Views
             btnUpdateAdd.Text = "Cập nhật";
             panel1.BackColor = Color.WhiteSmoke;
             btnHuyThem.Visible = false;
+
+            btnNewClass.Enabled = true;
         }
 
         private void cbHK_SelectedIndexChanged(object sender, EventArgs e)
@@ -273,5 +317,6 @@ namespace QuanLySinhVien.Views
                 MessageBox.Show("Hãy điền đủ thông tin!");
             }
         }
+        
     }
 }

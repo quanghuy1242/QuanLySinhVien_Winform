@@ -40,22 +40,22 @@ namespace QuanLySinhVien.Views
             {
                 MessageBox.Show("Tên đăng nhập đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            if (txtTenDangNhap.TextLength == 0) { loi = "Tên đăng nhập không để trống\n"; }
-            if (txtTen.TextLength == 0) { loi = "Tên không để trống\n"; }
-            if (txtTenLot.TextLength == 0) { loi = "Họ và tên lót đăng nhập không để trống\n"; }
-            if (txtPass.TextLength == 0) { loi = "Password đăng nhập không để trống\n"; }
+            if (txtTenDangNhap.TextLength == 0) { loi += "Tên đăng nhập không để trống\n"; }
+            if (txtTen.TextLength == 0) { loi += "Tên không để trống\n"; }
+            if (txtTenLot.TextLength == 0) { loi += "Họ và tên lót đăng nhập không để trống\n"; }
+            if (txtPass.TextLength == 0) { loi += "Password đăng nhập không để trống\n"; }
 
             try
             {
-                if (cbGioiTInh.SelectedItem.ToString() == "") { loi = "Vui lòng chọn giới tính\n"; }
+                if (cbGioiTInh.SelectedItem.ToString() == "") { loi += "Vui lòng chọn giới tính\n"; }
             }
             catch
             {
-                loi = "Vui lòng chọn giới tính\n";
+                loi += "Vui lòng chọn giới tính\n";
             }
 
-            if (txtSdt.TextLength == 0) { loi = "Số điện thoại không để trống\n"; }
-            if (txtQueQuan.TextLength == 0) { loi = "Quê quán không để trống\n"; }
+            if (txtSdt.TextLength == 0) { loi += "Số điện thoại không để trống\n"; }
+            if (txtQueQuan.TextLength == 0) { loi += "Quê quán không để trống\n"; }
 
             if (txtChonAnh.TextLength == 0)
             {
@@ -68,6 +68,12 @@ namespace QuanLySinhVien.Views
                 fs.Read(picbyte, 0, Convert.ToInt32(fs.Length));
                 fs.Close();
             }
+
+            if (DateTime.Now.Year - datetimeBirthday.Value.Year < 17)
+            {
+                loi += "Sinh viên phải có tuổi lớn hơn hoặc bằng 17";
+            }
+
             if (loi.Length != 0)
             {
                 MessageBox.Show(loi, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);

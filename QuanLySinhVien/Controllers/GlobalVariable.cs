@@ -13,5 +13,6 @@ namespace QuanLySinhVien.Controllers
         public static string GVtendn { get; set; }
         public static int GVTuCach { get; set; }
         public static byte[] GVAnh { get; set; }
+        public static int moLanDauTien { get; set; }
     }
 }

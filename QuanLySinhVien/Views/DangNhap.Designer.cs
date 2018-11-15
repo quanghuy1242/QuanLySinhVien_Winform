@@ -119,12 +119,13 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(326, 10);
             this.progressBar1.TabIndex = 10;
+            this.progressBar1.Visible = false;
             // 
             // DangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(351, 173);
+            this.ClientSize = new System.Drawing.Size(351, 166);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnDangKy);
             this.Controls.Add(this.btnThoat);
