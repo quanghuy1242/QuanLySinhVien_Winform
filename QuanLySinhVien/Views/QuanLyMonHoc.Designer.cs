@@ -47,6 +47,7 @@
             this.cbNamHoc = new System.Windows.Forms.ComboBox();
             this.cbHK = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtNamHoc = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtHK = new System.Windows.Forms.TextBox();
@@ -57,6 +58,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtMaLop = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.txtTenGV = new System.Windows.Forms.TextBox();
             this.btnUpdateSubject = new System.Windows.Forms.Button();
             this.btnHuyThem = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -68,8 +70,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtMaSV = new System.Windows.Forms.TextBox();
-            this.txtTenGV = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvMonHoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvLopHoc)).BeginInit();
             this.panel1.SuspendLayout();
@@ -266,6 +266,15 @@
             this.panel1.Size = new System.Drawing.Size(629, 31);
             this.panel1.TabIndex = 35;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(188, 7);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 13);
+            this.label6.TabIndex = 45;
+            this.label6.Text = "Tên GV:";
+            // 
             // txtNamHoc
             // 
             this.txtNamHoc.Location = new System.Drawing.Point(553, 4);
@@ -349,6 +358,16 @@
             this.label8.Size = new System.Drawing.Size(42, 13);
             this.label8.TabIndex = 31;
             this.label8.Text = "Mã lớp:";
+            // 
+            // txtTenGV
+            // 
+            this.txtTenGV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTenGV.Enabled = false;
+            this.txtTenGV.Location = new System.Drawing.Point(235, 4);
+            this.txtTenGV.Name = "txtTenGV";
+            this.txtTenGV.ReadOnly = true;
+            this.txtTenGV.Size = new System.Drawing.Size(123, 20);
+            this.txtTenGV.TabIndex = 18;
             // 
             // btnUpdateSubject
             // 
@@ -458,25 +477,6 @@
             this.txtMaSV.Size = new System.Drawing.Size(116, 20);
             this.txtMaSV.TabIndex = 51;
             // 
-            // txtTenGV
-            // 
-            this.txtTenGV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTenGV.Enabled = false;
-            this.txtTenGV.Location = new System.Drawing.Point(235, 4);
-            this.txtTenGV.Name = "txtTenGV";
-            this.txtTenGV.ReadOnly = true;
-            this.txtTenGV.Size = new System.Drawing.Size(123, 20);
-            this.txtTenGV.TabIndex = 18;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(188, 7);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 13);
-            this.label6.TabIndex = 45;
-            this.label6.Text = "Tên GV:";
-            // 
             // QuanLyMonHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,7 +498,7 @@
             this.MaximizeBox = false;
             this.Name = "QuanLyMonHoc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quản lý môn học";
+            this.Text = "Quản lý nội dung";
             this.Load += new System.EventHandler(this.QuanLyMonHoc_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvMonHoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvLopHoc)).EndInit();

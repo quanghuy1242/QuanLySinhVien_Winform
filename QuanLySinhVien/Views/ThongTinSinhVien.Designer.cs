@@ -226,7 +226,7 @@
             this.btnQLMH.Name = "btnQLMH";
             this.btnQLMH.Size = new System.Drawing.Size(152, 23);
             this.btnQLMH.TabIndex = 25;
-            this.btnQLMH.Text = "Quản lý môn học";
+            this.btnQLMH.Text = "Quản lý nội dung";
             this.btnQLMH.UseVisualStyleBackColor = true;
             this.btnQLMH.Click += new System.EventHandler(this.btnQLMH_Click);
             // 

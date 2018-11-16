@@ -193,7 +193,9 @@ namespace QuanLySinhVien.Views
 
             btnNewClass.Enabled = true;
 
+            //Click lại dòng đó
 
+            dtgvLopHoc_CellClick(dtgvMonHoc, new DataGridViewCellEventArgs(0, dtgvLopHoc.SelectedRows[0].Index));
         }
 
         private void txtMaGV_TextChanged(object sender, EventArgs e)

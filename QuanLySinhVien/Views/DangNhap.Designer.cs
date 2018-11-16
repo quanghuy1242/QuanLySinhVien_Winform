@@ -142,6 +142,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng Nhập";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DangNhap_FormClosing);
+            this.Shown += new System.EventHandler(this.DangNhap_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

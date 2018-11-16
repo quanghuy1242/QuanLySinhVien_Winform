@@ -58,8 +58,12 @@ namespace QuanLySinhVien.Views
 
         private void btnDong_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            (new DangNhap()).Show();
+            DialogResult re = MessageBox.Show("Bạn có chắc chắn?", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if(re == DialogResult.OK)
+            {
+                this.Hide();
+                (new DangNhap()).Show();
+            }
         }
 
         private void btnUpdateInfo_Click(object sender, EventArgs e)
