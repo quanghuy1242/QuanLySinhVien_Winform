@@ -42,9 +42,16 @@ namespace QuanLySinhVien.Views
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
-            dkhpC.DangKiHocPhan(Convert.ToInt32(dtgvLopChuaDK.SelectedRows[0].Cells[0].Value), GlobalVariable.GVMaSo);
-            MessageBox.Show("Đăng kí thành công!");
-            LoadData();
+            try
+            {
+                dkhpC.DangKiHocPhan(Convert.ToInt32(dtgvLopChuaDK.SelectedRows[0].Cells[0].Value), GlobalVariable.GVMaSo);
+                MessageBox.Show("Đăng kí thành công!");
+                LoadData();
+            }
+            catch
+            {
+                MessageBox.Show("Không có lớp để đăng kí!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
