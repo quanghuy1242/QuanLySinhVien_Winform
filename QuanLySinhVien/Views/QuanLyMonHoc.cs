@@ -195,7 +195,14 @@ namespace QuanLySinhVien.Views
 
             //Click lại dòng đó
 
-            dtgvLopHoc_CellClick(dtgvMonHoc, new DataGridViewCellEventArgs(0, dtgvLopHoc.SelectedRows[0].Index));
+            try
+            {
+                dtgvLopHoc_CellClick(dtgvMonHoc, new DataGridViewCellEventArgs(0, dtgvLopHoc.SelectedRows[0].Index));
+            }
+            catch
+            {
+
+            }
         }
 
         private void txtMaGV_TextChanged(object sender, EventArgs e)
@@ -282,6 +289,12 @@ namespace QuanLySinhVien.Views
                 if (qlmhC.checkLopSVDaHoc(Convert.ToInt32(txtMaLopHuy.Text), Convert.ToInt32(txtMaSV.Text)) == 1)
                 {
                     MessageBox.Show("Sinh viên đã học lớp này!");
+                    return;
+                }
+
+                if (!qlmhC.checklopday(Convert.ToInt32(txtMaLopHuy.Text)))
+                {
+                    MessageBox.Show("Lớp này đã đủ số lượng sinh viên!");
                     return;
                 }
 

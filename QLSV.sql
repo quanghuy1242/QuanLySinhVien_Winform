@@ -261,6 +261,19 @@ END
 GO 
 EXEC dbo.sp_GetClassInfo 'HK1', '2018-2019', 1, 1, 0
 
+
+go 
+CREATE PROC sp_checklopday @malop INT
+AS
+BEGIN
+	SELECT l.SiSo, COUNT(l.MaLop) AS DaDK
+	FROM dbo.LopSinhVien ls RIGHT JOIN dbo.LopHoc l ON l.MaLop = ls.MaLop
+	WHERE l.MaLop = @malop
+	GROUP BY l.SiSo
+END
+
+exec sp_checklopday 8
+go 
 -- Lớp có mã 1, đã có bao nhiêu sv đk:
 
 SELECT l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS hoten, l.HocKy, l.NamHoc, l.SiSo, COUNT(l.MaLop) AS DaDK
@@ -645,3 +658,12 @@ BEGIN
 END
 GO 
 SELECT * FROM dbo.LopSinhVien WHERE MaLop = 3 AND MaSV = 1
+go 
+CREATE PROC sp_checklopday @malop INT
+AS
+BEGIN
+	SELECT l.SiSo, COUNT(l.MaLop) AS DaDK
+	FROM dbo.LopSinhVien ls RIGHT JOIN dbo.LopHoc l ON l.MaLop = ls.MaLop
+	WHERE l.MaLop = @malop
+	GROUP BY l.SiSo
+END

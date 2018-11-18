@@ -45,8 +45,16 @@ namespace QuanLySinhVien.Views
         {
             // Lấy dtgv của cha
             DataGridView dtgv = ((ThongTinLopHoc)this.Owner).dtgvLop;
-
-            int malop = Convert.ToInt32(dtgv.SelectedRows[0].Cells[0].Value);
+            int malop;
+            try
+            {
+                malop = Convert.ToInt32(dtgv.SelectedRows[0].Cells[0].Value);
+            }
+            catch
+            {
+                MessageBox.Show("Bạn chưa học lớp nào!");
+                return;
+            }
 
             if (GlobalVariable.GVTuCach == 0)
             {

@@ -182,5 +182,21 @@ namespace QuanLySinhVien.Controllers
 
             dangnhap.ExecuteNonQuery(cmd);
         }
+
+        public bool checklopday(int malop)
+        {
+            SqlCommand cmd = new SqlCommand("sp_checklopday");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@malop", SqlDbType.Int).Value = malop;
+
+            DataTable dt = dangnhap.OpenDataSet(cmd).Tables[0];
+
+            int siso = Convert.ToInt32(dt.Rows[0][0]);
+            int dadk = Convert.ToInt32(dt.Rows[0][1]);
+
+            if (dadk < siso) return true;
+            return false;
+        }
     }
 }

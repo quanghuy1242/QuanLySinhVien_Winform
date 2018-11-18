@@ -40,7 +40,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbTK = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnDKLop = new System.Windows.Forms.Button();
             this.btnClassofPerson = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -197,7 +196,6 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.btnDKLop);
             this.groupBox1.Controls.Add(this.btnClassofPerson);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label11);
@@ -231,16 +229,6 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết";
-            // 
-            // btnDKLop
-            // 
-            this.btnDKLop.Location = new System.Drawing.Point(6, 279);
-            this.btnDKLop.Name = "btnDKLop";
-            this.btnDKLop.Size = new System.Drawing.Size(156, 23);
-            this.btnDKLop.TabIndex = 43;
-            this.btnDKLop.Text = "Đăng Kí Lớp Học";
-            this.btnDKLop.UseVisualStyleBackColor = true;
-            this.btnDKLop.Visible = false;
             // 
             // btnClassofPerson
             // 
@@ -680,6 +668,5 @@
         private System.Windows.Forms.Button btnClassofPerson;
         public System.Windows.Forms.ComboBox cbTuCach;
         public System.Windows.Forms.TextBox txtMa;
-        private System.Windows.Forms.Button btnDKLop;
     }
 }

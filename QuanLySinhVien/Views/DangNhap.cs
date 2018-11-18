@@ -18,42 +18,8 @@ namespace QuanLySinhVien.Views
 
         public DangNhap()
         {
-            //this.TopMost = true;
-            Thread t = new Thread(new ThreadStart(startSplash));
-
-            if (GlobalVariable.moLanDauTien == 0)
-            {
-                t.Start();
-                Thread.Sleep(3000);
-            }
-
-            //startSplash2();
-
             InitializeComponent();
-
-
-            t.Abort();
-
-            GlobalVariable.moLanDauTien++;
-            
             dangNhapController = new DangNhapController();
-
-            this.BringToFront();
-            this.Activate();
-            
-        }
-
-        async private void startSplash2()
-        {
-            await Task.Run(() =>
-            {
-                Application.Run(new SplashScreen());
-            });
-        }
-
-        private void startSplash()
-        {
-            Application.Run(new SplashScreen());
         }
 
         private async void btnDangNhap_Click(object sender, EventArgs e)
@@ -139,25 +105,6 @@ namespace QuanLySinhVien.Views
         {
             Application.Exit();
         }
-
-        private void DangNhap_Shown(object sender, EventArgs e)
-        {
-            this.BringToFront();
-            this.TopMost = true;
-            this.Activate();
-            this.Focus();
-            //Application.OpenForms.OfType<Form>()
-            //    .Where(form => String.Equals(form.Name, "SplashScreen"))
-            //    .ToList()
-            //    .ForEach(form =>
-            //    {
-            //        form.Invoke(new Action(() =>
-            //        {
-            //            form.Hide();
-            //        }));
-            //    });
-
-            this.TopMost = false;
-        }
+        
     }
 }

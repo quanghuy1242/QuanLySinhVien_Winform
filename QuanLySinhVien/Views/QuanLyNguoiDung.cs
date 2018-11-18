@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLySinhVien.Controllers;
@@ -24,6 +25,10 @@ namespace QuanLySinhVien.Views
             qlndC = new QuanLyNguoiDungController();
             dtgvDSND.AutoGenerateColumns = false;
             cbLoaiTC.SelectedItem = "Tất Cả";
+
+            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
+            openFileDialog.FilterIndex = 2;
         }
 
         private void btnDong_Click(object sender, EventArgs e)
@@ -123,6 +128,13 @@ namespace QuanLySinhVien.Views
                     loi += "Sinh viên phải có tuổi lớn hơn hoặc bằng 17";
                 }
 
+
+                Regex regex = new Regex(@"^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$");
+                if (!regex.IsMatch(txtSdt.Text))
+                {
+                    loi += "Số điện thoại không đúng định dạng!";
+                }
+
                 if (loi.Length != 0)
                 {
                     MessageBox.Show(loi, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -217,6 +229,7 @@ namespace QuanLySinhVien.Views
                 btnXoa.Text = "Xoá";
                 btnCapNhat.Text = "Cập nhật";
                 dtgvDSND.Enabled = true;
+                btnClassofPerson.Enabled = true;
             }
             
         }
@@ -233,6 +246,7 @@ namespace QuanLySinhVien.Views
             isCapNhat = false;
             btnXoa.Text = "Huỷ";
             btnCapNhat.Text = "Thêm";
+            btnClassofPerson.Enabled = false;
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -259,6 +273,7 @@ namespace QuanLySinhVien.Views
             {
                 // tắt dtgv
                 dtgvDSND.Enabled = true;
+                btnClassofPerson.Enabled = true;
                 isCapNhat = true;
                 btnXoa.Text = "Xoá";
                 btnCapNhat.Text = "Cập nhật";

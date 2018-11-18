@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLySinhVien.Controllers;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace QuanLySinhVien.Views
 {
@@ -24,6 +25,10 @@ namespace QuanLySinhVien.Views
             InitializeComponent();
             cnttc = new CapNhatThongTinController();
             daangKyController = new DaangKyController();
+
+            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
+            openFileDialog.FilterIndex = 2;
         }
 
         private void btnChonAnh_Click(object sender, EventArgs e)
@@ -40,21 +45,21 @@ namespace QuanLySinhVien.Views
 
             byte[] picbyte;
             
-            if (txtTen.TextLength == 0) { loi = "Tên không để trống\n"; }
-            if (txtTenLot.TextLength == 0) { loi = "Họ và tên lót đăng nhập không để trống\n"; }
-            if (txtPass.TextLength == 0) { loi = "Password đăng nhập không để trống\n"; }
+            if (txtTen.TextLength == 0) { loi += "Tên không để trống\n"; }
+            if (txtTenLot.TextLength == 0) { loi += "Họ và tên lót đăng nhập không để trống\n"; }
+            if (txtPass.TextLength == 0) { loi += "Password đăng nhập không để trống\n"; }
 
             try
             {
-                if (cbGioiTInh.SelectedItem.ToString() == "") { loi = "Vui lòng chọn giới tính\n"; }
+                if (cbGioiTInh.SelectedItem.ToString() == "") { loi += "Vui lòng chọn giới tính\n"; }
             }
             catch
             {
-                loi = "Vui lòng chọn giới tính\n";
+                loi += "Vui lòng chọn giới tính\n";
             }
 
-            if (txtSdt.TextLength == 0) { loi = "Số điện thoại không để trống\n"; }
-            if (txtQueQuan.TextLength == 0) { loi = "Quê quán không để trống\n"; }
+            if (txtSdt.TextLength == 0) { loi += "Số điện thoại không để trống\n"; }
+            if (txtQueQuan.TextLength == 0) { loi += "Quê quán không để trống\n"; }
 
             if (openFileDialog.FileName == "")
             {
@@ -62,11 +67,23 @@ namespace QuanLySinhVien.Views
             }
             else
             {
+                openFileDialog.RestoreDirectory = true;
                 FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
                 picbyte = new byte[fs.Length];
                 fs.Read(picbyte, 0, Convert.ToInt32(fs.Length));
                 fs.Close();
             }
+            if (DateTime.Now.Year - datetimeBirthday.Value.Year < 17)
+            {
+                loi += "Sinh viên phải có tuổi lớn hơn hoặc bằng 17";
+            }
+
+            Regex regex = new Regex(@"^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$");
+            if(!regex.IsMatch(txtSdt.Text))
+            {
+                loi += "Số điện thoại không đúng định dạng!";
+            }
+
             if (loi.Length != 0)
             {
                 MessageBox.Show(loi, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
