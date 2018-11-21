@@ -65,67 +65,74 @@ CREATE TABLE MonHoc
 	TinChi INT
 )
 
---CREATE TABLE GiangVienMonHoc
---(
---	MSGV INT NOT NULL FOREIGN KEY REFERENCES dbo.GiangVien(MSGV),
---	MaMH INT NOT NULL FOREIGN KEY REFERENCES MonHoc(MaMH),
---	PRIMARY KEY(MSGV, MaMH)
---)
-
 CREATE TABLE LopHoc
 (
 	MaLop INT NOT NULL IDENTITY PRIMARY KEY,
+	TenLop CHAR(15),
 	MaGV INT FOREIGN KEY REFERENCES dbo.GiangVien(MSGV),
 	MaMH INT FOREIGN KEY REFERENCES MonHoc(MaMH),
-	HocKy CHAR(5) CHECK (HocKy IN ('HK1', 'HK2', 'HK3')),
+	HocKy CHAR(5),
 	NamHoc CHAR(15),
-	SiSo INT
+	SiSo INT,
+	AllowEdit INT DEFAULT 0,
+	FOREIGN KEY (NamHoc, HocKy) References HocKyNamHoc(NamHoc, HocKy)
 )
-
---CREATE TABLE Diem
---(
---	MaDiem INT NOT NULL IDENTITY PRIMARY KEY,
---	MaMH INT FOREIGN KEY REFERENCES dbo.MonHoc(MaMH),
---	MaSV INT FOREIGN KEY REFERENCES dbo.SinhVien(MSSV),
---	DiemTK FLOAT DEFAULT 0,
---	DiemGK FLOAT DEFAULT 0,
---	DiemCK FLOAT DEFAULT 0,
---	DiemTongKet FLOAT DEFAULT 0,
---	XepLoai CHAR(5) CHECK(XepLoai IN ('A', 'B', 'C', 'D', 'F'))
---)
 
 CREATE TABLE LopSinhVien
 (
 	MaLop INT NOT NULL FOREIGN KEY REFERENCES LopHoc(MaLop),
 	MaSV INT FOREIGN KEY REFERENCES dbo.SinhVien(MSSV),
-	DiemTK FLOAT DEFAULT 0,
-	DiemGK FLOAT DEFAULT 0,
-	DiemCK FLOAT DEFAULT 0,
-	DiemTongKet FLOAT DEFAULT 0,
-	XepLoai CHAR(5) CHECK(XepLoai IN ('A', 'B', 'C', 'D'))
+	DiemTK FLOAT,
+	DiemGK FLOAT,
+	DiemCK FLOAT,
+	DiemTongKet FLOAT,
+	XepLoai CHAR(5) CHECK(XepLoai IN ('A', 'B', 'C', 'D', 'F'))
 	PRIMARY KEY(MaLop, MaSV)
 )
 
+CREATE TABLE HocKyNamHoc
+(
+	NamHoc char(15),
+	HocKy char(5) CHECK (HocKy IN ('HK1', 'HK2', 'HK3')),
+	HienTai INT Default 0,
+	Primary Key (NamHoc, HocKy)
+)
+-- Dữ liệu có sắn cho học kỳ năm học
+Insert [dbo].[HocKyNamHoc]([NamHoc], [HocKy], [HienTai])
+Values ('2018-2019', 'HK1', 1),
+	   ('2018-2019', 'HK2', 0),
+	   ('2018-2019', 'HK3', 0),
+	   ('2019-2020', 'HK1', 0)
+
+select * from HocKyNamHoc
 GO
 CREATE TRIGGER sp_Updatediem
-ON dbo.LopSinhVien FOR UPDATE, INSERT
+ON dbo.LopSinhVien FOR UPDATE
 AS BEGIN
 	DECLARE @masv INT, @malop INT 
 	SELECT @masv = i.MaSV, @malop = i.MaLop FROM Inserted i
+	DECLARE @tk float, @gk float, @ck float
+	SET @tk = (select DiemTK from LopSinhVien WHERE MaLop = @malop AND MaSV = @masv)
+	SET @gk = (select DiemGK from LopSinhVien WHERE MaLop = @malop AND MaSV = @masv)
+	SET @ck = (select DiemCK from LopSinhVien WHERE MaLop = @malop AND MaSV = @masv)
 
-	UPDATE dbo.LopSinhVien
-	SET DiemTongKet = 0.2 * DiemTK + 0.3 * DiemGK + 0.5 * DiemCK
-	WHERE MaLop = @malop AND MaSV = @masv
+	IF @tk IS NOT NULL AND @gk IS NOT NULL AND @ck IS NOT NULL
+	BEGIN
+		UPDATE dbo.LopSinhVien
+		SET DiemTongKet = 0.2 * DiemTK + 0.3 * DiemGK + 0.5 * DiemCK
+		WHERE MaLop = @malop AND MaSV = @masv
 
-	UPDATE dbo.LopSinhVien
-	SET XepLoai = 
-			CASE 
-				WHEN DiemTongKet < 5 THEN 'D'
-				WHEN DiemTongKet >= 5 AND DiemTongKet < 7 THEN 'C'
-				WHEN DiemTongKet >= 7 AND DiemTongKet < 9 THEN 'B'
-				ELSE 'A'
-			END
-	WHERE MaLop = @malop AND MaSV = @masv
+		UPDATE dbo.LopSinhVien
+		SET XepLoai = 
+				CASE 
+					WHEN DiemTongKet <= 4 THEN 'F'
+					WHEN DiemTongKet > 4 AND DiemTongKet < 5 THEN 'D'
+					WHEN DiemTongKet >= 5 AND DiemTongKet < 7 THEN 'C'
+					WHEN DiemTongKet >= 7 AND DiemTongKet < 8 THEN 'B'
+					ELSE 'A'
+				END
+		WHERE MaLop = @malop AND MaSV = @masv
+	END
 END 
 
 INSERT dbo.SinhVien(TenDangNhap, Ten, Ho, Pass, NgayThangNamSinh, GioiTinh, SoDienThoai, QueQuan, Anh, Tucach)
@@ -188,19 +195,30 @@ EXEC dbo.sp_GetInfo 1, 1
 
 GO 
 -- lấy thông tin lớp sinh viên đang học
-CREATE PROC sp_GetHocKy
+ALTER PROC sp_GetHocKy
 AS BEGIN
-	SELECT DISTINCT HocKy
-	FROM dbo.LopHoc
+	Select Distinct HocKy
+	from HocKyNamHoc
 END
 GO 
 
-CREATE PROC sp_GetNamHoc
+ALTER PROC sp_GetNamHoc
 AS BEGIN
 	SELECT DISTINCT NamHoc
-	FROM dbo.LopHoc
+	FROM HocKyNamHoc
 END
 
+exec sp_GetNamHoc
+
+go
+Create Proc sp_getNamHocHocKyHienTai 
+as 
+	select NamHoc, HocKy
+	from HocKyNamHoc
+	Where HienTai = 1
+go 
+
+exec sp_getNamHocHocKyHienTai
 
 -- Các lớp sinh viên đang học
 SELECT ls.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS TenGV, l.HocKy, l.NamHoc, l.SiSo
@@ -234,7 +252,7 @@ BEGIN
 		BEGIN
 			IF @dadk = 1
 				BEGIN
-					SELECT ls.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS TenGV, l.HocKy, l.NamHoc, l.SiSo
+					SELECT ls.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS TenGV, l.HocKy, l.NamHoc, l.SiSo, l.TenLop
 					FROM dbo.LopSinhVien ls JOIN dbo.LopHoc l ON l.MaLop = ls.MaLop
 											JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
 											JOIN dbo.GiangVien g ON l.MaGV = g.MSGV
@@ -242,17 +260,17 @@ BEGIN
 				END
 			ELSE
 				BEGIN
-					SELECT l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS hoten, l.HocKy, l.NamHoc, l.SiSo, COUNT(l.MaLop) AS DaDK
+					SELECT l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS hoten, l.HocKy, l.NamHoc, l.SiSo, COUNT(ls.MaLop) AS DaDK, l.TenLop
 					FROM dbo.LopSinhVien ls RIGHT JOIN dbo.LopHoc l ON l.MaLop = ls.MaLop
 											JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
 											JOIN dbo.GiangVien g ON g.MSGV = l.MaGV
 					WHERE l.MaLop NOT IN (SELECT MaLop FROM dbo.LopSinhVien WHERE MaSV = @ms)
-					GROUP BY l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten, l.HocKy, l.NamHoc, l.SiSo
+					GROUP BY l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten, l.HocKy, l.NamHoc, l.SiSo, l.TenLop
 				END
 		END
 	IF @tc = 1
 		BEGIN
-		    SELECT l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS TenGV, l.HocKy, l.NamHoc, l.SiSo, l.MaMH
+		    SELECT l.MaLop, m.TenMH, g.Ho + ' ' + g.Ten AS TenGV, l.HocKy, l.NamHoc, l.SiSo, l.MaMH, l.TenLop
 			FROM dbo.LopHoc l JOIN dbo.GiangVien g ON l.MaGV = g.MSGV
 							  JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
 			WHERE l.MaGV = @ms AND l.HocKy = @hk AND l.NamHoc = @namhoc
@@ -261,6 +279,7 @@ END
 GO 
 EXEC dbo.sp_GetClassInfo 'HK1', '2018-2019', 1, 1, 0
 
+select * from LopHoc
 
 go 
 CREATE PROC sp_checklopday @malop INT
@@ -366,12 +385,12 @@ FROM dbo.LopHoc l JOIN dbo.LopSinhVien ls ON ls.MaLop = l.MaLop
 WHERE l.MaLop = 1
 GO 
 
-CREATE PROC sp_getDSSV @malop INT, @ma INT 
+ALTER PROC sp_getDSSV @malop INT, @ma INT 
 AS
 BEGIN
 	IF @ma IS NULL
 		BEGIN
-			SELECT s.MSSV, s.Ho + ' ' + s.Ten AS tenSV, ls.DiemTK, ls.DiemGK, ls.DiemCK, ls.DiemTongKet, ls.XepLoai
+			SELECT s.MSSV, s.Ho + ' ' + s.Ten AS tenSV, ls.DiemTK, ls.DiemGK, ls.DiemCK, ls.DiemTongKet, ls.XepLoai, AllowEdit
 			FROM dbo.LopHoc l JOIN dbo.LopSinhVien ls ON ls.MaLop = l.MaLop
 							  JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
 							  JOIN dbo.SinhVien s ON ls.MaSV = s.MSSV
@@ -379,7 +398,7 @@ BEGIN
 		END
     ELSE
 		BEGIN
-		    SELECT s.MSSV, s.Ho + ' ' + s.Ten AS tenSV, ls.DiemTK, ls.DiemGK, ls.DiemCK, ls.DiemTongKet, ls.XepLoai
+		    SELECT s.MSSV, s.Ho + ' ' + s.Ten AS tenSV, ls.DiemTK, ls.DiemGK, ls.DiemCK, ls.DiemTongKet, ls.XepLoai, AllowEdit
 			FROM dbo.LopHoc l JOIN dbo.LopSinhVien ls ON ls.MaLop = l.MaLop
 							  JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
 							  JOIN dbo.SinhVien s ON ls.MaSV = s.MSSV
@@ -387,7 +406,7 @@ BEGIN
 		END
 END
 
-EXEC dbo.sp_getDSSV 1, NULL
+EXEC dbo.sp_getDSSV 3, NULL
 
 GO 
 CREATE PROC sp_CapNhatDiem @tk FLOAT, @gk FLOAT, @ck FLOAT, @masv INT, @malop INT 
@@ -538,10 +557,10 @@ BEGIN
 END
 GO 
 
-CREATE PROC sp_GetClassFromSubject @maMH INT, @hk CHAR(5), @nh CHAR(15)
+ALTER PROC sp_GetClassFromSubject @maMH INT, @hk CHAR(5), @nh CHAR(15)
 AS
 BEGIN
-    SELECT l.MaLop, g.Ten + ' ' + g.Ho AS HoTenGV, l.HocKy, l.NamHoc, l.SiSo, l.MaGV, m.TenMH
+    SELECT l.MaLop, l.TenLop, g.Ho + ' ' + g.Ten AS HoTenGV, l.HocKy, l.NamHoc, l.SiSo, l.MaGV, m.TenMH
 	FROM dbo.LopHoc l JOIN dbo.MonHoc m ON m.MaMH = l.MaMH
 					  JOIN dbo.GiangVien g ON g.MSGV = l.MaGV
 	WHERE l.MaMH = @maMH AND l.HocKy = @hk AND l.NamHoc = @nh
@@ -555,13 +574,14 @@ EXEC dbo.sp_GetInfo 1, 1
 SELECT * FROM LopHoc
 
 GO 
-CREATE PROC sp_updateClass 
+ALTER PROC sp_updateClass 
 	@malop INT,
 	@magv INT,
 	@mamh INT,
 	@hk CHAR(5),
 	@namhoc CHAR(15),
-	@ss INT 
+	@ss INT,
+	@tenlop char(15)
 AS
 BEGIN
     UPDATE dbo.LopHoc
@@ -569,22 +589,24 @@ BEGIN
 		MaMH = @mamh,
 		HocKy = @hk,
 		NamHoc = @namhoc,
-		SiSo = @ss
+		SiSo = @ss,
+		TenLop = @tenlop
 	WHERE MaLop = @malop
 END
 
-EXEC dbo.sp_updateClass 1, 1, 1, 'HK1', '2018-2019', 56
+EXEC dbo.sp_updateClass 1, 1, 1, 'HK1', '2018-2019', 56, 'DHKHMT12A'
 GO 
-CREATE PROC sp_addNewClass
+ALTER PROC sp_addNewClass
 	@magv INT,
 	@mamh INT,
 	@hk CHAR(5),
 	@namhoc CHAR(15),
-	@ss INT
+	@ss INT,
+	@tenlop char(15)
 AS
 BEGIN
-    INSERT dbo.LopHoc(MaGV, MaMH, HocKy, NamHoc, SiSo)
-    VALUES(@magv, @mamh, @hk, @namhoc, @ss)
+    INSERT dbo.LopHoc(MaGV, MaMH, HocKy, NamHoc, SiSo, TenLop)
+    VALUES(@magv, @mamh, @hk, @namhoc, @ss, @tenlop)
 END
 GO 
 CREATE PROC sp_getDSMon @mamh INT
@@ -667,3 +689,41 @@ BEGIN
 	WHERE l.MaLop = @malop
 	GROUP BY l.SiSo
 END
+
+go 
+exec sp_GetAllP 0
+go
+-- Lấy trạng thái cập nhật điểm theo học kỳ, năm học, môn học trong bảng danh sách lớp
+Create Proc sp_getStateofAllow @hk char(5), @nh char(15)
+as
+Begin
+	Select Distinct AllowEdit
+	from LopHoc
+	where HocKy = @hk And NamHoc = @nh
+End
+
+exec sp_getStateofAllow 'HK2', '2019-2020'
+go 
+
+Create Proc sp_updateStateofAllow @hk char(5), @nh char(15), @tt int
+as
+Begin
+	Update LopHoc
+	Set AllowEdit = @tt
+	where HocKy = @hk And NamHoc = @nh
+End
+
+exec sp_updateStateofAllow 'HK2', '2018-2019', 0
+go 
+
+go 
+create proc sp_getDSMH
+as
+	select MaMH, count(MaLop) from LopHoc group by MaMH
+go 
+
+-- Lấy danh sách học kỳ năm học hiện tại
+create proc sp_getDSHKNH
+as
+	select NamHoc, HocKy, HienTai from HocKyNamHoc
+go

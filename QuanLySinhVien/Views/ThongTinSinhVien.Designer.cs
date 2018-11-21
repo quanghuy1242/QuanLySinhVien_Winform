@@ -238,6 +238,7 @@
             this.btnShowTip.TabIndex = 24;
             this.btnShowTip.Text = "Hướng dẫn sử dụng";
             this.btnShowTip.UseVisualStyleBackColor = true;
+            this.btnShowTip.Click += new System.EventHandler(this.btnShowTip_Click);
             // 
             // btnDong
             // 

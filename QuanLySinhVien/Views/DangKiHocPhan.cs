@@ -28,6 +28,10 @@ namespace QuanLySinhVien.Views
         void LoadData()
         {
             dkhpC.loadDatatoDSLop(dtgvLopChuaDK, 0, GlobalVariable.GVMaSo);
+
+            dkhpC.chonHKNHHienTai(txtHK, txtNamHoc);
+
+            // lớp đầy
             foreach(DataGridViewRow row in dtgvLopChuaDK.Rows)
             {
                 if(row.Cells[5].Value.ToString() == row.Cells[6].Value.ToString())
@@ -35,7 +39,19 @@ namespace QuanLySinhVien.Views
                     CurrencyManager currencyManager = (CurrencyManager)BindingContext[dtgvLopChuaDK.DataSource];
                     currencyManager.SuspendBinding();
                     dtgvLopChuaDK.CurrentCell = null;
-                    row.Visible = false;
+                    dtgvLopChuaDK.Rows.RemoveAt(row.Index);
+                }
+            }
+
+            // Lọc các lớp trong học kì này
+            foreach (DataGridViewRow row in dtgvLopChuaDK.Rows)
+            {
+                if (row.Cells[3].Value.ToString() != txtHK.Text || row.Cells[4].Value.ToString() != txtNamHoc.Text)
+                {
+                    CurrencyManager currencyManager = (CurrencyManager)BindingContext[dtgvLopChuaDK.DataSource];
+                    currencyManager.SuspendBinding();
+                    dtgvLopChuaDK.CurrentCell = null;
+                    dtgvLopChuaDK.Rows.RemoveAt(row.Index);
                 }
             }
         }

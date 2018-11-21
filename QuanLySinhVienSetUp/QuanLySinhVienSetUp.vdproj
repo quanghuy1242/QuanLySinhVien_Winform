@@ -2325,6 +2325,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E3E8307BF589452B87CAD0F3263E05B1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E5227F5EAAD6B7692BDCAD61FFE45BCF"
         "OwnerKey" = "8:_3A2308287F844947930F999EE760818D"
         "MsmSig" = "8:_UNDEFINED"
@@ -9331,6 +9337,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E3E8307BF589452B87CAD0F3263E05B1"
+            {
+            "SourcePath" = "8:..\\QuanLySinhVien\\Huogndansudung.chm"
+            "TargetName" = "8:Huogndansudung.chm"
+            "Tag" = "8:"
+            "Folder" = "8:_9FCC6E82FC3A450E8191196C0B04F32B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E5227F5EAAD6B7692BDCAD61FFE45BCF"
             {
             "AssemblyRegister" = "3:1"
@@ -10515,7 +10541,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3A2308287F844947930F999EE760818D"
             {
-            "SourcePath" = "8:..\\QuanLySinhVien\\obj\\Debug\\QuanLySinhVien.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9FCC6E82FC3A450E8191196C0B04F32B"

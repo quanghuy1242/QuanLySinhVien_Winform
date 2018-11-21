@@ -16,24 +16,41 @@ namespace QuanLySinhVien.Views
     public partial class DanhSachHocSinhCuaLop : Form
     {
         DanhSachHocSinhController dshs;
+        int trangThai;
 
         public DanhSachHocSinhCuaLop()
         {
             InitializeComponent();
             dshs = new DanhSachHocSinhController();
             dtgvDs.AutoGenerateColumns = false;
+
+
+            dtgvDs.Columns["DiemTK"].DefaultCellStyle.Format = "#.##";
+            dtgvDs.Columns["DiemGK"].DefaultCellStyle.Format = "#.##";
+            dtgvDs.Columns["DiemCK"].DefaultCellStyle.Format = "#.##";
+            dtgvDs.Columns["TongKet"].DefaultCellStyle.Format = "#.##";
+
             if (GlobalVariable.GVTuCach == 0)
             {
-                dtgvDs.Columns["DiemTK"].ReadOnly = true;
-                dtgvDs.Columns["DiemGK"].ReadOnly = true;
-                dtgvDs.Columns["DiemCK"].ReadOnly = true;
-                btnUpdateDiem.Visible = false;
+                txtState.Visible = false;
                 btnReport.Visible = false;
+                capQuyenCapNhatDiem();
             }
             if (GlobalVariable.GVTuCach == 2)
             {
                 btnReport.Visible = false;
             }
+        }
+
+        private void capQuyenCapNhatDiem()
+        {
+            dtgvDs.Columns["DiemTK"].ReadOnly = true;
+
+            dtgvDs.Columns["DiemGK"].ReadOnly = true;
+
+            dtgvDs.Columns["DiemCK"].ReadOnly = true;
+
+            btnUpdateDiem.Enabled = false;
         }
 
         private void btnDong_Click(object sender, EventArgs e)
@@ -59,12 +76,12 @@ namespace QuanLySinhVien.Views
             if (GlobalVariable.GVTuCach == 0)
             {
                 // Nếu người đăng nhập là sinh viên
-                dshs.dataGridDsSv(dtgvDs, malop, GlobalVariable.GVMaSo);
+                dshs.dataGridDsSv(dtgvDs, malop, GlobalVariable.GVMaSo, out trangThai);
             }
             if (GlobalVariable.GVTuCach == 1)
             {
                 // Nếu người đăng nhập là giảng viên
-                dshs.dataGridDsSv(dtgvDs, malop, -1);
+                dshs.dataGridDsSv(dtgvDs, malop, -1, out trangThai);
             }
             if (GlobalVariable.GVTuCach == 2)
             {
@@ -73,14 +90,23 @@ namespace QuanLySinhVien.Views
                 if (tucach == 0)
                 {
                     int masosv = Convert.ToInt32(((QuanLyNguoiDung)this.Owner.Owner).txtMa.Text);
-                    dshs.dataGridDsSv(dtgvDs, malop, masosv);
+                    dshs.dataGridDsSv(dtgvDs, malop, masosv, out trangThai);
                 }
                 if(tucach == 1)
                 {
-                    dshs.dataGridDsSv(dtgvDs, malop, -1);
+                    dshs.dataGridDsSv(dtgvDs, malop, -1, out trangThai);
                 }
             }
 
+            if (trangThai == 0)
+            {
+                txtState.Text = "Bạn chưa thể cập nhật điểm vì các thông tin điểm đang bị khoá";
+                capQuyenCapNhatDiem();
+            }
+            else
+            {
+                txtState.Text = "";
+            }
         }
 
         private void DanhSachHocSinhCuaLop_Load(object sender, EventArgs e)
@@ -101,11 +127,23 @@ namespace QuanLySinhVien.Views
 
         private void dtgvDs_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            int text = Convert.ToInt32(e.FormattedValue);
-            if (text > 10)
+            float text;
+            if (GlobalVariable.GVMaSo != 0)
             {
-                dtgvDs.Rows[e.RowIndex].ErrorText = "Điểm không thể lớn hơn 10";
-                e.Cancel = true;
+                try
+                {
+                    text = Convert.ToInt32(e.FormattedValue);
+
+                    if (text > 10)
+                    {
+                        dtgvDs.Rows[e.RowIndex].ErrorText = "Điểm không thể lớn hơn 10";
+                        e.Cancel = true;
+                    }
+                }
+                catch
+                {
+
+                }
             }
         }
 
@@ -119,10 +157,36 @@ namespace QuanLySinhVien.Views
             int count = 0;
             foreach(DataGridViewRow row in dtgvDs.Rows)
             {
-                float tk = float.Parse(row.Cells[2].Value.ToString());
-                float gk = float.Parse(row.Cells[3].Value.ToString());
-                float ck = float.Parse(row.Cells[4].Value.ToString());
+                float tk = -1, gk = -1, ck = -1;
+                try
+                {
+                    tk = float.Parse(row.Cells[2].Value.ToString());
+                }
+                catch
+                {
+
+                }
+
+                try
+                {
+                    gk = float.Parse(row.Cells[3].Value.ToString());
+                }
+                catch
+                {
+
+                }
+
+                try
+                {
+                    ck = float.Parse(row.Cells[4].Value.ToString());
+                }
+                catch
+                {
+
+                }
+
                 int ms = Convert.ToInt32(row.Cells[0].Value);
+
                 ComboBox cbHK = ((ThongTinLopHoc)this.Owner).cbHK;
                 ComboBox cbNamHoc = ((ThongTinLopHoc)this.Owner).cbNamHoc;
 
@@ -134,7 +198,7 @@ namespace QuanLySinhVien.Views
                 count++;
             }
             loadLaiData();
-            MessageBox.Show(count.ToString() + " sinh viên được cập nhật điểm", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnReport_Click(object sender, EventArgs e)

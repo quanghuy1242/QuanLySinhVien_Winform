@@ -20,14 +20,7 @@ namespace QuanLySinhVien.Views
             InitializeComponent();
             ttlhCon = new ThongTinLopHocController();
             dtgvLop.AutoGenerateColumns = false;
-            //if(GlobalVariable.GVTuCach == 0)
-            //{
-            //    btnDanhSach.Visible = false;
-            //}
-            //if (GlobalVariable.GVTuCach == 2)
-            //{
-            //    btnDanhSach.Visible = false;
-            //}
+            
         }
 
         //private void cbHK_SelectedIndexChanged(object sender, EventArgs e)
@@ -44,6 +37,7 @@ namespace QuanLySinhVien.Views
         {
             ttlhCon.comboBoxHocKyLoad(cbHK);
             ttlhCon.comboBoxNamHocLoad(cbNamHoc);
+            ttlhCon.chonHKNHHienTai(cbHK, cbNamHoc);
             if(GlobalVariable.GVTuCach != 2)
             {
                 // Nếu người đang đănng nhập không phải là admin, thì ds lớp sẽ được load từ ms, tucach
@@ -56,6 +50,30 @@ namespace QuanLySinhVien.Views
                 ttlhCon.dataGridViewLopHocLoad(cbHK, cbNamHoc, dtgvLop, maso, tucach, 1);
             }
             //dtgvLop_CellClick(dtgvLop, new DataGridViewCellEventArgs(0, 0));
+
+
+
+
+            if (GlobalVariable.GVTuCach == 0)
+            {
+                btnDanhSach.Text = "Xem Điểm";
+            }
+            if (GlobalVariable.GVTuCach == 1)
+            {
+                btnDanhSach.Text = "Danh Sách Sinh Viên";
+            }
+            if (GlobalVariable.GVTuCach == 2)
+            {
+                int tucach = ((QuanLyNguoiDung)this.Owner).cbTuCach.SelectedItem.ToString() == "Sinh Viên" ? 0 : 1;
+                if (tucach == 0)
+                {
+                    btnDanhSach.Text = "Xem Điểm";
+                }
+                if (tucach == 1)
+                {
+                    btnDanhSach.Text = "Danh Sách Sinh Viên";
+                }
+            }
         }
 
         private void btnDong_Click(object sender, EventArgs e)

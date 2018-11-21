@@ -108,5 +108,10 @@ namespace QuanLySinhVien.Views
         {
             Application.Exit();
         }
+
+        private void btnShowTip_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "Huogndansudung.chm");
+        }
     }
 }

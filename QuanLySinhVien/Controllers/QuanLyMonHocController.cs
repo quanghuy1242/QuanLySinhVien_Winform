@@ -81,7 +81,7 @@ namespace QuanLySinhVien.Controllers
             return dt.Rows[0][3].ToString() + " " + dt.Rows[0][2].ToString();
         }
 
-        public void updateClass(int malop, int magv, int mamh, string hocky, string namhoc, int siso)
+        public void updateClass(int malop, int magv, int mamh, string hocky, string namhoc, int siso, string tenLop)
         {
             SqlCommand cmd = new SqlCommand("sp_updateClass");
             cmd.CommandType = CommandType.StoredProcedure;
@@ -92,11 +92,23 @@ namespace QuanLySinhVien.Controllers
             cmd.Parameters.Add("@hk", SqlDbType.Char, 5).Value = hocky;
             cmd.Parameters.Add("@namhoc", SqlDbType.Char, 15).Value = namhoc;
             cmd.Parameters.Add("@ss", SqlDbType.Int).Value = siso;
+            cmd.Parameters.Add("@tenlop", SqlDbType.Char, 15).Value = tenLop;
 
             dangnhap.ExecuteNonQuery(cmd);
         }
 
-        public void insertNewClass(int magv, int mamh, string hocky, string namhoc, int siso)
+        public void chonHKNHHienTai(ComboBox hk, ComboBox nh)
+        {
+            SqlCommand cmd = new SqlCommand("sp_getNamHocHocKyHienTai");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            DataTable dt = dangnhap.OpenDataSet(cmd).Tables[0];
+
+            hk.Text = dt.Rows[0][1].ToString();
+            nh.Text = dt.Rows[0][0].ToString();
+        }
+
+        public void insertNewClass(int magv, int mamh, string hocky, string namhoc, int siso, string tenLop)
         {
             SqlCommand cmd = new SqlCommand("sp_addNewClass");
             cmd.CommandType = CommandType.StoredProcedure;
@@ -106,6 +118,7 @@ namespace QuanLySinhVien.Controllers
             cmd.Parameters.Add("@hk", SqlDbType.Char, 5).Value = hocky;
             cmd.Parameters.Add("@namhoc", SqlDbType.Char, 15).Value = namhoc;
             cmd.Parameters.Add("@ss", SqlDbType.Int).Value = siso;
+            cmd.Parameters.Add("@tenlop", SqlDbType.Char, 15).Value = tenLop;
 
             dangnhap.ExecuteNonQuery(cmd);
         }
@@ -197,6 +210,104 @@ namespace QuanLySinhVien.Controllers
 
             if (dadk < siso) return true;
             return false;
+        }
+
+        public void loadComboBoxGiangVien(ComboBox MaGV, ComboBox TenGV, out Dictionary<int, string> ahhh)
+        {
+            Dictionary<int, string> danhSachGV = new Dictionary<int, string>();
+
+            SqlCommand cmd = new SqlCommand("sp_GetAllP");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@d", SqlDbType.Int).Value = 0;
+
+            DataTable dt = dangnhap.OpenDataSet(cmd).Tables[0];
+
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                if(dt.Rows[i][10].ToString() == "1")
+                {
+                    int key = Convert.ToInt32(dt.Rows[i][0]);
+                    string value = dt.Rows[i][3].ToString() + " " + dt.Rows[i][2].ToString();
+                    danhSachGV.Add(key, value);
+                }
+            }
+
+            ahhh = danhSachGV;
+
+            // CBMaGV
+            MaGV.DataSource = danhSachGV.Keys.ToList();
+            MaGV.DisplayMember = "MaGV";
+            //MaGV.ValueMember = "MaGVV";
+
+            // CB Tên GV
+            TenGV.DataSource = danhSachGV.Values.ToList();
+            TenGV.DisplayMember = "MaGV";
+            //TenGV.ValueMember = "MaGVV";
+        }
+
+        public int loadTrangThaiCapNhat(string hk, string nh)
+        {
+            SqlCommand cmd = new SqlCommand("sp_getStateofAllow");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@hk", SqlDbType.Char, 5).Value = hk;
+            cmd.Parameters.Add("@nh", SqlDbType.Char, 15).Value = nh;
+
+            try
+            {
+                return Convert.ToInt32(dangnhap.OpenDataSet(cmd).Tables[0].Rows[0][0]);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public void updateTrangThaiCapNhat(string hk, string nh, int tt)
+        {
+            SqlCommand cmd = new SqlCommand("sp_updateStateofAllow");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@hk", SqlDbType.Char, 5).Value = hk;
+            cmd.Parameters.Add("@nh", SqlDbType.Char, 15).Value = nh;
+            cmd.Parameters.Add("@tt", SqlDbType.Int).Value = tt;
+
+            dangnhap.ExecuteNonQuery(cmd);
+        }
+        public int getSoLopCuaMotMon(int MaMH)
+        {
+            SqlCommand cmd = new SqlCommand("sp_getDSMH");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            DataTable dt = dangnhap.OpenDataSet(cmd).Tables[0];
+
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (Convert.ToInt32(dt.Rows[i][0]) == MaMH)
+                {
+                    return Convert.ToInt32(dt.Rows[i][1]);
+                }
+            }
+
+            return -1;
+        }
+
+        public void dtgvNHHK(DataGridView dtgv)
+        {
+            SqlCommand cmd = new SqlCommand("sp_getDSHKNH");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            dtgv.DataSource = dangnhap.OpenDataSet(cmd).Tables[0];
+        }
+
+        public void updatedtgvHKNHtodb(DataGridView dtgv)
+        {
+            SqlCommand cmd = new SqlCommand("sp_getDSHKNH");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            dangnhap.UpdateAdapter(cmd, dtgv);
         }
     }
 }

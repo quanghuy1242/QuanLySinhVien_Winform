@@ -43,6 +43,7 @@
             this.btnDong = new System.Windows.Forms.Button();
             this.btnUpdateDiem = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
+            this.txtState = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -183,11 +184,21 @@
             this.btnReport.UseVisualStyleBackColor = true;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
+            // txtState
+            // 
+            this.txtState.AutoSize = true;
+            this.txtState.Location = new System.Drawing.Point(12, 216);
+            this.txtState.Name = "txtState";
+            this.txtState.Size = new System.Drawing.Size(55, 13);
+            this.txtState.TabIndex = 10;
+            this.txtState.Text = "Trạng thái";
+            // 
             // DanhSachHocSinhCuaLop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 238);
+            this.Controls.Add(this.txtState);
             this.Controls.Add(this.btnReport);
             this.Controls.Add(this.btnUpdateDiem);
             this.Controls.Add(this.btnDong);
@@ -199,6 +210,7 @@
             this.Load += new System.EventHandler(this.DanhSachHocSinhCuaLop_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDs)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -215,5 +227,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DiemCK;
         private System.Windows.Forms.DataGridViewTextBoxColumn TongKet;
         private System.Windows.Forms.DataGridViewTextBoxColumn XepLoai;
+        private System.Windows.Forms.Label txtState;
     }
 }

@@ -40,6 +40,8 @@ namespace QuanLySinhVien.Views
         {
             bangDiemController.comboBoxHocKyLoad(cbHK);
             bangDiemController.comboBoxNamHocLoad(cbNamHoc);
+            bangDiemController.chonHKNHHienTai(cbHK, cbNamHoc);
+
             bangDiemController.dataGridViewDiemLoad(cbHK, cbNamHoc, dtgvDiem);
             // Thêm số thư tự
             int count = 1;

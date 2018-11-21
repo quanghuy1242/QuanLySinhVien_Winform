@@ -42,5 +42,16 @@ namespace QuanLySinhVien.Controllers
 
             dangnhap.ExecuteNonQuery(cmd);
         }
+
+        public void chonHKNHHienTai(TextBox hk, TextBox nh)
+        {
+            SqlCommand cmd = new SqlCommand("sp_getNamHocHocKyHienTai");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            DataTable dt = dangnhap.OpenDataSet(cmd).Tables[0];
+
+            hk.Text = dt.Rows[0][1].ToString();
+            nh.Text = dt.Rows[0][0].ToString();
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace QuanLySinhVien.Views
             
             if (txtTen.TextLength == 0) { loi += "Tên không để trống\n"; }
             if (txtTenLot.TextLength == 0) { loi += "Họ và tên lót đăng nhập không để trống\n"; }
-            if (txtPass.TextLength == 0) { loi += "Password đăng nhập không để trống\n"; }
+            if (txtPass.TextLength < 5) { loi += "Password phải lớn hơn hoặc bằng 5 kí tự\n"; }
 
             try
             {

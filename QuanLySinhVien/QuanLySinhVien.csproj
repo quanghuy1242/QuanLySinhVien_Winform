@@ -226,6 +226,7 @@
     <EmbeddedResource Include="Views\DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Huogndansudung.chm" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\QuanLySinhVien.Models.HocSinh.datasource" />
     <None Include="Properties\DataSources\QuanLySinhVien.Models.MonHoc.datasource" />
