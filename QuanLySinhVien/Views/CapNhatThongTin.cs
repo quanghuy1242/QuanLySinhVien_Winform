@@ -137,5 +137,17 @@ namespace QuanLySinhVien.Views
         {
             this.Close();
         }
+
+        private void ckbShowPass_CheckedChanged(object sender, EventArgs e)
+        {
+            if (txtPass.PasswordChar == '*')
+            {
+                txtPass.PasswordChar = '\0';
+            }
+            else
+            {
+                txtPass.PasswordChar = '*';
+            }
+        }
     }
 }

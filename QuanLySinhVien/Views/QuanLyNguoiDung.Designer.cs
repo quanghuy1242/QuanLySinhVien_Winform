@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyNguoiDung));
             this.dtgvDSND = new System.Windows.Forms.DataGridView();
             this.maso = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,6 +79,7 @@
             this.btnRestore = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.ckbShowPass = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDSND)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAnh)).BeginInit();
@@ -107,6 +109,14 @@
             this.dtgvDSND.Location = new System.Drawing.Point(12, 40);
             this.dtgvDSND.Name = "dtgvDSND";
             this.dtgvDSND.ReadOnly = true;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvDSND.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgvDSND.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvDSND.Size = new System.Drawing.Size(664, 362);
             this.dtgvDSND.TabIndex = 0;
@@ -196,6 +206,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.ckbShowPass);
             this.groupBox1.Controls.Add(this.btnClassofPerson);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label11);
@@ -225,7 +236,7 @@
             this.groupBox1.Controls.Add(this.txtHo);
             this.groupBox1.Location = new System.Drawing.Point(682, 34);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(274, 368);
+            this.groupBox1.Size = new System.Drawing.Size(294, 368);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết";
@@ -243,7 +254,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(168, 48);
+            this.label13.Location = new System.Drawing.Point(185, 48);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(25, 13);
             this.label13.TabIndex = 40;
@@ -260,7 +271,7 @@
             // 
             // btnChonAnh
             // 
-            this.btnChonAnh.Location = new System.Drawing.Point(239, 198);
+            this.btnChonAnh.Location = new System.Drawing.Point(259, 198);
             this.btnChonAnh.Name = "btnChonAnh";
             this.btnChonAnh.Size = new System.Drawing.Size(29, 23);
             this.btnChonAnh.TabIndex = 35;
@@ -270,7 +281,7 @@
             // 
             // txtMa
             // 
-            this.txtMa.Location = new System.Drawing.Point(199, 45);
+            this.txtMa.Location = new System.Drawing.Point(219, 45);
             this.txtMa.Name = "txtMa";
             this.txtMa.ReadOnly = true;
             this.txtMa.Size = new System.Drawing.Size(69, 20);
@@ -285,7 +296,7 @@
             "Giảng Viên"});
             this.cbTuCach.Location = new System.Drawing.Point(84, 173);
             this.cbTuCach.Name = "cbTuCach";
-            this.cbTuCach.Size = new System.Drawing.Size(184, 21);
+            this.cbTuCach.Size = new System.Drawing.Size(204, 21);
             this.cbTuCach.TabIndex = 34;
             // 
             // txtPass
@@ -293,7 +304,7 @@
             this.txtPass.Location = new System.Drawing.Point(84, 252);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
-            this.txtPass.Size = new System.Drawing.Size(78, 20);
+            this.txtPass.Size = new System.Drawing.Size(77, 20);
             this.txtPass.TabIndex = 39;
             // 
             // label9
@@ -310,7 +321,7 @@
             this.txtChonAnh.Location = new System.Drawing.Point(84, 200);
             this.txtChonAnh.Name = "txtChonAnh";
             this.txtChonAnh.ReadOnly = true;
-            this.txtChonAnh.Size = new System.Drawing.Size(149, 20);
+            this.txtChonAnh.Size = new System.Drawing.Size(169, 20);
             this.txtChonAnh.TabIndex = 33;
             // 
             // label12
@@ -331,7 +342,7 @@
             "Nữ"});
             this.cbGioiTinh.Location = new System.Drawing.Point(84, 95);
             this.cbGioiTinh.Name = "cbGioiTinh";
-            this.cbGioiTinh.Size = new System.Drawing.Size(184, 21);
+            this.cbGioiTinh.Size = new System.Drawing.Size(204, 21);
             this.cbGioiTinh.TabIndex = 6;
             // 
             // label8
@@ -347,21 +358,21 @@
             // 
             this.txtTenDN.Location = new System.Drawing.Point(84, 226);
             this.txtTenDN.Name = "txtTenDN";
-            this.txtTenDN.Size = new System.Drawing.Size(78, 20);
+            this.txtTenDN.Size = new System.Drawing.Size(98, 20);
             this.txtTenDN.TabIndex = 37;
             // 
             // txtTen
             // 
             this.txtTen.Location = new System.Drawing.Point(84, 45);
             this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(78, 20);
+            this.txtTen.Size = new System.Drawing.Size(95, 20);
             this.txtTen.TabIndex = 31;
             // 
             // datetimeSN
             // 
             this.datetimeSN.Location = new System.Drawing.Point(84, 71);
             this.datetimeSN.Name = "datetimeSN";
-            this.datetimeSN.Size = new System.Drawing.Size(184, 20);
+            this.datetimeSN.Size = new System.Drawing.Size(204, 20);
             this.datetimeSN.TabIndex = 10;
             // 
             // btnXoa
@@ -387,7 +398,7 @@
             // pbAnh
             // 
             this.pbAnh.Image = ((System.Drawing.Image)(resources.GetObject("pbAnh.Image")));
-            this.pbAnh.Location = new System.Drawing.Point(168, 236);
+            this.pbAnh.Location = new System.Drawing.Point(188, 236);
             this.pbAnh.Name = "pbAnh";
             this.pbAnh.Size = new System.Drawing.Size(100, 124);
             this.pbAnh.TabIndex = 4;
@@ -415,7 +426,7 @@
             // 
             this.txtQueQuan.Location = new System.Drawing.Point(84, 148);
             this.txtQueQuan.Name = "txtQueQuan";
-            this.txtQueQuan.Size = new System.Drawing.Size(184, 20);
+            this.txtQueQuan.Size = new System.Drawing.Size(204, 20);
             this.txtQueQuan.TabIndex = 22;
             // 
             // label5
@@ -440,7 +451,7 @@
             // 
             this.txtSdt.Location = new System.Drawing.Point(84, 122);
             this.txtSdt.Name = "txtSdt";
-            this.txtSdt.Size = new System.Drawing.Size(184, 20);
+            this.txtSdt.Size = new System.Drawing.Size(204, 20);
             this.txtSdt.TabIndex = 21;
             // 
             // label4
@@ -465,13 +476,13 @@
             // 
             this.txtHo.Location = new System.Drawing.Point(84, 19);
             this.txtHo.Name = "txtHo";
-            this.txtHo.Size = new System.Drawing.Size(184, 20);
+            this.txtHo.Size = new System.Drawing.Size(204, 20);
             this.txtHo.TabIndex = 19;
             // 
             // btnDong
             // 
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDong.Location = new System.Drawing.Point(881, 421);
+            this.btnDong.Location = new System.Drawing.Point(901, 421);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(75, 23);
             this.btnDong.TabIndex = 4;
@@ -482,7 +493,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(853, 10);
+            this.btnAdd.Location = new System.Drawing.Point(873, 10);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(103, 23);
             this.btnAdd.TabIndex = 5;
@@ -519,7 +530,7 @@
             // btnShowAll
             // 
             this.btnShowAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowAll.Location = new System.Drawing.Point(682, 10);
+            this.btnShowAll.Location = new System.Drawing.Point(702, 10);
             this.btnShowAll.Name = "btnShowAll";
             this.btnShowAll.Size = new System.Drawing.Size(47, 23);
             this.btnShowAll.TabIndex = 10;
@@ -553,7 +564,7 @@
             // btnRestore
             // 
             this.btnRestore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRestore.Location = new System.Drawing.Point(735, 10);
+            this.btnRestore.Location = new System.Drawing.Point(755, 10);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(112, 23);
             this.btnRestore.TabIndex = 13;
@@ -583,11 +594,21 @@
             this.label16.TabIndex = 15;
             this.label16.Text = "Ở phần tư cách, 0 là Sinh viên, 1 là Giảng viên";
             // 
+            // ckbShowPass
+            // 
+            this.ckbShowPass.AutoSize = true;
+            this.ckbShowPass.Location = new System.Drawing.Point(167, 256);
+            this.ckbShowPass.Name = "ckbShowPass";
+            this.ckbShowPass.Size = new System.Drawing.Size(15, 14);
+            this.ckbShowPass.TabIndex = 16;
+            this.ckbShowPass.UseVisualStyleBackColor = true;
+            this.ckbShowPass.CheckedChanged += new System.EventHandler(this.ckbShowPass_CheckedChanged);
+            // 
             // QuanLyNguoiDung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(968, 456);
+            this.ClientSize = new System.Drawing.Size(988, 456);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.btnRestore);
@@ -669,5 +690,6 @@
         private System.Windows.Forms.Button btnClassofPerson;
         public System.Windows.Forms.ComboBox cbTuCach;
         public System.Windows.Forms.TextBox txtMa;
+        private System.Windows.Forms.CheckBox ckbShowPass;
     }
 }

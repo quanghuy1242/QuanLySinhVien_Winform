@@ -50,6 +50,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtTenDangNhap = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.ckbShowPass = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnUpdate
@@ -103,7 +104,7 @@
             this.txtPass.Location = new System.Drawing.Point(133, 90);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
-            this.txtPass.Size = new System.Drawing.Size(248, 20);
+            this.txtPass.Size = new System.Drawing.Size(223, 20);
             this.txtPass.TabIndex = 43;
             // 
             // label10
@@ -234,11 +235,22 @@
             this.label3.TabIndex = 42;
             this.label3.Text = "Tên đăng nhập:";
             // 
+            // ckbShowPass
+            // 
+            this.ckbShowPass.AutoSize = true;
+            this.ckbShowPass.Location = new System.Drawing.Point(362, 94);
+            this.ckbShowPass.Name = "ckbShowPass";
+            this.ckbShowPass.Size = new System.Drawing.Size(15, 14);
+            this.ckbShowPass.TabIndex = 58;
+            this.ckbShowPass.UseVisualStyleBackColor = true;
+            this.ckbShowPass.CheckedChanged += new System.EventHandler(this.ckbShowPass_CheckedChanged);
+            // 
             // CapNhatThongTin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(397, 282);
+            this.Controls.Add(this.ckbShowPass);
             this.Controls.Add(this.txtTen);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnChonAnh);
@@ -294,5 +306,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtTenDangNhap;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox ckbShowPass;
     }
 }
