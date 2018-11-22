@@ -552,45 +552,85 @@ namespace QuanLySinhVien.Views
             if (rs == DialogResult.OK)
             {
                 int count = 0;
-                string loi = "";
-                for(int i = 0; i < dtgvNamHocHocKy.Rows.Count - 1; i++)
+                //string loi = "";
+                for (int i = 0; i < dtgvNamHocHocKy.Rows.Count - 1; i++)
                 {
                     if (dtgvNamHocHocKy.Rows[i].Cells[2].Value.ToString() == "1")
                     {
                         count++;
                     }
-                    if(dtgvNamHocHocKy.Rows[i].Cells[2].Value.ToString() != "1" && dtgvNamHocHocKy.Rows[i].Cells[2].Value.ToString() != "0")
+                    if (dtgvNamHocHocKy.Rows[i].Cells[2].Value == DBNull.Value)
                     {
-                        loi = "Cột Now chỉ có thể đánh số 0 hoặc 1";
+                        dtgvNamHocHocKy.Rows[i].Cells[2].Value = false;
                     }
                 }
 
-                if(loi.Length != 0)
-                {
-                    MessageBox.Show(loi);
-                    return;
-                }
+                
+
+                //if(loi.Length != 0)
+                //{
+                //    MessageBox.Show(loi);
+                //    return;
+                //}
 
                 if (count != 1)
                 {
-                    MessageBox.Show("Chỉ có duy nhất một học kỳ và năm học hiện tại!");
+                    MessageBox.Show("Vui lòng chọn học kỳ năm học hiện tại!!");
                     return;
                 }
 
-                qlmhC.updatedtgvHKNHtodb(dtgvNamHocHocKy);
+                if (qlmhC.updatedtgvHKNHtodb(dtgvNamHocHocKy))
+                {
+                    // Tải lại danh sách học kỳ năm hcocj
+                    qlmhC.comboBoxHocKyLoad(cbHK);
+                    qlmhC.comboBoxNamHocLoad(cbNamHoc);
+                    qlmhC.chonHKNHHienTai(cbHK, cbNamHoc);
 
-                // Tải lại danh sách học kỳ năm hcocj
-                qlmhC.comboBoxHocKyLoad(cbHK);
-                qlmhC.comboBoxNamHocLoad(cbNamHoc);
-                qlmhC.chonHKNHHienTai(cbHK, cbNamHoc);
+                    qlmhC.comboBoxHocKyLoad(txtHK);
+                    qlmhC.comboBoxNamHocLoad(txtNamHoc);
 
-                qlmhC.comboBoxHocKyLoad(txtHK);
-                qlmhC.comboBoxNamHocLoad(txtNamHoc);
+                    dtgvLopHoc_CellClick_1(dtgvLopHoc, new DataGridViewCellEventArgs(0, 0));
 
-                dtgvLopHoc_CellClick_1(dtgvLopHoc, new DataGridViewCellEventArgs(0, 0));
-
-                MessageBox.Show("Thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi! Vui lòng kiểm tra lại tính hợp lệ", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
+        }
+
+        private void dtgvNamHocHocKy_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            int colIndex = e.ColumnIndex;
+
+            if (colIndex != 2) return;
+
+            foreach(DataGridViewRow row in dtgvNamHocHocKy.Rows)
+            {
+                row.Cells[2].Value = false;
+            }
+            dtgvNamHocHocKy.Rows[rowIndex].Cells[colIndex].Value = true;
+        }
+
+        private void dtgvNamHocHocKy_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            //dtgvNamHocHocKy.Rows[e.RowIndex].Cells[2].Value = true;
+        }
+
+        private void dtgvNamHocHocKy_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            TextBox a;
+            a = e.Control as TextBox;
+            a.CharacterCasing = CharacterCasing.Upper;
+            a.KeyPress += textbox_keypress;
+        }
+
+        void textbox_keypress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
         }
     }
 }

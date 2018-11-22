@@ -717,9 +717,11 @@ exec sp_updateStateofAllow 'HK2', '2018-2019', 0
 go 
 
 go 
-create proc sp_getDSMH
+alter proc sp_getDSMH
 as
-	select MaMH, count(MaLop) from LopHoc group by MaMH
+	select m.MaMH, count(MaLop)
+	from MonHoc m left join LopHoc l on m.MaMH = l.MaMH
+	group by m.MaMH
 go 
 
 -- Lấy danh sách học kỳ năm học hiện tại

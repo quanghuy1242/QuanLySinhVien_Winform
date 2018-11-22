@@ -44,7 +44,7 @@ namespace QuanLySinhVien.Controllers
             return ds;
         }
 
-        public void UpdateAdapter(SqlCommand cmd, DataGridView dtgv)
+        public bool UpdateAdapter(SqlCommand cmd, DataGridView dtgv)
         {
             SqlConnection cn = new SqlConnection(connectionString);
             try
@@ -67,12 +67,14 @@ namespace QuanLySinhVien.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
+                return false;
             }
             finally
             {
                 cn.Close();
             }
+            return true;
         }
 
         public bool ExecuteUpdate(string strSQL)

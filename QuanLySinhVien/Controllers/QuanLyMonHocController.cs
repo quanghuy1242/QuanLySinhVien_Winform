@@ -302,12 +302,12 @@ namespace QuanLySinhVien.Controllers
             dtgv.DataSource = dangnhap.OpenDataSet(cmd).Tables[0];
         }
 
-        public void updatedtgvHKNHtodb(DataGridView dtgv)
+        public bool updatedtgvHKNHtodb(DataGridView dtgv)
         {
             SqlCommand cmd = new SqlCommand("sp_getDSHKNH");
             cmd.CommandType = CommandType.StoredProcedure;
 
-            dangnhap.UpdateAdapter(cmd, dtgv);
+            return dangnhap.UpdateAdapter(cmd, dtgv);
         }
     }
 }

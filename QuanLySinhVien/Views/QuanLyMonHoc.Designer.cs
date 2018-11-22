@@ -68,6 +68,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.dtgvNamHocHocKy = new System.Windows.Forms.DataGridView();
+            this.mainNamHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mainHK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hientai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnDK = new System.Windows.Forms.Button();
@@ -82,9 +85,6 @@
             this.cp = new System.Windows.Forms.RadioButton();
             this.kcp = new System.Windows.Forms.RadioButton();
             this.updateStateAllow = new System.Windows.Forms.Button();
-            this.mainNamHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mainHK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hientai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvMonHoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvLopHoc)).BeginInit();
             this.panel1.SuspendLayout();
@@ -156,7 +156,7 @@
             this.dtgvLopHoc.Name = "dtgvLopHoc";
             this.dtgvLopHoc.ReadOnly = true;
             this.dtgvLopHoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgvLopHoc.Size = new System.Drawing.Size(625, 164);
+            this.dtgvLopHoc.Size = new System.Drawing.Size(642, 164);
             this.dtgvLopHoc.TabIndex = 3;
             this.dtgvLopHoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvLopHoc_CellClick_1);
             // 
@@ -293,7 +293,7 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Location = new System.Drawing.Point(13, 411);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(625, 59);
+            this.panel1.Size = new System.Drawing.Size(642, 59);
             this.panel1.TabIndex = 35;
             // 
             // txtNamHoc
@@ -323,7 +323,7 @@
             // 
             // txtMaLop
             // 
-            this.txtMaLop.Location = new System.Drawing.Point(551, 31);
+            this.txtMaLop.Location = new System.Drawing.Point(377, 31);
             this.txtMaLop.Name = "txtMaLop";
             this.txtMaLop.Size = new System.Drawing.Size(70, 20);
             this.txtMaLop.TabIndex = 48;
@@ -387,7 +387,7 @@
             // 
             // nudSiSo
             // 
-            this.nudSiSo.Location = new System.Drawing.Point(416, 31);
+            this.nudSiSo.Location = new System.Drawing.Point(539, 5);
             this.nudSiSo.Name = "nudSiSo";
             this.nudSiSo.Size = new System.Drawing.Size(78, 20);
             this.nudSiSo.TabIndex = 40;
@@ -395,7 +395,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(377, 34);
+            this.label10.Location = new System.Drawing.Point(500, 8);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(33, 13);
             this.label10.TabIndex = 39;
@@ -437,7 +437,7 @@
             this.tabControl1.Location = new System.Drawing.Point(380, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(261, 223);
+            this.tabControl1.Size = new System.Drawing.Size(279, 223);
             this.tabControl1.TabIndex = 39;
             // 
             // tabPage2
@@ -447,14 +447,14 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(253, 197);
+            this.tabPage2.Size = new System.Drawing.Size(271, 197);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Quản Lý Học Kỳ, Năm Học";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(169, 168);
+            this.button1.Location = new System.Drawing.Point(190, 168);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -471,8 +471,38 @@
             this.hientai});
             this.dtgvNamHocHocKy.Location = new System.Drawing.Point(3, 7);
             this.dtgvNamHocHocKy.Name = "dtgvNamHocHocKy";
-            this.dtgvNamHocHocKy.Size = new System.Drawing.Size(244, 155);
+            this.dtgvNamHocHocKy.Size = new System.Drawing.Size(262, 155);
             this.dtgvNamHocHocKy.TabIndex = 0;
+            this.dtgvNamHocHocKy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvNamHocHocKy_CellContentClick);
+            this.dtgvNamHocHocKy.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dtgvNamHocHocKy_EditingControlShowing);
+            this.dtgvNamHocHocKy.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dtgvNamHocHocKy_RowsAdded);
+            // 
+            // mainNamHoc
+            // 
+            this.mainNamHoc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.mainNamHoc.DataPropertyName = "NamHoc";
+            this.mainNamHoc.HeaderText = "Năm học";
+            this.mainNamHoc.Name = "mainNamHoc";
+            // 
+            // mainHK
+            // 
+            this.mainHK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.mainHK.DataPropertyName = "HocKy";
+            this.mainHK.HeaderText = "Học Kỳ";
+            this.mainHK.Name = "mainHK";
+            this.mainHK.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.mainHK.Width = 67;
+            // 
+            // hientai
+            // 
+            this.hientai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.hientai.DataPropertyName = "HienTai";
+            this.hientai.FalseValue = "0";
+            this.hientai.HeaderText = "Now";
+            this.hientai.Name = "hientai";
+            this.hientai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.hientai.TrueValue = "1";
+            this.hientai.Width = 35;
             // 
             // tabPage1
             // 
@@ -486,7 +516,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(253, 197);
+            this.tabPage1.Size = new System.Drawing.Size(271, 197);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Huỷ lớp sinh viên";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -608,36 +638,11 @@
             this.updateStateAllow.UseVisualStyleBackColor = true;
             this.updateStateAllow.Click += new System.EventHandler(this.updateStateAllow_Click);
             // 
-            // mainNamHoc
-            // 
-            this.mainNamHoc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.mainNamHoc.DataPropertyName = "NamHoc";
-            this.mainNamHoc.HeaderText = "Năm học";
-            this.mainNamHoc.Name = "mainNamHoc";
-            // 
-            // mainHK
-            // 
-            this.mainHK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.mainHK.DataPropertyName = "HocKy";
-            this.mainHK.HeaderText = "Học Kỳ";
-            this.mainHK.Name = "mainHK";
-            this.mainHK.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // hientai
-            // 
-            this.hientai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.hientai.DataPropertyName = "HienTai";
-            this.hientai.HeaderText = "Now";
-            this.hientai.Name = "hientai";
-            this.hientai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.hientai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.hientai.Width = 35;
-            // 
             // QuanLyMonHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 508);
+            this.ClientSize = new System.Drawing.Size(663, 508);
             this.Controls.Add(this.updateStateAllow);
             this.Controls.Add(this.kcp);
             this.Controls.Add(this.cp);
@@ -732,6 +737,6 @@
         private System.Windows.Forms.Button updateStateAllow;
         private System.Windows.Forms.DataGridViewTextBoxColumn mainNamHoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn mainHK;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hientai;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn hientai;
     }
 }
