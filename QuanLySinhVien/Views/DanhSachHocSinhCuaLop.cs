@@ -69,7 +69,8 @@ namespace QuanLySinhVien.Views
             }
             catch
             {
-                MessageBox.Show("Bạn chưa học lớp nào!");
+                MessageBox.Show("Không có lớp nào!");
+                this.Close();
                 return;
             }
 

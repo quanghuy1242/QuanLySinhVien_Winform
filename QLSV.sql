@@ -634,11 +634,12 @@ ALTER TABLE dbo.SinhVien NOCHECK CONSTRAINT ALL
 
 -- xoá sinh viên
 
-ALTER TABLE dbo.LopSinhVien DROP CONSTRAINT FK__LopSinhVie__MaSV__1CF15040
+ALTER TABLE dbo.LopSinhVien DROP CONSTRAINT FK__LopSinhVie__MaSV__4AB81AF0
 
 ALTER TABLE dbo.LopSinhVien ADD CONSTRAINT FK_Masv FOREIGN KEY (MaSV) REFERENCES dbo.SinhVien(MSSV) ON DELETE CASCADE
 
-DELETE FROM dbo.SinhVien WHERE MSSV = 7
+DELETE FROM dbo.SinhVien WHERE MSSV = 6
+select * from SinhVien where MSSV = 6
 
 -- xoá gv
 SELECT * FROM dbo.GiangVien
@@ -729,3 +730,25 @@ create proc sp_getDSHKNH
 as
 	select NamHoc, HocKy, HienTai from HocKyNamHoc
 go
+
+create proc sp_xoaHoanToan @ms int, @tc int
+as
+	begin
+		if @tc = 0
+			begin 
+				delete from SinhVien
+				where MSSV = @ms
+			end
+		if @tc = 1
+			begin
+				delete from GiangVien
+				where MSGV = @ms
+			end
+	end
+go 
+ALTER TABLE dbo.LopSinhVien DROP CONSTRAINT FK__LopSinhVie__MaSV__4AB81AF0
+
+ALTER TABLE dbo.LopSinhVien ADD CONSTRAINT FK_Masv FOREIGN KEY (MaSV) REFERENCES dbo.SinhVien(MSSV) ON DELETE CASCADE
+
+DELETE FROM dbo.SinhVien WHERE MSSV = 6
+select * from SinhVien where MSSV = 6

@@ -11,7 +11,7 @@ namespace QuanLySinhVien.Controllers
 {
     class CdbController
     {
-        private string connectionString = ConnectionString.AZURE_STRING;
+        private string connectionString = ConnectionString.LOCAL_STRING;
 
         public CdbController()
         {

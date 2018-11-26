@@ -82,7 +82,25 @@ namespace QuanLySinhVien.Views
             DialogResult rs = MessageBox.Show(msg, "Cảnh báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (rs == DialogResult.OK)
             {
-
+                try
+                {
+                    int ms = Convert.ToInt32(dtgvRestore.SelectedRows[0].Cells[0].Value);
+                    int tc = Convert.ToInt32(dtgvRestore.SelectedRows[0].Cells[1].Value);
+                    if (kpndC.xoaHoanToan(ms, tc))
+                    {
+                        ((QuanLyNguoiDung)this.Owner).btnShowAll.PerformClick();
+                        kpndC.LoadThongTin(dtgvRestore, 1);
+                        MessageBox.Show("Thành công!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Danh sách trống hoặc bạn chưa chọn một người dùng", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

@@ -112,7 +112,6 @@ namespace QuanLySinhVien.Views
         {
             DanhSachHocSinhCuaLop dshs = new DanhSachHocSinhCuaLop();
             dshs.ShowDialog(this);
-            
         }
     }
 }

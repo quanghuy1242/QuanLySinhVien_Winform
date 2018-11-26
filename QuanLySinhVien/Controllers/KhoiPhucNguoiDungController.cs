@@ -39,5 +39,16 @@ namespace QuanLySinhVien.Controllers
 
             return dangnhap.ExecuteNonQuery(cmd);
         }
+
+        public bool xoaHoanToan(int maso, int tucach)
+        {
+            SqlCommand cmd = new SqlCommand("sp_xoaHoanToan");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@ms", SqlDbType.Int).Value = maso;
+            cmd.Parameters.Add("@tc", SqlDbType.Int).Value = tucach;
+
+            return dangnhap.ExecuteNonQuery(cmd);
+        }
     }
 }
