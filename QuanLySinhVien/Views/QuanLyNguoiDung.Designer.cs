@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyNguoiDung));
             this.dtgvDSND = new System.Windows.Forms.DataGridView();
             this.maso = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbTK = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ckbShowPass = new System.Windows.Forms.CheckBox();
             this.btnClassofPerson = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -79,7 +80,6 @@
             this.btnRestore = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.ckbShowPass = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDSND)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAnh)).BeginInit();
@@ -109,14 +109,14 @@
             this.dtgvDSND.Location = new System.Drawing.Point(12, 40);
             this.dtgvDSND.Name = "dtgvDSND";
             this.dtgvDSND.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvDSND.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvDSND.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgvDSND.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvDSND.Size = new System.Drawing.Size(664, 362);
             this.dtgvDSND.TabIndex = 0;
@@ -241,11 +241,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết";
             // 
+            // ckbShowPass
+            // 
+            this.ckbShowPass.AutoSize = true;
+            this.ckbShowPass.Location = new System.Drawing.Point(167, 256);
+            this.ckbShowPass.Name = "ckbShowPass";
+            this.ckbShowPass.Size = new System.Drawing.Size(15, 14);
+            this.ckbShowPass.TabIndex = 16;
+            this.ckbShowPass.UseVisualStyleBackColor = true;
+            this.ckbShowPass.CheckedChanged += new System.EventHandler(this.ckbShowPass_CheckedChanged);
+            // 
             // btnClassofPerson
             // 
             this.btnClassofPerson.Location = new System.Drawing.Point(5, 308);
             this.btnClassofPerson.Name = "btnClassofPerson";
-            this.btnClassofPerson.Size = new System.Drawing.Size(156, 23);
+            this.btnClassofPerson.Size = new System.Drawing.Size(174, 23);
             this.btnClassofPerson.TabIndex = 42;
             this.btnClassofPerson.Text = "Lớp học";
             this.btnClassofPerson.UseVisualStyleBackColor = true;
@@ -290,6 +300,7 @@
             // cbTuCach
             // 
             this.cbTuCach.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTuCach.Enabled = false;
             this.cbTuCach.FormattingEnabled = true;
             this.cbTuCach.Items.AddRange(new object[] {
             "Sinh Viên",
@@ -389,7 +400,7 @@
             // 
             this.btnCapNhat.Location = new System.Drawing.Point(84, 337);
             this.btnCapNhat.Name = "btnCapNhat";
-            this.btnCapNhat.Size = new System.Drawing.Size(78, 23);
+            this.btnCapNhat.Size = new System.Drawing.Size(95, 23);
             this.btnCapNhat.TabIndex = 26;
             this.btnCapNhat.Text = "Cập nhật";
             this.btnCapNhat.UseVisualStyleBackColor = true;
@@ -530,9 +541,9 @@
             // btnShowAll
             // 
             this.btnShowAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowAll.Location = new System.Drawing.Point(702, 10);
+            this.btnShowAll.Location = new System.Drawing.Point(682, 10);
             this.btnShowAll.Name = "btnShowAll";
-            this.btnShowAll.Size = new System.Drawing.Size(47, 23);
+            this.btnShowAll.Size = new System.Drawing.Size(67, 23);
             this.btnShowAll.TabIndex = 10;
             this.btnShowAll.Text = "Tất cả";
             this.btnShowAll.UseVisualStyleBackColor = true;
@@ -593,16 +604,6 @@
             this.label16.Size = new System.Drawing.Size(228, 13);
             this.label16.TabIndex = 15;
             this.label16.Text = "Ở phần tư cách, 0 là Sinh viên, 1 là Giảng viên";
-            // 
-            // ckbShowPass
-            // 
-            this.ckbShowPass.AutoSize = true;
-            this.ckbShowPass.Location = new System.Drawing.Point(167, 256);
-            this.ckbShowPass.Name = "ckbShowPass";
-            this.ckbShowPass.Size = new System.Drawing.Size(15, 14);
-            this.ckbShowPass.TabIndex = 16;
-            this.ckbShowPass.UseVisualStyleBackColor = true;
-            this.ckbShowPass.CheckedChanged += new System.EventHandler(this.ckbShowPass_CheckedChanged);
             // 
             // QuanLyNguoiDung
             // 

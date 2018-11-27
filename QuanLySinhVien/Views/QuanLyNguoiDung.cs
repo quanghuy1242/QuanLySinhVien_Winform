@@ -129,7 +129,7 @@ namespace QuanLySinhVien.Views
                 }
 
 
-                Regex regex = new Regex(@"^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$");
+                Regex regex = new Regex(@"^(0|\+84)\d{9,10}$");
                 if (!regex.IsMatch(txtSdt.Text))
                 {
                     loi += "Số điện thoại không đúng định dạng!";
@@ -205,6 +205,12 @@ namespace QuanLySinhVien.Views
                     loi += "Sinh viên phải có tuổi lớn hơn hoặc bằng 17";
                 }
 
+                Regex regex = new Regex(@"^(0|\+84)\d{9,10}$");
+                if (!regex.IsMatch(txtSdt.Text))
+                {
+                    loi += "Số điện thoại không đúng định dạng!";
+                }
+
                 if (loi.Length != 0)
                 {
                     MessageBox.Show(loi, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -230,6 +236,10 @@ namespace QuanLySinhVien.Views
                 btnCapNhat.Text = "Cập nhật";
                 dtgvDSND.Enabled = true;
                 btnClassofPerson.Enabled = true;
+
+
+                // Mở cb tư cách
+                cbTuCach.Enabled = false;
             }
             
         }
@@ -247,6 +257,9 @@ namespace QuanLySinhVien.Views
             btnXoa.Text = "Huỷ";
             btnCapNhat.Text = "Thêm";
             btnClassofPerson.Enabled = false;
+
+            // Mở cb tư cách
+            cbTuCach.Enabled = true;
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -278,6 +291,10 @@ namespace QuanLySinhVien.Views
                 btnXoa.Text = "Xoá";
                 btnCapNhat.Text = "Cập nhật";
                 dtgvDSND_CellClick(this.dtgvDSND, new DataGridViewCellEventArgs(0, 0)); // Click vô dòng đầu tiên
+
+
+                // tắt cb tư cách
+                cbTuCach.Enabled = false;
             }
         }
 

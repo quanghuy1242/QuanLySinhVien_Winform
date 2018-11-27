@@ -79,7 +79,7 @@ namespace QuanLySinhVien.Views
                 loi += "Sinh viên phải có tuổi lớn hơn hoặc bằng 17";
             }
 
-            Regex regex = new Regex(@"^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$");
+            Regex regex = new Regex(@"^(0|\+84)\d{9,10}$");
             if (!regex.IsMatch(txtSdt.Text))
             {
                 loi += "Số điện thoại không đúng định dạng!";
